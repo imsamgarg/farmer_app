@@ -38,7 +38,7 @@ class CustomButton extends StatelessWidget {
         style: ButtonStyle(
           elevation: MaterialStateProperty.resolveWith((_) => elevation),
           overlayColor: MaterialStateColor.resolveWith(
-              (states) => overlayColor ?? Color(0xff28458d)),
+              (states) => overlayColor ?? Color(0xff208b5d)),
           foregroundColor: MaterialStateColor.resolveWith((states) => fgColor!),
           shape: MaterialStateProperty.resolveWith((states) => cardShape),
           backgroundColor: MaterialStateColor.resolveWith(
