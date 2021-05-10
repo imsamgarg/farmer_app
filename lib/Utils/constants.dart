@@ -29,7 +29,7 @@ const errorMsg = "Please Went Wrong Try Again After Sometime";
 //
 // //Social Icons Path
 // const String gLogo = "assets/logo/g_logo.png";
-// const String fbLogo = "assets/logo/fb_logo.png";
+// const String fbLogo = "assets/logo/fb_logo.pn";
 //
 // Arrow Icons Path
 const String leftArrow = "assets/Misc/leftArrow.png";
@@ -82,4 +82,21 @@ const verSpacing20 = SizedBox(
 );
 const verSpacing25 = SizedBox(
   height: 25,
+);
+
+///
+const horSpacing5 = SizedBox(
+  width: 5,
+);
+const horSpacing10 = SizedBox(
+  width: 10,
+);
+const horSpacing15 = SizedBox(
+  width: 15,
+);
+const horSpacing20 = SizedBox(
+  width: 20,
+);
+const horSpacing25 = SizedBox(
+  width: 25,
 );
