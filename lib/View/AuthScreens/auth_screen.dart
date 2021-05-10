@@ -4,6 +4,7 @@ import 'package:farmer_app/Utils/widgets.dart';
 import 'package:farmer_app/View/AuthScreens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class AuthScreen extends StatelessWidget {
   final bool isNew;
@@ -17,15 +18,27 @@ class AuthScreen extends StatelessWidget {
       body: Padding(
         padding: sidePadding,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextFormField(
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
-                  prefixText: "🇮🇳 +91", hintText: "Enter Mobile Number"),
+                prefixIcon: Padding(
+                    padding: EdgeInsets.all(12),
+                    child: "🇮🇳 +91 ".text.size(16).make()),
+                prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
+                hintText: "Enter Mobile Number",
+              ),
             ),
-            NextButton(() => Get.to(() => OtpScreen())),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                NextButton(() => Get.to(() => OtpScreen())),
+                verSpacing5,
+              ],
+            )
           ],
         ),
       ),
