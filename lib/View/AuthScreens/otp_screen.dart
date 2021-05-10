@@ -14,18 +14,76 @@ class OtpScreen extends StatelessWidget {
       body: Padding(
         padding: sidePadding,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextFormField(
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
-                  prefixText: "🇮🇳 +91", hintText: "Enter Mobile Number"),
-            ),
             Column(
               children: [
-                "I didn't get a code".text.orange400.underline.make(),
-                verSpacing10,
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.done,
+                  style: TextStyle(letterSpacing: 30),
+                ),
+                verSpacing15,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                        text: "Tap Continue to accept Yeoman’s ",
+                        style: TextStyle(color: Colors.grey, height: 1.5,),
+                        children: [
+                          TextSpan(
+                            text: "Terms ;",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          TextSpan(
+                            text: " Data"
+                                " Policy Cookie use",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          TextSpan(
+                              text: ' and the ',
+                              style: TextStyle(color: Colors.grey)),
+                          TextSpan(
+                            text: "Privacy Policy",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          TextSpan(
+                              text: ' and ',
+                              style: TextStyle(color: Colors.grey)),
+                          TextSpan(
+                            text: 'Terms of Service ',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'of Must ',
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ]),
+                  ),
+                )
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                "I didn't get a code".text.center.orange400.underline.make(),
+                verSpacing20,
                 NextButton(() => Get.to(() => EnterNameScreen())),
                 verSpacing5
               ],
