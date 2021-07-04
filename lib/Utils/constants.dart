@@ -61,9 +61,12 @@ const List<String> promoImages = [
 ];
 
 const String logo = "assets/logo.png";
+const String logoSm = "assets/logoSm.png";
 
 /// APP NAME :- Yeomen
 const String appName = "Yeomen";
+
+const String weatherReport = "assets/Misc/weatherReport.png";
 
 /// Error Message
 const String errorText = "Something Went Wrong";

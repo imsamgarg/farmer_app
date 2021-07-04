@@ -1,3 +1,8 @@
+import 'package:farmer_app/Utils/utils.dart';
+import 'package:farmer_app/View/MainScreens/create_post_screen.dart';
+import 'package:farmer_app/View/MainScreens/home_screen.dart';
+import 'package:farmer_app/View/MainScreens/notifications_screen.dart';
+import 'package:farmer_app/View/ProfileScreens/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -9,14 +14,18 @@ class CustomAppBar extends AppBar {
   CustomAppBar(String title, {Color? color, List<Widget>? actions})
       : super(
           leading: InkWell(
-            onTap: () => Get.back(),
-            child: Image.asset(
-              leftArrow,
+            onTap: () {
+              print("dd");
+              Get.back();
+            },
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+              color: accentColor,
             ),
           ),
           actions: actions,
           backgroundColor: color,
-          title: title.text.bold.color(accentColor).make(),
+          title: title.text.semiBold.color(accentColor).make(),
           centerTitle: true,
         );
 }
@@ -123,111 +132,110 @@ class OrWidget extends StatelessWidget {
 //   }
 // }
 
-// class CustomNavigationBar extends StatelessWidget {
-//   final NavigateScreen screen;
-//
-//   const CustomNavigationBar({Key? key, required this.screen}) : super(key: key);
-//
-//   _text(String text, Color color) =>
-//       text.text.xs.semiBold.size(14).color(color).make().box.py3.make();
-//
-//   _color(NavigateScreen _screen) =>
-//       _screen == screen ? accentColor : primaryColors[2];
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return BottomAppBar(
-//       child: Hero(
-//         tag: "bottomAppBar",
-//         child: Material(
-//           color: whiteColor,
-//           child: Container(
-//             height: 70,
-//             child: Row(
-//               children: [
-//                 Expanded(
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       Image.asset(
-//                         NavigateScreen.Home == screen ? homeIconBlue : homeIcon,
-//                         height: 30,
-//                       ),
-//                       _text(
-//                         "Home",
-//                         _color(
-//                           NavigateScreen.Home,
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: InkWell(
-//                     onTap: () => Get.to(() => AllDevicesScreen()),
-//                     child: Column(
-//                       mainAxisAlignment: MainAxisAlignment.center,
-//                       children: [
-//                         Image.asset(
-//                           NavigateScreen.Device == screen
-//                               ? deviceIconBlue
-//                               : deviceIcon,
-//                           height: 30,
-//                         ),
-//                         _text(
-//                           "Devices",
-//                           _color(
-//                             NavigateScreen.Device,
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       Image.asset(
-//                         NavigateScreen.Routines == screen
-//                             ? routineIconBlue
-//                             : routineIcon,
-//                         height: 30,
-//                       ),
-//                       _text(
-//                         "Routines",
-//                         _color(
-//                           NavigateScreen.Routines,
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       Image.asset(
-//                         NavigateScreen.Stat == screen ? statIconBlue : statIcon,
-//                         height: 30,
-//                       ),
-//                       _text(
-//                         "Stat",
-//                         _color(
-//                           NavigateScreen.Stat,
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+class CustomNavigationBar extends StatelessWidget {
+  final NavigateScreen screen;
+
+  const CustomNavigationBar({Key? key, required this.screen}) : super(key: key);
+
+  _text(String text, Color color) =>
+      text.text.xs.semiBold.size(14).color(color).make().box.py3.make();
+
+  _color(NavigateScreen _screen) =>
+      _screen == screen ? accentColor : primaryColors[2];
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      elevation: 15,
+      child: Hero(
+        tag: "bottomAppBar",
+        child: Material(
+          color: whiteColor,
+          child: Container(
+            height: 70,
+            child: Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      print(Get.previousRoute);
+                      if (screen != homeScreen) Get.offAll(() => HomeScreen());
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.home_rounded,
+                          color: _color(
+                            NavigateScreen.Home,
+                          ),
+                        ),
+                        _text(
+                          "Home",
+                          _color(
+                            NavigateScreen.Home,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => CreatePostScreen());
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add_circle_outline_rounded,
+                          color: _color(
+                            NavigateScreen.Post,
+                          ),
+                        ),
+                        _text(
+                          "Post",
+                          _color(
+                            NavigateScreen.Post,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => ProfileScreen());
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.account_circle_rounded,
+                          color: _color(
+                            NavigateScreen.Profile,
+                          ),
+                        ),
+                        _text(
+                          "Profile",
+                          _color(
+                            NavigateScreen.Profile,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class PlusFloatingButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -440,3 +448,46 @@ class Header extends StatelessWidget {
 //     );
 //   }
 // }
+
+class AppHeading extends StatelessWidget {
+  const AppHeading({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            horSpacing15,
+            Image.asset(
+              logoSm,
+              height: 25,
+              width: 25,
+            ),
+            horSpacing10,
+            appName.text.size(18).color(accentColor).make(),
+          ],
+        ),
+        Row(
+          children: [
+            InkWell(
+              onTap: () {
+                Get.to(() => NotificationsScreen());
+              },
+              child: Stack(
+                children: [
+                  Icon(Icons.notifications_none_rounded),
+                ],
+              ),
+            ),
+            horSpacing10,
+          ],
+        )
+      ],
+    );
+  }
+}

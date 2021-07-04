@@ -70,18 +70,21 @@ class _WelcomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomButton(
-                      onPressed: () => Get.to(() => GetStartedScreen(),
-                          transition: Transition.rightToLeftWithFade),
+                      onPressed: () =>
+                          Get.to(() => GetStartedScreen(),
+                              transition: Transition.rightToLeftWithFade),
                       child: Text("Get Started"),
                     ),
                     verSpacing,
                     CustomOutlinedButton(
                       child: Text("I Already Have An Account"),
-                      onPressed: () => Get.to(
-                        () => AuthScreen(
-                          isNew: false,
-                        ),
-                      ),
+                      onPressed: () =>
+                          Get.to(
+                                () =>
+                                AuthScreen(
+                                  isNew: false,
+                                ),
+                          ),
                     ),
                     bottomSpacing
                   ],

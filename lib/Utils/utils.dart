@@ -17,7 +17,10 @@ inputDecor({required String hint}) {
 
 enum NavigateScreen {
   Home,
-  Device,
-  Routines,
-  Stat
+  Post,
+  Profile,
 }
+
+const homeScreen = NavigateScreen.Home;
+const postScreen = NavigateScreen.Post;
+const profileScreen = NavigateScreen.Profile;
