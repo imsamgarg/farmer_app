@@ -3,11 +3,13 @@
 // import 'package:farmer_app/Utils/utils.dart';
 // import 'package:farmer_app/View/AuthScreens/auth_screen.dart';
 import 'package:farmer_app/app/modules/authentication/views/auth_view.dart';
+import 'package:farmer_app/app/modules/launch_screen/controllers/launch_screen_controller.dart';
 import 'package:farmer_app/app/utils/button.dart';
 import 'package:farmer_app/app/utils/constants.dart';
 import 'package:farmer_app/app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'get_started_view.dart';
 
@@ -24,7 +26,7 @@ class WelcomeScreen extends StatelessWidget {
   }
 }
 
-class _WelcomeScreen extends StatelessWidget {
+class _WelcomeScreen extends GetView<LaunchScreenController> {
   ///Welcome Message
   _heading() => headingStyle("Welcome to $appName!!");
 
@@ -74,19 +76,13 @@ class _WelcomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomButton(
-                      onPressed: () => Get.to(() => GetStartedView(),
-                          transition: Transition.rightToLeftWithFade),
+                      onPressed: controller.getStartedButton,
                       child: Text("Get Started"),
                     ),
                     verSpacing,
                     CustomOutlinedButton(
-                      child: Text("I Already Have An Account"),
-                      onPressed: () => Get.to(
-                        () => AuthView(
-                          isNew: false,
-                        ),
-                      ),
-                    ),
+                        child: Text("I Already Have An Account"),
+                        onPressed: controller.iHaveAnAccount),
                     bottomSpacing
                   ],
                 ),
