@@ -1,19 +1,15 @@
-// import 'package:farmer_app/Utils/button.dart';
-// import 'package:farmer_app/Utils/colors.dart';
-// import 'package:farmer_app/Utils/constants.dart';
-// import 'package:farmer_app/Utils/utils.dart';
-// import 'package:farmer_app/View/AuthScreens/auth_screen.dart';
-import 'package:farmer_app/app/modules/authentication/views/auth_view.dart';
+import 'package:farmer_app/app/modules/launch_screen/controllers/get_started_controller.dart';
+import 'package:farmer_app/app/modules/launch_screen/controllers/launch_screen_controller.dart';
 import 'package:farmer_app/app/utils/button.dart';
 import 'package:farmer_app/app/utils/colors.dart';
 import 'package:farmer_app/app/utils/constants.dart';
 import 'package:farmer_app/app/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
-import 'package:get/route_manager.dart';
 
 ///Promo Message Screen
-class GetStartedView extends StatelessWidget {
+class GetStartedView extends GetView<LaunchScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,21 +18,7 @@ class GetStartedView extends StatelessWidget {
   }
 }
 
-class _GetStartedScreen extends StatefulWidget {
-  @override
-  __GetStartedScreenState createState() => __GetStartedScreenState();
-}
-
-class __GetStartedScreenState extends State<_GetStartedScreen> {
-  var pageIndex = 0;
-  late PageController? pageController = PageController(viewportFraction: 1);
-
-  @override
-  void dispose() {
-    pageController!.dispose();
-    super.dispose();
-  }
-
+class _GetStartedScreen extends GetView<GetStartedControllerController> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,13 +27,9 @@ class __GetStartedScreenState extends State<_GetStartedScreen> {
           Expanded(
             flex: 8,
             child: PageView(
-              onPageChanged: (index) {
-                setState(() {
-                  pageIndex = index;
-                });
-              },
+              onPageChanged: controller.onPageChanged,
               children: [_Page1(), _Page2(), _Page3(), _Page4()],
-              controller: pageController,
+              controller: controller.pageController,
             ),
           ),
           Expanded(
@@ -62,16 +40,7 @@ class __GetStartedScreenState extends State<_GetStartedScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  NextButton(() {
-                    if (pageIndex < 3)
-                      pageController!.nextPage(
-                          duration: Duration(milliseconds: 200),
-                          curve: Curves.easeIn);
-                    else
-                      Get.to(
-                        () => AuthView(),
-                      );
-                  }),
+                  NextButton(controller.onNextButton),
                   SizedBox(
                     height: 60,
                     child: Center(
@@ -80,16 +49,16 @@ class __GetStartedScreenState extends State<_GetStartedScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _Dot(
-                            isActive: pageIndex == 0 ? true : false,
+                            isActive: controller.pageIndex == 0 ? true : false,
                           ),
                           _Dot(
-                            isActive: pageIndex == 1 ? true : false,
+                            isActive: controller.pageIndex == 1 ? true : false,
                           ),
                           _Dot(
-                            isActive: pageIndex == 2 ? true : false,
+                            isActive: controller.pageIndex == 2 ? true : false,
                           ),
                           _Dot(
-                            isActive: pageIndex == 3 ? true : false,
+                            isActive: controller.pageIndex == 3 ? true : false,
                           ),
                         ],
                       ),
@@ -181,35 +150,39 @@ class PromoImageClipper extends CustomClipper<Path> {
 class _Page1 extends _Page {
   _Page1()
       : super(
-            heading: "Farming Products Purchase",
-            msg:
-                "Yeoman App provides you the platform to buy quality seeds, Fertilisers and orgains",
-            imageIndex: 0);
+          heading: "Farming Products Purchase",
+          msg:
+              "Yeoman App provides you the platform to buy quality seeds, Fertilisers and orgains",
+          imageIndex: 0,
+        );
 }
 
 class _Page2 extends _Page {
   _Page2()
       : super(
-            heading: "Field Information",
-            msg: "Season based Farming, seed treatment according to season",
-            imageIndex: 1);
+          heading: "Field Information",
+          msg: "Season based Farming, seed treatment according to season",
+          imageIndex: 1,
+        );
 }
 
 class _Page3 extends _Page {
   _Page3()
       : super(
-            heading: "Monitoring Technologies",
-            msg:
-                "Get Soil testing By yeomen App and Cultivate According to the qualities present in.",
-            imageIndex: 2);
+          heading: "Monitoring Technologies",
+          msg:
+              "Get Soil testing By yeomen App and Cultivate According to the qualities present in.",
+          imageIndex: 2,
+        );
 }
 
 class _Page4 extends _Page {
   _Page4()
       : super(
-            heading: "Weather Report",
-            msg: "Farmer can easy farming through the pay day weather report",
-            imageIndex: 3);
+          heading: "Weather Report",
+          msg: "Farmer can easy farming through the pay day weather report",
+          imageIndex: 3,
+        );
 }
 
 class _Dot extends StatelessWidget {
@@ -237,7 +210,9 @@ class _Dot extends StatelessWidget {
         height: 7,
         width: 7,
         decoration: BoxDecoration(
-            color: accentColor.withAlpha(70), borderRadius: borderRadius),
+          color: accentColor.withAlpha(70),
+          borderRadius: borderRadius,
+        ),
       ),
     );
   }
