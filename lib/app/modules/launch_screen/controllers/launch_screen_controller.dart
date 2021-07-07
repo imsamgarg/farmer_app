@@ -1,20 +1,25 @@
+import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class LaunchScreenController extends GetxController {
-  //TODO: Implement LaunchScreenController
-
-  final count = 0.obs;
   @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
+    if (await getUser()) {}
+    return Get.toNamed(Routes.WELCOME);
   }
 
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+  Future getUser() async {
+    //TODO: Implement Logic here
+    await 2.delay();
+    return false;
+  }
+
+  void iHaveAnAccount() {
+    Get.toNamed(Routes.AUTHENTICATION);
+  }
+
+  void getStartedButton() {
+    Get.toNamed(Routes.GET_STARTED);
+  }
 }

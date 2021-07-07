@@ -13,13 +13,10 @@ import 'package:get/get.dart';
 class AppEntryView extends GetView<LaunchScreenController> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-      init: controller,
-      builder: (LaunchScreenController controller) => Scaffold(
-        body: Center(
-          child: SpinKitThreeBounce(
-            color: accentColor,
-          ),
+    return Scaffold(
+      body: Center(
+        child: SpinKitThreeBounce(
+          color: accentColor,
         ),
       ),
     );
