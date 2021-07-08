@@ -1,17 +1,12 @@
-// import 'package:farmer_app/Utils/colors.dart';
-// import 'package:farmer_app/Utils/constants.dart';
-// import 'package:farmer_app/Utils/utils.dart';
-// import 'package:farmer_app/Utils/widgets.dart';
-// import 'package:farmer_app/View/ProfileScreens/edit_profile_screen.dart';
 import 'package:custom_utils/spacing_utils.dart';
-import 'edit_profile_view.dart';
+import 'package:farmer_app/app/modules/profile/controllers/profile_controller.dart';
+import 'package:get/state_manager.dart';
 import 'package:farmer_app/app/utils/colors.dart';
 import 'package:farmer_app/app/utils/constants.dart';
 import 'package:farmer_app/app/utils/utils.dart';
 import 'package:farmer_app/app/utils/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ProfileView extends StatelessWidget {
@@ -62,7 +57,7 @@ class ProfileView extends StatelessWidget {
   }
 }
 
-class _Tile extends StatelessWidget {
+class _Tile extends GetView<ProfileController> {
   final String message;
 
   const _Tile({Key? key, required this.message}) : super(key: key);
@@ -99,7 +94,7 @@ class _Tile extends StatelessWidget {
   }
 }
 
-class _Avatar extends StatelessWidget {
+class _Avatar extends GetView<ProfileController> {
   const _Avatar({
     Key? key,
   }) : super(key: key);
@@ -107,9 +102,7 @@ class _Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.to(() => EditProfileView());
-      },
+      onTap: controller.editProfile,
       child: Container(
         height: 80,
         child: Row(

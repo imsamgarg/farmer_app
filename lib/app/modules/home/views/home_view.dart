@@ -1,15 +1,9 @@
-// import 'package:farmer_app/Utils/colors.dart';
-// import 'package:farmer_app/Utils/constants.dart';
-// import 'package:farmer_app/Utils/utils.dart';
-// import 'package:farmer_app/Utils/widgets.dart';
-// import 'package:farmer_app/View/MainScreens/notifications_screen.dart';
 import 'package:custom_utils/spacing_utils.dart';
 import 'package:farmer_app/app/utils/colors.dart';
 import 'package:farmer_app/app/utils/constants.dart';
 import 'package:farmer_app/app/utils/utils.dart';
 import 'package:farmer_app/app/utils/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeView extends StatelessWidget {

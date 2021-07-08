@@ -5,11 +5,18 @@ import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';
 
 void main() {
-  runApp(
-    GetMaterialApp(
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
       title: "Yeomen",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
-    ),
-  );
+    );
+  }
 }

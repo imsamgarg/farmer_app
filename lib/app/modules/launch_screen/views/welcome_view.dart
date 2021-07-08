@@ -2,16 +2,13 @@
 // import 'package:farmer_app/Utils/constants.dart';
 // import 'package:farmer_app/Utils/utils.dart';
 // import 'package:farmer_app/View/AuthScreens/auth_screen.dart';
-import 'package:farmer_app/app/modules/authentication/views/auth_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/controllers/launch_screen_controller.dart';
 import 'package:farmer_app/app/utils/button.dart';
 import 'package:farmer_app/app/utils/constants.dart';
 import 'package:farmer_app/app/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'get_started_view.dart';
 
 ///```
 ///Welcome Screen to be shown on first ever app start
@@ -48,45 +45,35 @@ class _WelcomeScreen extends GetView<LaunchScreenController> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _heading(), //Welcome Text
-                  verSpacing,
-                  _motto(), //Motto Text
-                ],
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _heading(), //Welcome Text
+                verSpacing,
+                _motto(), //Motto Text
+              ],
             ),
-            Expanded(
-              flex: 6,
-              child: SizedBox(
-                child: Center(
-                  child: Image.asset(logo).p(40),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 2,
+            SizedBox(
+              height: 400,
               child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CustomButton(
-                      onPressed: controller.getStartedButton,
-                      child: Text("Get Started"),
-                    ),
-                    verSpacing,
-                    CustomOutlinedButton(
-                        child: Text("I Already Have An Account"),
-                        onPressed: controller.iHaveAnAccount),
-                    bottomSpacing
-                  ],
-                ),
+                child: Image.asset(logo).p(40),
               ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                CustomButton(
+                  onPressed: controller.getStartedButton,
+                  child: Text("Get Started"),
+                ),
+                verSpacing,
+                CustomOutlinedButton(
+                    child: Text("I Already Have An Account"),
+                    onPressed: controller.iHaveAnAccount),
+                bottomSpacing
+              ],
             ),
           ],
         ),

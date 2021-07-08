@@ -1,13 +1,13 @@
 import 'package:custom_utils/spacing_utils.dart';
-import 'package:farmer_app/app/modules/authentication/views/otp_view.dart';
+import 'package:farmer_app/app/modules/authentication/controllers/authentication_controller.dart';
 import 'package:farmer_app/app/utils/button.dart';
 import 'package:farmer_app/app/utils/constants.dart';
 import 'package:farmer_app/app/utils/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class AuthView extends StatelessWidget {
+class AuthView extends GetView<AuthenticationController> {
   final bool isNew;
 
   AuthView({Key? key, this.isNew = true}) : super(key: key);
@@ -36,7 +36,7 @@ class AuthView extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                NextButton(() => Get.to(() => OtpView())),
+                NextButton(controller.moveToOtpView),
                 verSpacing5,
               ],
             )

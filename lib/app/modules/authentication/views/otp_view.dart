@@ -1,17 +1,13 @@
-// import 'package:farmer_app/Utils/button.dart';
-// import 'package:farmer_app/Utils/constants.dart';
-// import 'package:farmer_app/Utils/widgets.dart';
-// import 'package:farmer_app/View/AuthScreens/enter_name_screen.dart';
 import 'package:custom_utils/spacing_utils.dart';
-import 'package:farmer_app/app/modules/authentication/views/enter_name_view.dart';
+import 'package:farmer_app/app/modules/authentication/controllers/authentication_controller.dart';
 import 'package:farmer_app/app/utils/button.dart';
 import 'package:farmer_app/app/utils/constants.dart';
 import 'package:farmer_app/app/utils/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class OtpView extends StatelessWidget {
+class OtpView extends GetView<AuthenticationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +88,7 @@ class OtpView extends StatelessWidget {
               children: [
                 "I didn't get a code".text.center.orange400.underline.make(),
                 verSpacing20,
-                NextButton(() => Get.to(() => EnterNameView())),
+                NextButton(controller.moveToEnterNameView),
                 verSpacing5
               ],
             ),

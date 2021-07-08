@@ -1,14 +1,5 @@
-// import 'package:farmer_app/Utils/utils.dart';
-// import 'package:farmer_app/View/MainScreens/create_post_screen.dart';
-// import 'package:farmer_app/View/MainScreens/home_screen.dart';
-// import 'package:farmer_app/View/MainScreens/notifications_screen.dart';
-// import 'package:farmer_app/View/ProfileScreens/profile_screen.dart';
 import 'package:custom_utils/spacing_utils.dart';
-import 'package:farmer_app/app/modules/home/views/create_post_view.dart';
-import 'package:farmer_app/app/modules/home/views/home_view.dart';
-import 'package:farmer_app/app/modules/home/views/notifications_view.dart';
-import 'package:farmer_app/app/modules/profile/views/profile_view.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:get/route_manager.dart';
@@ -17,13 +8,14 @@ import 'constants.dart';
 import 'utils.dart';
 
 class CustomAppBar extends AppBar {
-  CustomAppBar(String title, {Color? color, List<Widget>? actions})
+  CustomAppBar(String title,
+      {Color? color, List<Widget>? actions, VoidCallback? onTap})
       : super(
           leading: InkWell(
-            onTap: () {
-              print("dd");
-              Get.back();
-            },
+            onTap: onTap ??
+                () {
+                  Get.back();
+                },
             child: Icon(
               Icons.arrow_back_ios_rounded,
               color: accentColor,
@@ -37,10 +29,11 @@ class CustomAppBar extends AppBar {
 }
 
 class CustomSliverAppBar extends SliverAppBar {
-  CustomSliverAppBar(String title, {Color? color, List<Widget>? actions})
+  CustomSliverAppBar(String title,
+      {Color? color, List<Widget>? actions, VoidCallback? onTap})
       : super(
           leading: InkWell(
-            onTap: () => Get.back(),
+            onTap: onTap ?? () => Get.back(),
             child: Image.asset(
               leftArrow,
             ),
@@ -164,8 +157,9 @@ class CustomNavigationBar extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      print(Get.previousRoute);
-                      if (screen != homeScreen) Get.offAll(() => HomeView());
+                      if (screen != homeScreen) {
+                        Get.until((route) => Get.currentRoute == Routes.HOME);
+                      }
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -189,7 +183,7 @@ class CustomNavigationBar extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      Get.to(() => CreatePostView());
+                      Get.toNamed(Routes.CREATE_POST);
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -213,7 +207,7 @@ class CustomNavigationBar extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      Get.to(() => ProfileView());
+                      Get.toNamed(Routes.PROFILE);
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -284,27 +278,27 @@ class PlusFloatingButton extends StatelessWidget {
 //         );
 // }
 
-class CustomSwitchTile extends CustomTile {
-  CustomSwitchTile({
-    required bool value,
-    required String title,
-    required String image,
-    void Function(bool)? onChanged,
-    Key? key,
-  }) : super(
-          key: key,
-          title: title,
-          image: image,
-          trailing: CupertinoSwitch(
-            activeColor: accentColor,
-            value: value,
-            onChanged: onChanged,
-          ).scale(scaleValue: 0.6),
-          onTap: () {
-            onChanged!(!value);
-          },
-        );
-}
+// class CustomSwitchTile extends CustomTile {
+//   CustomSwitchTile({
+//     required bool value,
+//     required String title,
+//     required String image,
+//     void Function(bool)? onChanged,
+//     Key? key,
+//   }) : super(
+//           key: key,
+//           title: title,
+//           image: image,
+//           trailing: CupertinoSwitch(
+//             activeColor: accentColor,
+//             value: value,
+//             onChanged: onChanged,
+//           ).scale(scaleValue: 0.6),
+//           onTap: () {
+//             onChanged!(!value);
+//           },
+//         );
+// }
 
 class CustomTile extends StatelessWidget {
   final VoidCallback? onTap;
@@ -444,7 +438,7 @@ class Header extends StatelessWidget {
 //             });
 //           },
 //           child: Icon(
-//             !isVisible
+//             isVisible
 //                 ? Icons.visibility_outlined
 //                 : Icons.visibility_off_outlined,
 //             color: isVisible ? accentColor : Colors.grey,
@@ -482,7 +476,7 @@ class AppHeading extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Get.to(() => NotificationsView());
+                Get.toNamed(Routes.NOTIFICATIONS);
               },
               child: Stack(
                 children: [

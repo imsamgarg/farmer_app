@@ -1,18 +1,13 @@
-// import 'package:farmer_app/Utils/button.dart';
-// import 'package:farmer_app/Utils/constants.dart';
-// import 'package:farmer_app/Utils/utils.dart';
-// import 'package:farmer_app/Utils/widgets.dart';
-// import 'package:farmer_app/View/MainScreens/home_screen.dart';
 import 'package:custom_utils/spacing_utils.dart';
-import 'package:farmer_app/app/modules/home/views/home_view.dart';
+import 'package:farmer_app/app/modules/authentication/controllers/authentication_controller.dart';
 import 'package:farmer_app/app/utils/button.dart';
 import 'package:farmer_app/app/utils/constants.dart';
 import 'package:farmer_app/app/utils/utils.dart';
 import 'package:farmer_app/app/utils/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 
-class EnterNameView extends StatelessWidget {
+class EnterNameView extends GetView<AuthenticationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +26,7 @@ class EnterNameView extends StatelessWidget {
               children: [
                 CustomButton(
                   child: Text("Get Started"),
-                  onPressed: () => Get.to(() => HomeView()),
+                  onPressed: controller.moveToHomeView,
                 ),
                 verSpacing5,
               ],

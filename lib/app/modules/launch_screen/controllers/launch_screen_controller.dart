@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
@@ -10,8 +12,9 @@ class LaunchScreenController extends GetxController {
   }
 
   Future getUser() async {
-    //TODO: Implement Logic here
+    log("message");
     await 2.delay();
+    log("message");
     return false;
   }
 

@@ -1,20 +1,16 @@
+import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class AuthenticationController extends GetxController {
-  //TODO: Implement AuthenticationController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void moveToEnterNameView() {
+    Get.toNamed(Routes.ENTER_NAME);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void moveToOtpView() {
+    Get.toNamed(Routes.OTP);
   }
 
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+  void moveToHomeView() {
+    Get.toNamed(Routes.HOME);
+  }
 }
