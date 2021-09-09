@@ -78,7 +78,7 @@ class _Tile extends GetView<ProfileController> {
                 message.text
                     .size(18)
                     .semiBold
-                    .color(Theme.of(context).accentColor)
+                    .color(Theme.of(context).colorScheme.primary)
                     .make(),
               ],
             ),
@@ -86,7 +86,7 @@ class _Tile extends GetView<ProfileController> {
               children: [
                 Icon(
                   Icons.arrow_forward_ios_rounded,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
                 horSpacing15
               ],

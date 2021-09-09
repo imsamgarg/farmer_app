@@ -15,7 +15,7 @@ class AppEntryView extends GetView<LaunchScreenController> {
     return Scaffold(
       body: Center(
         child: SpinKitThreeBounce(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.primary,
         ),
       ),
     );

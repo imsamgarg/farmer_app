@@ -10,7 +10,7 @@ final lightTheme = ThemeData(
   backgroundColor: ColorTheme.whiteColor,
   primaryColor: ColorTheme.accentColor,
   brightness: Brightness.light,
-  accentColor: ColorTheme.accentColor,
+  primaryColorLight: ColorTheme.accentColor,
   textSelectionTheme: TextSelectionThemeData(
       cursorColor: ColorTheme.accentColor,
       selectionColor: ColorTheme.accentColor,

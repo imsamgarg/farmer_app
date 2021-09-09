@@ -366,14 +366,62 @@ class Mask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       Icons.check_circle,
-      color: color ?? Theme.of(context).accentColor,
+      color: color ?? Theme.of(context).colorScheme.primary,
       size: size,
     )
         .box
         .border(
-          color: color ?? Theme.of(context).accentColor,
-          width: borderWidth ?? 3,
+          color: color ?? Theme.of(context).colorScheme.primary,
+          width: borderWidth ?? 2,
         )
         .make();
+  }
+}
+
+class Crop extends StatelessWidget {
+  const Crop({
+    Key? key,
+    required this.image,
+    required this.name,
+  }) : super(key: key);
+
+  final String image;
+  final String name;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Material(
+          type: MaterialType.circle,
+          color: Vx.gray200,
+          child: Center(
+            child: Image.asset(image),
+          ),
+        ),
+        verSpacing4,
+        name.text.make(),
+      ],
+    );
+  }
+}
+
+class CropDisease extends StatelessWidget {
+  const CropDisease({
+    Key? key,
+    required this.name,
+    required this.image,
+  }) : super(key: key);
+
+  final String name;
+  final String image;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ClipOval(child: Image.asset(name)),
+        verSpacing4,
+        name.text.make(),
+      ],
+    );
   }
 }
