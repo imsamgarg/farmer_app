@@ -2,9 +2,9 @@
 // import 'package:farmer_app/Utils/constants.dart';
 // import 'package:farmer_app/Utils/widgets.dart';
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
-import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/route_manager.dart';

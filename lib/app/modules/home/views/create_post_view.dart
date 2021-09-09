@@ -5,6 +5,7 @@
 // import 'package:farmer_app/Utils/widgets.dart';
 // import 'package:farmer_app/View/ProfileScreens/profile_screen.dart';
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
@@ -36,14 +37,12 @@ class CreatePostView extends StatelessWidget {
         "Create Post",
         actions: [
           CustomButton(
-              child: "Post"
-                  .text
-                  .semiBold
-                  .color(ColorTheme.primaryColors[2])
-                  .make(),
-              bgColor: Colors.transparent,
-              overlayColor: ColorTheme.primaryColors[3],
-              onPressed: () {}),
+            child:
+                "Post".text.semiBold.color(ColorTheme.primaryColors[2]).make(),
+            bgColor: Colors.transparent,
+            overlayColor: ColorTheme.primaryColors[3],
+            onPressed: () {},
+          ),
         ],
       ),
       body: Container(

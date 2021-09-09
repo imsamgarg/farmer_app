@@ -8,26 +8,26 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:get/route_manager.dart';
 
-class CustomAppBar extends AppBar {
-  CustomAppBar(String title,
-      {Color? color, List<Widget>? actions, VoidCallback? onTap})
-      : super(
-          leading: InkWell(
-            onTap: onTap ??
-                () {
-                  Get.back();
-                },
-            child: Icon(
-              Icons.arrow_back_ios_rounded,
-              color: ColorTheme.accentColor,
-            ),
-          ),
-          actions: actions,
-          backgroundColor: color,
-          title: title.text.semiBold.color(ColorTheme.accentColor).make(),
-          centerTitle: true,
-        );
-}
+// class CustomAppBar extends AppBar {
+//   CustomAppBar(String title,
+//       {Color? color, List<Widget>? actions, VoidCallback? onTap})
+//       : super(
+//           leading: InkWell(
+//             onTap: onTap ??
+//                 () {
+//                   Get.back();
+//                 },
+//             child: Icon(
+//               Icons.arrow_back_ios_rounded,
+//               color: ColorTheme.accentColor,
+//             ),
+//           ),
+//           actions: actions,
+//           backgroundColor: color,
+//           title: title.text.semiBold.color(ColorTheme.accentColor).make(),
+//           centerTitle: true,
+//         );
+// }
 
 class CustomSliverAppBar extends SliverAppBar {
   CustomSliverAppBar(String title,
@@ -81,56 +81,6 @@ class OrWidget extends StatelessWidget {
     );
   }
 }
-
-// class CustomDropDown extends StatelessWidget {
-//   final List<String> items;
-//   final void Function(String?) onChanged;
-//   final String hint;
-//   final Color? color;
-//   final String? Function(String?)? validator;
-//   final AutovalidateMode autovalidateMode;
-//   final bool isBlue;
-//   final bool enabled;
-//
-//   const CustomDropDown(
-//       {Key? key,
-//       required this.items,
-//       required this.onChanged,
-//       required this.hint,
-//       this.validator,
-//       this.autovalidateMode = AutovalidateMode.onUserInteraction,
-//       this.isBlue = false,
-//       this.enabled = true,
-//       this.color})
-//       : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final List<DropdownMenuItem<String>> _items = items
-//         .map(
-//           (e) => DropdownMenuItem(
-//             value: e,
-//             child: e.text.color(isBlue ? accentColor : primaryColors[3]).make(),
-//           ),
-//         )
-//         .toList(growable: false);
-//     return DropdownButtonFormField<String>(
-//       items: _items,
-//       decoration: InputDecoration(enabled: enabled),
-//       elevation: 2,
-//       onChanged: onChanged,
-//       autovalidateMode: autovalidateMode,
-//       validator: validator,
-//       icon: Image.asset(
-//         isBlue ? downArrowBlue : downArrow,
-//       ),
-//       hint: hint.text
-//           .size(16)
-//           .color(isBlue ? accentColor : primaryColors[1])
-//           .make(),
-//     );
-//   }
-// }
 
 class CustomNavigationBar extends StatelessWidget {
   final NavigateScreen screen;
@@ -254,53 +204,6 @@ class PlusFloatingButton extends StatelessWidget {
   }
 }
 
-// class DeviceTile extends CustomTile {
-//   DeviceTile({
-//     required String title,
-//     required String image,
-//   }) : super(
-//             title: title,
-//             image: image,
-//             trailing: Image.asset(
-//               rightArrow,
-//               height: 24,
-//             ));
-// }
-//
-// class EnergyInfoTile extends CustomTile {
-//   EnergyInfoTile({
-//     required String title,
-//     required String image,
-//     watts,
-//   }) : super(
-//           trailing: messageStyle("$watts W"),
-//           image: image,
-//           title: title,
-//         );
-// }
-
-// class CustomSwitchTile extends CustomTile {
-//   CustomSwitchTile({
-//     required bool value,
-//     required String title,
-//     required String image,
-//     void Function(bool)? onChanged,
-//     Key? key,
-//   }) : super(
-//           key: key,
-//           title: title,
-//           image: image,
-//           trailing: CupertinoSwitch(
-//             activeColor: accentColor,
-//             value: value,
-//             onChanged: onChanged,
-//           ).scale(scaleValue: 0.6),
-//           onTap: () {
-//             onChanged!(!value);
-//           },
-//         );
-// }
-
 class CustomTile extends StatelessWidget {
   final VoidCallback? onTap;
   final String image;
@@ -404,52 +307,6 @@ class Header extends StatelessWidget {
   }
 }
 
-// class PasswordField extends StatefulWidget {
-//   final TextEditingController controller;
-//
-//   final onFieldSubmitted;
-//
-//   const PasswordField(
-//     this.controller, {
-//     Key? key,
-//     this.onFieldSubmitted,
-//   }) : super(key: key);
-//
-//   @override
-//   _PasswordFieldState createState() => _PasswordFieldState();
-// }
-//
-// class _PasswordFieldState extends State<PasswordField> {
-//   bool isVisible = true;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextFormField(
-//       controller: widget.controller,
-//       autovalidateMode: AutovalidateMode.onUserInteraction,
-//       obscureText: isVisible,
-//       onFieldSubmitted: widget.onFieldSubmitted,
-//       validator: (value) => emptyValidator(value, "Password"),
-//       decoration: InputDecoration(
-//         hintText: "Enter Your Password",
-//         suffixIcon: GestureDetector(
-//           onTap: () {
-//             setState(() {
-//               isVisible ? isVisible = false : isVisible = true;
-//             });
-//           },
-//           child: Icon(
-//             isVisible
-//                 ? Icons.visibility_outlined
-//                 : Icons.visibility_off_outlined,
-//             color: isVisible ? accentColor : Colors.grey,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 class AppHeading extends StatelessWidget {
   const AppHeading({
     Key? key,
@@ -490,5 +347,33 @@ class AppHeading extends StatelessWidget {
         )
       ],
     );
+  }
+}
+
+class Mask extends StatelessWidget {
+  const Mask({
+    Key? key,
+    this.color,
+    this.size,
+    this.borderWidth,
+  }) : super(key: key);
+
+  final Color? color;
+  final double? size;
+  final double? borderWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      Icons.check_circle,
+      color: color ?? Theme.of(context).accentColor,
+      size: size,
+    )
+        .box
+        .border(
+          color: color ?? Theme.of(context).accentColor,
+          width: borderWidth ?? 3,
+        )
+        .make();
   }
 }

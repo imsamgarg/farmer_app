@@ -1,10 +1,12 @@
+import 'package:farmer_app/app/core/global_widgets/button.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
 class CustomAppBar extends AppBar {
-  CustomAppBar({
+  CustomAppBar(
+    String heading, {
     IconData? leadingIcon,
     VoidCallback? leadingPress,
     String? leadingTooltip,
@@ -12,8 +14,8 @@ class CustomAppBar extends AppBar {
     bool automaticallyImplyLeading = false,
     VoidCallback? trailingPress,
     String? trailingTooltip,
-    required String heading,
     PreferredSizeWidget? bottom,
+    List<Widget>? actions,
   }) : super(
           leading: IconButton(
             onPressed: leadingPress ?? goBack,
@@ -30,7 +32,7 @@ class CustomAppBar extends AppBar {
                     tooltip: trailingTooltip,
                   )
                 ]
-              : null,
+              : actions,
           title: heading.text.make(),
           bottom: bottom,
         );

@@ -1,10 +1,6 @@
-// import 'package:farmer_app/Utils/button.dart';
-// import 'package:farmer_app/Utils/colors.dart';
-// import 'package:farmer_app/Utils/constants.dart';
-// import 'package:farmer_app/Utils/widgets.dart';
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
 import 'package:farmer_app/app/core/global_widgets/button.dart';
-import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:flutter/material.dart';
