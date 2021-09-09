@@ -4,6 +4,10 @@ import 'package:farmer_app/app/modules/authentication/bindings/authentication_bi
 import 'package:farmer_app/app/modules/authentication/views/auth_view.dart';
 import 'package:farmer_app/app/modules/authentication/views/enter_name_view.dart';
 import 'package:farmer_app/app/modules/authentication/views/otp_view.dart';
+import 'package:farmer_app/app/modules/crop_manual/bindings/crop_manual_binding.dart';
+import 'package:farmer_app/app/modules/crop_manual/views/crop_manual_view.dart';
+import 'package:farmer_app/app/modules/disease_detection/bindings/disease_detection_binding.dart';
+import 'package:farmer_app/app/modules/disease_detection/views/disease_detection_view.dart';
 import 'package:farmer_app/app/modules/home/bindings/home_binding.dart';
 import 'package:farmer_app/app/modules/home/views/create_post_view.dart';
 import 'package:farmer_app/app/modules/home/views/home_view.dart';
@@ -13,6 +17,8 @@ import 'package:farmer_app/app/modules/launch_screen/views/app_entry_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/views/get_started_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/views/language_selection_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/views/welcome_view.dart';
+import 'package:farmer_app/app/modules/paddy_straw_management/bindings/paddy_straw_management_binding.dart';
+import 'package:farmer_app/app/modules/paddy_straw_management/views/paddy_straw_management_view.dart';
 import 'package:farmer_app/app/modules/profile/bindings/profile_binding.dart';
 import 'package:farmer_app/app/modules/profile/views/edit_profile_view.dart';
 import 'package:farmer_app/app/modules/profile/views/profile_view.dart';
@@ -97,6 +103,21 @@ class AppPages {
       name: _Paths.WEATHER_REPORT,
       page: () => WeatherReportView(),
       binding: WeatherReportBinding(),
+    ),
+    GetPage(
+      name: _Paths.DISEASE_DETECTION,
+      page: () => DiseaseDetectionView(),
+      binding: DiseaseDetectionBinding(),
+    ),
+    GetPage(
+      name: _Paths.CROP_MANUAL,
+      page: () => CropManualView(),
+      binding: CropManualBinding(),
+    ),
+    GetPage(
+      name: _Paths.PADDY_STRAW_MANAGEMENT,
+      page: () => PaddyStrawManagementView(),
+      binding: PaddyStrawManagementBinding(),
     ),
   ];
 }

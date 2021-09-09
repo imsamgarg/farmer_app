@@ -20,6 +20,9 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
   static const WEATHER_REPORT = _Paths.WEATHER_REPORT;
+  static const DISEASE_DETECTION = _Paths.DISEASE_DETECTION;
+  static const CROP_MANUAL = _Paths.CROP_MANUAL;
+  static const PADDY_STRAW_MANAGEMENT = _Paths.PADDY_STRAW_MANAGEMENT;
 }
 
 abstract class _Paths {
@@ -39,4 +42,7 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const EDIT_PROFILE = '/edit_profile';
   static const WEATHER_REPORT = '/weather-report';
+  static const DISEASE_DETECTION = '/disease-detection';
+  static const CROP_MANUAL = '/crop-manual';
+  static const PADDY_STRAW_MANAGEMENT = '/paddy-straw-management';
 }
