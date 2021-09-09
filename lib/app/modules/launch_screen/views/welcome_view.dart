@@ -70,8 +70,9 @@ class _WelcomeScreen extends GetView<LaunchScreenController> {
                 ),
                 verSpacing,
                 CustomOutlinedButton(
-                    child: Text("I Already Have An Account"),
-                    onPressed: controller.iHaveAnAccount),
+                  child: Text("I Already Have An Account"),
+                  onPressed: controller.iHaveAnAccount,
+                ),
                 bottomSpacing
               ],
             ),

@@ -1,9 +1,5 @@
 import 'package:get/get.dart';
 
-import 'package:farmer_app/app/modules/authentication/bindings/authentication_binding.dart';
-import 'package:farmer_app/app/modules/authentication/views/auth_view.dart';
-import 'package:farmer_app/app/modules/authentication/views/enter_name_view.dart';
-import 'package:farmer_app/app/modules/authentication/views/otp_view.dart';
 import 'package:farmer_app/app/modules/crop_manual/bindings/crop_manual_binding.dart';
 import 'package:farmer_app/app/modules/crop_manual/views/crop_manual_view.dart';
 import 'package:farmer_app/app/modules/disease_detection/bindings/disease_detection_binding.dart';
@@ -13,15 +9,18 @@ import 'package:farmer_app/app/modules/home/views/create_post_view.dart';
 import 'package:farmer_app/app/modules/home/views/home_view.dart';
 import 'package:farmer_app/app/modules/home/views/notifications_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/bindings/launch_screen_binding.dart';
-import 'package:farmer_app/app/modules/launch_screen/views/app_entry_view.dart';
-import 'package:farmer_app/app/modules/launch_screen/views/get_started_view.dart';
-import 'package:farmer_app/app/modules/launch_screen/views/language_selection_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/views/welcome_view.dart';
+import 'package:farmer_app/app/modules/login/bindings/login_binding.dart';
+import 'package:farmer_app/app/modules/login/views/login_view.dart';
 import 'package:farmer_app/app/modules/paddy_straw_management/bindings/paddy_straw_management_binding.dart';
 import 'package:farmer_app/app/modules/paddy_straw_management/views/paddy_straw_management_view.dart';
 import 'package:farmer_app/app/modules/profile/bindings/profile_binding.dart';
 import 'package:farmer_app/app/modules/profile/views/edit_profile_view.dart';
 import 'package:farmer_app/app/modules/profile/views/profile_view.dart';
+import 'package:farmer_app/app/modules/register/bindings/register_binding.dart';
+import 'package:farmer_app/app/modules/register/views/register_view.dart';
+import 'package:farmer_app/app/modules/startup/bindings/startup_binding.dart';
+import 'package:farmer_app/app/modules/startup/views/startup_view.dart';
 import 'package:farmer_app/app/modules/weather_report/bindings/weather_report_binding.dart';
 import 'package:farmer_app/app/modules/weather_report/views/weather_report_view.dart';
 
@@ -30,7 +29,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.APP_ENTRY;
+  static const INITIAL = Routes.STARTUP;
 
   static final routes = [
     GetPage(
@@ -49,39 +48,7 @@ class AppPages {
       binding: HomeBinding(),
     ),
 
-    ///AUTH
-    GetPage(
-      name: _Paths.AUTHENTICATION,
-      page: () => AuthView(),
-      binding: AuthenticationBinding(),
-    ),
-    GetPage(
-      name: _Paths.ENTER_NAME,
-      page: () => EnterNameView(),
-      binding: AuthenticationBinding(),
-    ),
-    GetPage(
-      name: _Paths.OTP,
-      page: () => OtpView(),
-      binding: AuthenticationBinding(),
-    ),
-
-    ///STARTUP
-    GetPage(
-      name: _Paths.APP_ENTRY,
-      page: () => AppEntryView(),
-      binding: LaunchScreenBinding(),
-    ),
-    GetPage(
-      name: _Paths.GET_STARTED,
-      page: () => GetStartedView(),
-      binding: LaunchScreenBinding(),
-    ),
-    GetPage(
-      name: _Paths.LANGUAGE_SELECTION,
-      page: () => LanguageSelectionView(),
-      binding: LaunchScreenBinding(),
-    ),
+    ///Welcome Screen
     GetPage(
       name: _Paths.WELCOME,
       page: () => WelcomeScreen(),
@@ -118,6 +85,26 @@ class AppPages {
       name: _Paths.PADDY_STRAW_MANAGEMENT,
       page: () => PaddyStrawManagementView(),
       binding: PaddyStrawManagementBinding(),
+    ),
+
+    ///STARTUP
+
+    GetPage(
+      name: _Paths.STARTUP,
+      page: () => StartupView(),
+      binding: StartupBinding(),
+    ),
+
+    ///Auth
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () => RegisterView(),
+      binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => LoginView(),
+      binding: LoginBinding(),
     ),
   ];
 }
