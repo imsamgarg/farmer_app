@@ -19,6 +19,7 @@ abstract class Routes {
 
   static const PROFILE = _Paths.PROFILE;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+  static const WEATHER_REPORT = _Paths.WEATHER_REPORT;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
 
   static const PROFILE = '/profile';
   static const EDIT_PROFILE = '/edit_profile';
+  static const WEATHER_REPORT = '/weather-report';
 }

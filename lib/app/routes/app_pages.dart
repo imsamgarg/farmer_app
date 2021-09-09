@@ -1,24 +1,23 @@
+import 'package:get/get.dart';
+
+import 'package:farmer_app/app/modules/authentication/bindings/authentication_binding.dart';
 import 'package:farmer_app/app/modules/authentication/views/auth_view.dart';
 import 'package:farmer_app/app/modules/authentication/views/enter_name_view.dart';
 import 'package:farmer_app/app/modules/authentication/views/otp_view.dart';
-import 'package:farmer_app/app/modules/authentication/bindings/authentication_binding.dart';
-
-import 'package:farmer_app/app/modules/home/views/create_post_view.dart';
-import 'package:farmer_app/app/modules/home/views/notifications_view.dart';
-import 'package:farmer_app/app/modules/home/views/home_view.dart';
 import 'package:farmer_app/app/modules/home/bindings/home_binding.dart';
-
+import 'package:farmer_app/app/modules/home/views/create_post_view.dart';
+import 'package:farmer_app/app/modules/home/views/home_view.dart';
+import 'package:farmer_app/app/modules/home/views/notifications_view.dart';
+import 'package:farmer_app/app/modules/launch_screen/bindings/launch_screen_binding.dart';
 import 'package:farmer_app/app/modules/launch_screen/views/app_entry_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/views/get_started_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/views/language_selection_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/views/welcome_view.dart';
-import 'package:farmer_app/app/modules/launch_screen/bindings/launch_screen_binding.dart';
-
+import 'package:farmer_app/app/modules/profile/bindings/profile_binding.dart';
 import 'package:farmer_app/app/modules/profile/views/edit_profile_view.dart';
 import 'package:farmer_app/app/modules/profile/views/profile_view.dart';
-import 'package:farmer_app/app/modules/profile/bindings/profile_binding.dart';
-
-import 'package:get/get.dart';
+import 'package:farmer_app/app/modules/weather_report/bindings/weather_report_binding.dart';
+import 'package:farmer_app/app/modules/weather_report/views/weather_report_view.dart';
 
 part 'app_routes.dart';
 
@@ -93,6 +92,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => EditProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.WEATHER_REPORT,
+      page: () => WeatherReportView(),
+      binding: WeatherReportBinding(),
     ),
   ];
 }
