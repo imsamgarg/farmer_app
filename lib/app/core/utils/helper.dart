@@ -1,6 +1,7 @@
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 ///Heading Text !!
@@ -16,4 +17,8 @@ messageStyle(String text) =>
 ///Add Hint
 inputDecor({required String hint}) {
   return InputDecoration(hintText: hint);
+}
+
+void goBack() {
+  Get.back();
 }
