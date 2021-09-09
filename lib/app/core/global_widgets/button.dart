@@ -1,8 +1,8 @@
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'colors.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'constants.dart';
 
 class CustomButton extends StatelessWidget {
   final Widget child;
@@ -25,42 +25,43 @@ class CustomButton extends StatelessWidget {
       this.padding,
       this.elevation = 0.0,
       this.bgColor,
-      this.fgColor = whiteColor,
+      this.fgColor = ColorTheme.whiteColor,
       this.bW = 0.0,
       this.bStyle = BorderStyle.none,
-      this.bColor = accentColor,
+      this.bColor = ColorTheme.accentColor,
       this.overlayColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        style: ButtonStyle(
-          elevation: MaterialStateProperty.resolveWith((_) => elevation),
-          overlayColor: MaterialStateColor.resolveWith(
-              (states) => overlayColor ?? Color(0xff208b5d)),
-          foregroundColor: MaterialStateColor.resolveWith((states) => fgColor!),
-          shape: MaterialStateProperty.resolveWith((states) => cardShape),
-          backgroundColor: MaterialStateColor.resolveWith(
-              (states) => bgColor ?? accentColor),
-          padding: MaterialStateProperty.resolveWith(
-            (states) =>
-                padding ??
-                const EdgeInsets.symmetric(
-                  vertical: 18,
-                  horizontal: 10,
-                ),
-          ),
-          side: MaterialStateProperty.resolveWith(
-              (states) => BorderSide(color: bColor, style: bStyle, width: bW)),
+      style: ButtonStyle(
+        elevation: MaterialStateProperty.resolveWith((_) => elevation),
+        overlayColor: MaterialStateColor.resolveWith(
+            (states) => overlayColor ?? Color(0xff208b5d)),
+        foregroundColor: MaterialStateColor.resolveWith((states) => fgColor!),
+        shape: MaterialStateProperty.resolveWith((states) => Sizing.cardShape),
+        backgroundColor: MaterialStateColor.resolveWith(
+            (states) => bgColor ?? ColorTheme.accentColor),
+        padding: MaterialStateProperty.resolveWith(
+          (states) =>
+              padding ??
+              const EdgeInsets.symmetric(
+                vertical: 18,
+                horizontal: 10,
+              ),
         ),
-        onPressed: isLoading ? () {} : onPressed,
-        child: isLoading
-            ? SpinKitThreeBounce(
-                color: fgColor,
-                size: 20,
-              )
-            : child);
+        side: MaterialStateProperty.resolveWith(
+            (states) => BorderSide(color: bColor, style: bStyle, width: bW)),
+      ),
+      onPressed: isLoading ? () {} : onPressed,
+      child: isLoading
+          ? SpinKitThreeBounce(
+              color: fgColor,
+              size: 20,
+            )
+          : child,
+    );
   }
 }
 
@@ -124,9 +125,10 @@ class CustomOutlinedButton extends CustomButton {
       Color? bC})
       : super(
             key: key,
-            fgColor: accentColor,
-            overlayColor: overlayColor ?? accentColor.withOpacity(0.2),
-            bgColor: primaryColors[4],
+            fgColor: ColorTheme.accentColor,
+            overlayColor:
+                overlayColor ?? ColorTheme.accentColor.withOpacity(0.2),
+            bgColor: ColorTheme.primaryColors[4],
             child: child,
             isLoading: isLoading,
             elevation: elevation,

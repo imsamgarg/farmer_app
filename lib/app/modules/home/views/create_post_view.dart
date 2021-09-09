@@ -5,24 +5,25 @@
 // import 'package:farmer_app/Utils/widgets.dart';
 // import 'package:farmer_app/View/ProfileScreens/profile_screen.dart';
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/theme/sizing_theme.dart';
+import 'package:farmer_app/app/core/values/strings.dart';
+import 'package:farmer_app/app/core/values/values.dart';
 import 'package:farmer_app/app/modules/profile/views/profile_view.dart';
-import 'package:farmer_app/app/utils/button.dart';
-import 'package:farmer_app/app/utils/colors.dart';
-import 'package:farmer_app/app/utils/constants.dart';
-import 'package:farmer_app/app/utils/utils.dart';
-import 'package:farmer_app/app/utils/widgets.dart';
+import 'package:farmer_app/app/core/global_widgets/button.dart';
+import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CreatePostView extends StatelessWidget {
   styleChip(String text) => text.text
-      .color(primaryColors[2])
+      .color(ColorTheme.primaryColors[2])
       .size(15)
       .make()
       .box
       .p8
-      .border(color: primaryColors[3])
+      .border(color: ColorTheme.primaryColors[3])
       .make();
 
   @override
@@ -35,9 +36,13 @@ class CreatePostView extends StatelessWidget {
         "Create Post",
         actions: [
           CustomButton(
-              child: "Post".text.semiBold.color(primaryColors[2]).make(),
+              child: "Post"
+                  .text
+                  .semiBold
+                  .color(ColorTheme.primaryColors[2])
+                  .make(),
               bgColor: Colors.transparent,
-              overlayColor: primaryColors[3],
+              overlayColor: ColorTheme.primaryColors[3],
               onPressed: () {}),
         ],
       ),
@@ -57,7 +62,7 @@ class CreatePostView extends StatelessWidget {
                         .text
                         .semiBold
                         .size(16)
-                        .color(primaryColors[1])
+                        .color(ColorTheme.primaryColors[1])
                         .make(),
                   ],
                 ).p8(),
@@ -71,18 +76,18 @@ class CreatePostView extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: "What's on your mind?",
                 border: OutlineInputBorder(
-                  borderRadius: borderRadius,
+                  borderRadius: Sizing.borderRadius,
                   borderSide: BorderSide.none,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: borderRadius,
+                  borderRadius: Sizing.borderRadius,
                   borderSide: BorderSide.none,
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: borderRadius,
+                  borderRadius: Sizing.borderRadius,
                   borderSide: BorderSide.none,
                 ),
-                fillColor: primaryColors[4],
+                fillColor: ColorTheme.primaryColors[4],
                 filled: true,
                 suffixIcon: Icon(
                   Icons.settings_voice_outlined,
@@ -94,7 +99,11 @@ class CreatePostView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                "Add Image".text.semiBold.color(primaryColors[2]).make(),
+                "Add Image"
+                    .text
+                    .semiBold
+                    .color(ColorTheme.primaryColors[2])
+                    .make(),
                 verSpacing10,
                 CustomButton(
                   child: Row(
@@ -103,15 +112,18 @@ class CreatePostView extends StatelessWidget {
                       Icon(
                         Icons.cloud_upload_outlined,
                         size: 16,
-                        color: primaryColors[2],
+                        color: ColorTheme.primaryColors[2],
                       ),
                       horSpacing10,
-                      "Upload Image".text.color(primaryColors[2]).make(),
+                      "Upload Image"
+                          .text
+                          .color(ColorTheme.primaryColors[2])
+                          .make(),
                     ],
                   ),
-                  overlayColor: primaryColors[3],
+                  overlayColor: ColorTheme.primaryColors[3],
                   onPressed: () {},
-                  bgColor: primaryColors[4],
+                  bgColor: ColorTheme.primaryColors[4],
                 )
               ],
             ),
@@ -122,7 +134,7 @@ class CreatePostView extends StatelessWidget {
                 "Select Categories"
                     .text
                     .semiBold
-                    .color(primaryColors[2])
+                    .color(ColorTheme.primaryColors[2])
                     .make(),
                 verSpacing10,
                 Wrap(

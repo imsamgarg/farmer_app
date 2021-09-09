@@ -1,10 +1,10 @@
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/values/strings.dart';
+import 'package:farmer_app/app/core/values/values.dart';
 import 'package:farmer_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:get/state_manager.dart';
-import 'package:farmer_app/app/utils/colors.dart';
-import 'package:farmer_app/app/utils/constants.dart';
-import 'package:farmer_app/app/utils/utils.dart';
-import 'package:farmer_app/app/utils/widgets.dart';
+import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -75,14 +75,18 @@ class _Tile extends GetView<ProfileController> {
               children: [
                 Image.asset(weatherReport),
                 horSpacing20,
-                message.text.size(18).semiBold.color(accentColor).make(),
+                message.text
+                    .size(18)
+                    .semiBold
+                    .color(Theme.of(context).accentColor)
+                    .make(),
               ],
             ),
             Row(
               children: [
                 Icon(
                   Icons.arrow_forward_ios_rounded,
-                  color: accentColor,
+                  color: Theme.of(context).accentColor,
                 ),
                 horSpacing15
               ],
@@ -118,9 +122,13 @@ class _Avatar extends GetView<ProfileController> {
                     .text
                     .size(18)
                     .semiBold
-                    .color(primaryColors[1])
+                    .color(ColorTheme.primaryColors[1])
                     .make(),
-                "+91 9876543210".text.size(12).color(primaryColors[2]).make(),
+                "+91 9876543210"
+                    .text
+                    .size(12)
+                    .color(ColorTheme.primaryColors[2])
+                    .make(),
               ],
             )
           ],

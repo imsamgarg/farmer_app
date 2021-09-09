@@ -1,19 +1,19 @@
 import 'package:custom_utils/spacing_utils.dart';
-import 'package:farmer_app/app/utils/colors.dart';
-import 'package:farmer_app/app/utils/constants.dart';
-import 'package:farmer_app/app/utils/utils.dart';
-import 'package:farmer_app/app/utils/widgets.dart';
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/values/strings.dart';
+import 'package:farmer_app/app/core/values/values.dart';
+import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeView extends StatelessWidget {
   styleChip(String text) => text.text
-      .color(primaryColors[2])
+      .color(ColorTheme.primaryColors[2])
       .size(15)
       .make()
       .box
       .p8
-      .border(color: primaryColors[3])
+      .border(color: ColorTheme.primaryColors[3])
       .make();
 
   @override
@@ -50,7 +50,11 @@ class HomeView extends StatelessWidget {
                               child: Icon(
                                 Icons.filter_list,
                                 size: 26,
-                              ).box.p4.border(color: primaryColors[3]).make(),
+                              )
+                                  .box
+                                  .p4
+                                  .border(color: ColorTheme.primaryColors[3])
+                                  .make(),
                             ),
                             horSpacing5,
                             styleChip("Followers"),
@@ -156,27 +160,27 @@ class _FeedPost extends StatelessWidget {
                             .text
                             .size(16)
                             .semiBold
-                            .color(primaryColors[1])
+                            .color(ColorTheme.primaryColors[1])
                             .make(),
-                        "1h".text.sm.color(primaryColors[2]).make(),
+                        "1h".text.sm.color(ColorTheme.primaryColors[2]).make(),
                       ],
                     ),
                   ],
                 ),
                 Icon(
                   Icons.more_horiz_rounded,
-                  color: primaryColors[2],
+                  color: ColorTheme.primaryColors[2],
                 )
               ],
             ).px20().py16(),
           ),
           "Followers"
               .text
-              .color(primaryColors[2])
+              .color(ColorTheme.primaryColors[2])
               .make()
               .box
               .p8
-              .color(primaryColors[4])
+              .color(ColorTheme.primaryColors[4])
               .withRounded(value: 2)
               .make()
               .px(20),
@@ -196,8 +200,8 @@ class _FeedPost extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              "50 Likes".text.sm.color(primaryColors[2]).make(),
-              "2 comments".text.sm.color(primaryColors[2]).make(),
+              "50 Likes".text.sm.color(ColorTheme.primaryColors[2]).make(),
+              "2 comments".text.sm.color(ColorTheme.primaryColors[2]).make(),
               // "8 comments".text.make(),
             ],
           ).px(20),
@@ -217,11 +221,11 @@ class _FeedPost extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.thumb_up,
-                        color: accentColor,
+                        color: ColorTheme.accentColor,
                       ),
                       _text(
                         "Likes",
-                        accentColor,
+                        ColorTheme.accentColor,
                       ),
                     ],
                   ),
@@ -233,11 +237,11 @@ class _FeedPost extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.mode_comment_outlined,
-                        color: primaryColors[2],
+                        color: ColorTheme.primaryColors[2],
                       ),
                       _text(
                         "Comments",
-                        primaryColors[2],
+                        ColorTheme.primaryColors[2],
                       ),
                     ],
                   ),
@@ -249,11 +253,11 @@ class _FeedPost extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.share_rounded,
-                        color: primaryColors[2],
+                        color: ColorTheme.primaryColors[2],
                       ),
                       _text(
                         "Share",
-                        primaryColors[2],
+                        ColorTheme.primaryColors[2],
                       ),
                     ],
                   ),

@@ -2,9 +2,9 @@
 // import 'package:farmer_app/Utils/constants.dart';
 // import 'package:farmer_app/Utils/widgets.dart';
 import 'package:custom_utils/spacing_utils.dart';
-import 'package:farmer_app/app/utils/colors.dart';
-import 'package:farmer_app/app/utils/constants.dart';
-import 'package:farmer_app/app/utils/widgets.dart';
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/values/strings.dart';
+import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/route_manager.dart';
@@ -146,7 +146,12 @@ class _Date extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           horSpacing15,
-          (date ?? "Today").text.center.semiBold.color(primaryColors[3]).make(),
+          (date ?? "Today")
+              .text
+              .center
+              .semiBold
+              .color(ColorTheme.primaryColors[3])
+              .make(),
         ],
       ),
     );
@@ -189,7 +194,10 @@ class _CustomTile extends StatelessWidget {
             horSpacing15,
             SizedBox(
               width: 30,
-              child: ((time ?? "1h").text.color(primaryColors[3]).make()),
+              child: ((time ?? "1h")
+                  .text
+                  .color(ColorTheme.primaryColors[3])
+                  .make()),
             ),
             horSpacing15,
           ],

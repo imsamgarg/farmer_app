@@ -3,10 +3,10 @@
 // import 'package:farmer_app/Utils/constants.dart';
 // import 'package:farmer_app/Utils/widgets.dart';
 import 'package:custom_utils/spacing_utils.dart';
-import 'package:farmer_app/app/utils/button.dart';
-import 'package:farmer_app/app/utils/colors.dart';
-import 'package:farmer_app/app/utils/constants.dart';
-import 'package:farmer_app/app/utils/widgets.dart';
+import 'package:farmer_app/app/core/global_widgets/button.dart';
+import 'package:farmer_app/app/core/global_widgets/widgets.dart';
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -42,8 +42,8 @@ class EditProfileView extends StatelessWidget {
                 CustomButton(
                   child: ("Change Profile Picture").text.underline.make(),
                   onPressed: () {},
-                  bgColor: whiteColor,
-                  overlayColor: primaryColors[3],
+                  bgColor: ColorTheme.whiteColor,
+                  overlayColor: ColorTheme.primaryColors[3],
                   fgColor: Color(0xffEB4225),
                 )
               ],
@@ -82,65 +82,81 @@ class EditProfileView extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ("Land Details").text.bold.color(primaryColors[2]).make(),
+                      ("Land Details")
+                          .text
+                          .bold
+                          .color(ColorTheme.primaryColors[2])
+                          .make(),
                       Icon(
                         Icons.arrow_forward_ios_rounded,
-                        color: primaryColors[2],
+                        color: ColorTheme.primaryColors[2],
                         size: 20,
                       )
                     ],
                   ),
                   onPressed: () {},
-                  bgColor: whiteColor,
-                  overlayColor: primaryColors[4],
+                  bgColor: ColorTheme.whiteColor,
+                  overlayColor: ColorTheme.primaryColors[4],
                 ),
                 CustomButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ("Your Crops").text.bold.color(primaryColors[2]).make(),
+                      ("Your Crops")
+                          .text
+                          .bold
+                          .color(ColorTheme.primaryColors[2])
+                          .make(),
                       Icon(
                         Icons.arrow_forward_ios_rounded,
-                        color: primaryColors[2],
+                        color: ColorTheme.primaryColors[2],
                         size: 20,
                       )
                     ],
                   ),
                   onPressed: () {},
-                  bgColor: whiteColor,
-                  overlayColor: primaryColors[4],
+                  bgColor: ColorTheme.whiteColor,
+                  overlayColor: ColorTheme.primaryColors[4],
                 ),
                 CustomButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ("About").text.bold.color(primaryColors[2]).make(),
+                      ("About")
+                          .text
+                          .bold
+                          .color(ColorTheme.primaryColors[2])
+                          .make(),
                       Icon(
                         Icons.arrow_forward_ios_rounded,
-                        color: primaryColors[2],
+                        color: ColorTheme.primaryColors[2],
                         size: 20,
                       )
                     ],
                   ),
                   onPressed: () {},
-                  bgColor: whiteColor,
-                  overlayColor: primaryColors[4],
+                  bgColor: ColorTheme.whiteColor,
+                  overlayColor: ColorTheme.primaryColors[4],
                 ),
                 CustomButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ("logout").text.bold.color(primaryColors[2]).make(),
+                      ("logout")
+                          .text
+                          .bold
+                          .color(ColorTheme.primaryColors[2])
+                          .make(),
                       Icon(
                         Icons.arrow_forward_ios_rounded,
-                        color: primaryColors[2],
+                        color: ColorTheme.primaryColors[2],
                         size: 20,
                       )
                     ],
                   ),
                   onPressed: () {},
-                  bgColor: whiteColor,
-                  overlayColor: primaryColors[4],
+                  bgColor: ColorTheme.whiteColor,
+                  overlayColor: ColorTheme.primaryColors[4],
                 ),
               ],
             ),

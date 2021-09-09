@@ -1,7 +1,6 @@
 // import 'package:farmer_app/Controller/app_entry_controller.dart';
 // import 'package:farmer_app/Utils/colors.dart';
 import 'package:farmer_app/app/modules/launch_screen/controllers/launch_screen_controller.dart';
-import 'package:farmer_app/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
@@ -16,7 +15,7 @@ class AppEntryView extends GetView<LaunchScreenController> {
     return Scaffold(
       body: Center(
         child: SpinKitThreeBounce(
-          color: accentColor,
+          color: Theme.of(context).accentColor,
         ),
       ),
     );

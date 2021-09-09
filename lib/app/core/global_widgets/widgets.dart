@@ -1,11 +1,12 @@
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/theme/sizing_theme.dart';
+import 'package:farmer_app/app/core/values/strings.dart';
+import 'package:farmer_app/app/core/values/values.dart';
 import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:get/route_manager.dart';
-import 'colors.dart';
-import 'constants.dart';
-import 'utils.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar(String title,
@@ -18,12 +19,12 @@ class CustomAppBar extends AppBar {
                 },
             child: Icon(
               Icons.arrow_back_ios_rounded,
-              color: accentColor,
+              color: ColorTheme.accentColor,
             ),
           ),
           actions: actions,
           backgroundColor: color,
-          title: title.text.semiBold.color(accentColor).make(),
+          title: title.text.semiBold.color(ColorTheme.accentColor).make(),
           centerTitle: true,
         );
 }
@@ -40,7 +41,7 @@ class CustomSliverAppBar extends SliverAppBar {
           ),
           actions: actions,
           backgroundColor: color,
-          title: title.text.bold.color(accentColor).make(),
+          title: title.text.bold.color(ColorTheme.accentColor).make(),
           centerTitle: true,
         );
 }
@@ -57,14 +58,14 @@ class OrWidget extends StatelessWidget {
           child: Stack(
             children: [
               Divider(
-                color: primaryColors[2],
+                color: ColorTheme.primaryColors[2],
               ),
               Align(
                   alignment: Alignment.center,
                   child: "Or"
                       .text
                       .size(16)
-                      .color(primaryColors[2])
+                      .color(ColorTheme.primaryColors[2])
                       .make()
                       .box
                       .white
@@ -140,7 +141,7 @@ class CustomNavigationBar extends StatelessWidget {
       text.text.xs.semiBold.size(14).color(color).make().box.py3.make();
 
   _color(NavigateScreen _screen) =>
-      _screen == screen ? accentColor : primaryColors[2];
+      _screen == screen ? ColorTheme.accentColor : ColorTheme.primaryColors[2];
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +150,7 @@ class CustomNavigationBar extends StatelessWidget {
       child: Hero(
         tag: "bottomAppBar",
         child: Material(
-          color: whiteColor,
+          color: ColorTheme.whiteColor,
           child: Container(
             height: 70,
             child: Row(
@@ -247,7 +248,7 @@ class PlusFloatingButton extends StatelessWidget {
     return FloatingActionButton(
       onPressed: onPressed,
       elevation: 2,
-      backgroundColor: accentColor,
+      backgroundColor: ColorTheme.accentColor,
       child: Icon(Icons.add),
     );
   }
@@ -329,7 +330,7 @@ class CustomTile extends StatelessWidget {
         ),
       )
           .box
-          .color(primaryColors[4])
+          .color(ColorTheme.primaryColors[4])
           .withRounded(value: radius)
           .make()
           .onTap(onTap ?? () {}),
@@ -354,7 +355,7 @@ class _Info extends StatelessWidget {
       children: [
         ClipOval(
           child: Container(
-            color: primaryColors[3],
+            color: ColorTheme.primaryColors[3],
             child: Image.asset(
               image,
               height: 40,
@@ -385,9 +386,9 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        color: accentColor,
+        color: ColorTheme.accentColor,
         height: 170,
-        padding: sidePadding,
+        padding: Sizing.sidePadding,
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -469,7 +470,7 @@ class AppHeading extends StatelessWidget {
               width: 25,
             ),
             horSpacing10,
-            appName.text.size(18).color(accentColor).make(),
+            appName.text.size(18).color(ColorTheme.accentColor).make(),
           ],
         ),
         Row(

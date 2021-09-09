@@ -1,9 +1,10 @@
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/theme/sizing_theme.dart';
+import 'package:farmer_app/app/core/utils/helper.dart';
+import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:farmer_app/app/modules/launch_screen/controllers/get_started_controller.dart';
 import 'package:farmer_app/app/modules/launch_screen/controllers/launch_screen_controller.dart';
-import 'package:farmer_app/app/utils/button.dart';
-import 'package:farmer_app/app/utils/colors.dart';
-import 'package:farmer_app/app/utils/constants.dart';
-import 'package:farmer_app/app/utils/utils.dart';
+import 'package:farmer_app/app/core/global_widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
@@ -107,7 +108,7 @@ class _Page extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Padding(
-            padding: sidePadding,
+            padding: Sizing.sidePadding,
             child: SizedBox(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -199,8 +200,8 @@ class _Dot extends StatelessWidget {
           height: 7,
           width: 30,
           decoration: BoxDecoration(
-            color: accentColor,
-            borderRadius: borderRadius,
+            color: ColorTheme.accentColor,
+            borderRadius: Sizing.borderRadius,
           ),
         ),
       );
@@ -210,8 +211,8 @@ class _Dot extends StatelessWidget {
         height: 7,
         width: 7,
         decoration: BoxDecoration(
-          color: accentColor.withAlpha(70),
-          borderRadius: borderRadius,
+          color: ColorTheme.accentColor.withAlpha(70),
+          borderRadius: Sizing.borderRadius,
         ),
       ),
     );
