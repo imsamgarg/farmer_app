@@ -5,8 +5,8 @@ abstract class Routes {
   Routes._();
 
   static const HOME = _Paths.HOME;
-  static const CREATE_POST = _Paths.CREATE_POST;
-  static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
+  // static const CREATE_POST = _Paths.CREATE_POST;
+  // static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
 
   static const AUTHENTICATION = _Paths.AUTHENTICATION;
   static const ENTER_NAME = _Paths.ENTER_NAME;
@@ -17,8 +17,8 @@ abstract class Routes {
   // static const LANGUAGE_SELECTION = _Paths.LANGUAGE_SELECTION;
   static const WELCOME = _Paths.WELCOME;
 
-  static const PROFILE = _Paths.PROFILE;
-  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+  // static const PROFILE = _Paths.PROFILE;
+  // static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
   static const WEATHER_REPORT = _Paths.WEATHER_REPORT;
   static const DISEASE_DETECTION = _Paths.DISEASE_DETECTION;
   static const CROP_MANUAL = _Paths.CROP_MANUAL;
@@ -30,8 +30,8 @@ abstract class Routes {
 
 abstract class _Paths {
   static const HOME = '/home';
-  static const CREATE_POST = '/create_post';
-  static const NOTIFICATIONS = '/notifications';
+  // static const CREATE_POST = '/create_post';
+  // static const NOTIFICATIONS = '/notifications';
 
   static const AUTHENTICATION = '/authentication';
   static const ENTER_NAME = '/enter_name';
@@ -42,8 +42,8 @@ abstract class _Paths {
   // static const LANGUAGE_SELECTION = '/language_selection';
   static const WELCOME = '/welcome';
 
-  static const PROFILE = '/profile';
-  static const EDIT_PROFILE = '/edit_profile';
+  // static const PROFILE = '/profile';
+  // static const EDIT_PROFILE = '/edit_profile';
   static const WEATHER_REPORT = '/weather-report';
   static const DISEASE_DETECTION = '/disease-detection';
   static const CROP_MANUAL = '/crop-manual';
