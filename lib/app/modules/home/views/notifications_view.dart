@@ -1,16 +1,12 @@
-// import 'package:farmer_app/Utils/colors.dart';
-// import 'package:farmer_app/Utils/constants.dart';
-// import 'package:farmer_app/Utils/widgets.dart';
 import 'package:custom_utils/spacing_utils.dart';
 import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:get/route_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'home_view.dart';
+// import 'home_view.dart';
 
 class NotificationsView extends StatelessWidget {
   final String appBarText = "Notification";
@@ -169,39 +165,32 @@ class _CustomTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Get.to(() => HomeView());
-      },
-      child: Container(
-        height: 70,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            horSpacing15,
-            SizedBox(
-              width: 50,
-              child: Image.asset(
-                leadingImage ?? logo,
-              ),
+    return Container(
+      height: 70,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          horSpacing15,
+          SizedBox(
+            width: 50,
+            child: Image.asset(
+              leadingImage ?? logo,
             ),
-            horSpacing15,
-            Expanded(
-              child: Container(
-                child: message.text.make(),
-              ),
+          ),
+          horSpacing15,
+          Expanded(
+            child: Container(
+              child: message.text.make(),
             ),
-            horSpacing15,
-            SizedBox(
-              width: 30,
-              child: ((time ?? "1h")
-                  .text
-                  .color(ColorTheme.primaryColors[3])
-                  .make()),
-            ),
-            horSpacing15,
-          ],
-        ),
+          ),
+          horSpacing15,
+          SizedBox(
+            width: 30,
+            child:
+                ((time ?? "1h").text.color(ColorTheme.primaryColors[3]).make()),
+          ),
+          horSpacing15,
+        ],
       ),
     );
   }

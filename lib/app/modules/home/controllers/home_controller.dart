@@ -1,18 +1,11 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  final _pageIndex = 0.obs;
+  get pageIndex => this._pageIndex.value;
+  set pageIndex(value) => this._pageIndex.value = value;
 
-  @override
-  void onReady() {
-    super.onReady();
+  void onPageChange(int value) {
+    pageIndex = value;
   }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }
