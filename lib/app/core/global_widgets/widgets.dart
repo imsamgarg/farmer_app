@@ -3,31 +3,9 @@ import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:farmer_app/app/core/values/values.dart';
-import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:get/route_manager.dart';
-
-// class CustomAppBar extends AppBar {
-//   CustomAppBar(String title,
-//       {Color? color, List<Widget>? actions, VoidCallback? onTap})
-//       : super(
-//           leading: InkWell(
-//             onTap: onTap ??
-//                 () {
-//                   Get.back();
-//                 },
-//             child: Icon(
-//               Icons.arrow_back_ios_rounded,
-//               color: ColorTheme.accentColor,
-//             ),
-//           ),
-//           actions: actions,
-//           backgroundColor: color,
-//           title: title.text.semiBold.color(ColorTheme.accentColor).make(),
-//           centerTitle: true,
-//         );
-// }
 
 class CustomSliverAppBar extends SliverAppBar {
   CustomSliverAppBar(String title,
@@ -78,112 +56,6 @@ class OrWidget extends StatelessWidget {
           height: 25,
         ),
       ],
-    );
-  }
-}
-
-class CustomNavigationBar extends StatelessWidget {
-  final NavigateScreen screen;
-
-  const CustomNavigationBar({Key? key, required this.screen}) : super(key: key);
-
-  _text(String text, Color color) =>
-      text.text.xs.semiBold.size(14).color(color).make().box.py3.make();
-
-  _color(NavigateScreen _screen) =>
-      _screen == screen ? ColorTheme.accentColor : ColorTheme.primaryColors[2];
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomAppBar(
-      elevation: 15,
-      child: Hero(
-        tag: "bottomAppBar",
-        child: Material(
-          color: ColorTheme.whiteColor,
-          child: Container(
-            height: 70,
-            child: Row(
-              children: [
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      if (screen != homeScreen) {
-                        Get.until((route) => Get.currentRoute == Routes.HOME);
-                      }
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.home_rounded,
-                          color: _color(
-                            NavigateScreen.Home,
-                          ),
-                        ),
-                        _text(
-                          "Home",
-                          _color(
-                            NavigateScreen.Home,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      Get.toNamed(Routes.CREATE_POST);
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.add_circle_outline_rounded,
-                          color: _color(
-                            NavigateScreen.Post,
-                          ),
-                        ),
-                        _text(
-                          "Post",
-                          _color(
-                            NavigateScreen.Post,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      Get.toNamed(Routes.PROFILE);
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.account_circle_rounded,
-                          color: _color(
-                            NavigateScreen.Profile,
-                          ),
-                        ),
-                        _text(
-                          "Profile",
-                          _color(
-                            NavigateScreen.Profile,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
@@ -303,49 +175,6 @@ class Header extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class AppHeading extends StatelessWidget {
-  const AppHeading({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            horSpacing15,
-            Image.asset(
-              logoSm,
-              height: 25,
-              width: 25,
-            ),
-            horSpacing10,
-            appName.text.size(18).color(ColorTheme.accentColor).make(),
-          ],
-        ),
-        Row(
-          children: [
-            InkWell(
-              onTap: () {
-                Get.toNamed(Routes.NOTIFICATIONS);
-              },
-              child: Stack(
-                children: [
-                  Icon(Icons.notifications_none_rounded),
-                ],
-              ),
-            ),
-            horSpacing10,
-          ],
-        )
-      ],
     );
   }
 }
