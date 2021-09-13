@@ -1,6 +1,8 @@
-import 'package:farmer_app/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/state_manager.dart';
+
+import 'package:farmer_app/app/modules/home/controllers/home_controller.dart';
 
 class CustomBottomNavBar extends GetView<HomeController> {
   const CustomBottomNavBar({Key? key}) : super(key: key);

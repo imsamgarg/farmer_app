@@ -1,6 +1,8 @@
-import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 
 import 'color_theme.dart';
 

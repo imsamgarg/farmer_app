@@ -1,7 +1,8 @@
-import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:farmer_app/app/core/utils/helper.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar(

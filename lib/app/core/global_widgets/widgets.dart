@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
+
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:get/route_manager.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:farmer_app/app/core/values/values.dart';
-import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
-import 'package:get/route_manager.dart';
 
 class CustomSliverAppBar extends SliverAppBar {
   CustomSliverAppBar(String title,

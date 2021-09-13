@@ -1,8 +1,10 @@
-import 'package:farmer_app/app/core/theme/color_theme.dart';
-import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 
 class CustomButton extends StatelessWidget {
   final Widget child;

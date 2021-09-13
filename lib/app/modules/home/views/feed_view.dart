@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:farmer_app/app/modules/home/local_widgets/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class FeedView extends StatelessWidget {
   styleChip(String text) => text.text

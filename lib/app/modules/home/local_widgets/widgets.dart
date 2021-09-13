@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:farmer_app/app/modules/home/views/notifications_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AppHeading extends StatelessWidget {
   const AppHeading({

@@ -1,7 +1,8 @@
-import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+
+import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
 
 import '../controllers/weather_report_controller.dart';
 

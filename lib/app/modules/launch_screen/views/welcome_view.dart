@@ -1,14 +1,17 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/state_manager.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+import 'package:farmer_app/app/core/global_widgets/button.dart';
+import 'package:farmer_app/app/core/utils/helper.dart';
+import 'package:farmer_app/app/core/values/strings.dart';
+import 'package:farmer_app/app/modules/launch_screen/controllers/launch_screen_controller.dart';
+
 // import 'package:farmer_app/Utils/button.dart';
 // import 'package:farmer_app/Utils/constants.dart';
 // import 'package:farmer_app/Utils/utils.dart';
 // import 'package:farmer_app/View/AuthScreens/auth_screen.dart';
-import 'package:farmer_app/app/core/utils/helper.dart';
-import 'package:farmer_app/app/core/values/strings.dart';
-import 'package:farmer_app/app/modules/launch_screen/controllers/launch_screen_controller.dart';
-import 'package:farmer_app/app/core/global_widgets/button.dart';
-import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 ///```
 ///Welcome Screen to be shown on first ever app start

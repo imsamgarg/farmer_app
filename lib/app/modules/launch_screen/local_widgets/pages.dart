@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/utils.dart';
+
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
-import 'package:flutter/material.dart';
-import 'package:get/utils.dart';
 
 class Page extends StatelessWidget {
   final String heading;

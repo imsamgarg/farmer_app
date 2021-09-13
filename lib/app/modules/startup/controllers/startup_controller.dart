@@ -1,5 +1,6 @@
-import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+
+import 'package:farmer_app/app/routes/app_pages.dart';
 
 class StartupController extends GetxController {
   @override

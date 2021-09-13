@@ -1,5 +1,6 @@
-import 'package:farmer_app/app/core/values/values.dart';
 import 'package:flutter/material.dart';
+
+import 'package:farmer_app/app/core/values/values.dart';
 
 class Sizing {
   static const borderRadius = BorderRadius.all(Radius.circular(5));

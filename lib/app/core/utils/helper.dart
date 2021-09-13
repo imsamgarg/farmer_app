@@ -1,8 +1,10 @@
-import 'package:farmer_app/app/core/theme/color_theme.dart';
-import 'package:farmer_app/app/core/values/values.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:farmer_app/app/core/theme/color_theme.dart';
+import 'package:farmer_app/app/core/values/values.dart';
 
 ///Heading Text !!
 headingStyle(String text) => text.text.lg.center.bold

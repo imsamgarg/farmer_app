@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
+import 'package:get/state_manager.dart';
+
+import 'package:farmer_app/app/core/global_widgets/button.dart';
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:farmer_app/app/modules/launch_screen/controllers/launch_screen_controller.dart';
-import 'package:farmer_app/app/core/global_widgets/button.dart';
 import 'package:farmer_app/app/modules/launch_screen/local_widgets/pages.dart';
-import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
 
 ///Promo Message Screen
 class GetStartedView extends StatelessWidget {

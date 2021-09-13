@@ -1,11 +1,13 @@
-import 'package:custom_utils/spacing_utils.dart';
-import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
-import 'package:farmer_app/app/core/theme/sizing_theme.dart';
-import 'package:farmer_app/app/core/global_widgets/button.dart';
-import 'package:farmer_app/app/modules/login/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
+
+import 'package:custom_utils/spacing_utils.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
+import 'package:farmer_app/app/core/global_widgets/button.dart';
+import 'package:farmer_app/app/core/theme/sizing_theme.dart';
+import 'package:farmer_app/app/modules/login/controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   @override

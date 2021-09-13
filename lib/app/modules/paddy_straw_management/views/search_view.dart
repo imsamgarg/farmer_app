@@ -1,9 +1,10 @@
-import 'package:custom_utils/spacing_utils.dart';
-import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
-import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
+import 'package:custom_utils/spacing_utils.dart';
 import 'package:get/get.dart';
+
+import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
+import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 
 class SearchView extends GetView {
   final heading = "Paddy Straw Management";
