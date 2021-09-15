@@ -8,11 +8,12 @@ import 'color_theme.dart';
 
 class AppTheme {
   static final lightTheme = ThemeData(
-    textTheme: GoogleFonts.interTextTheme(),
+    textTheme: GoogleFonts.latoTextTheme(),
     scaffoldBackgroundColor: ColorTheme.whiteColor,
     backgroundColor: ColorTheme.whiteColor,
     primaryColor: ColorTheme.accentColor,
     brightness: Brightness.light,
+    colorScheme: ColorScheme.light(primary: ColorTheme.accentColor),
     primaryColorLight: ColorTheme.accentColor,
     textSelectionTheme: TextSelectionThemeData(
         cursorColor: ColorTheme.accentColor,
@@ -47,17 +48,22 @@ class AppTheme {
       elevation: 0,
     ),
     tabBarTheme: TabBarTheme(
-        labelColor: ColorTheme.accentColor,
-        labelStyle: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
+      labelColor: ColorTheme.accentColor,
+      labelStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontSize: 16,
+        // fontWeight: FontWeight.bold,
+      ),
+      unselectedLabelColor: ColorTheme.primaryColors[2],
+      indicator: UnderlineTabIndicator(
+        borderSide: BorderSide(
+          width: 2,
+          color: ColorTheme.accentColor,
         ),
-        unselectedLabelStyle: TextStyle(
-          fontSize: 16,
-          // fontWeight: FontWeight.bold,
-        ),
-        unselectedLabelColor: ColorTheme.primaryColors[2],
-        indicator: UnderlineTabIndicator(
-            borderSide: BorderSide(width: 2, color: ColorTheme.accentColor))),
+      ),
+    ),
   );
 }
