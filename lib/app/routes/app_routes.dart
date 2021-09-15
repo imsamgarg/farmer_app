@@ -26,6 +26,8 @@ abstract class Routes {
   static const STARTUP = _Paths.STARTUP;
   static const REGISTER = _Paths.REGISTER;
   static const LOGIN = _Paths.LOGIN;
+  static const BUY_INPUT = _Paths.BUY_INPUT;
+  static const SELL_PRODUCE = _Paths.SELL_PRODUCE;
 }
 
 abstract class _Paths {
@@ -51,4 +53,6 @@ abstract class _Paths {
   static const STARTUP = '/startup';
   static const REGISTER = '/register';
   static const LOGIN = '/login';
+  static const BUY_INPUT = '/buy-input';
+  static const SELL_PRODUCE = '/sell-produce';
 }

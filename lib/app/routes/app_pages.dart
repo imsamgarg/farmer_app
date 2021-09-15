@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:farmer_app/app/modules/buy_input/bindings/buy_input_binding.dart';
+import 'package:farmer_app/app/modules/buy_input/views/buy_input_view.dart';
 import 'package:farmer_app/app/modules/crop_manual/bindings/crop_manual_binding.dart';
 import 'package:farmer_app/app/modules/crop_manual/views/crop_manual_view.dart';
 import 'package:farmer_app/app/modules/disease_detection/bindings/disease_detection_binding.dart';
@@ -14,6 +16,8 @@ import 'package:farmer_app/app/modules/paddy_straw_management/bindings/paddy_str
 import 'package:farmer_app/app/modules/paddy_straw_management/views/paddy_straw_management_view.dart';
 import 'package:farmer_app/app/modules/register/bindings/register_binding.dart';
 import 'package:farmer_app/app/modules/register/views/register_view.dart';
+import 'package:farmer_app/app/modules/sell_produce/bindings/sell_produce_binding.dart';
+import 'package:farmer_app/app/modules/sell_produce/views/sell_produce_view.dart';
 import 'package:farmer_app/app/modules/startup/bindings/startup_binding.dart';
 import 'package:farmer_app/app/modules/startup/views/startup_view.dart';
 import 'package:farmer_app/app/modules/weather_report/bindings/weather_report_binding.dart';
@@ -79,6 +83,16 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUY_INPUT,
+      page: () => BuyInputView(),
+      binding: BuyInputBinding(),
+    ),
+    GetPage(
+      name: _Paths.SELL_PRODUCE,
+      page: () => SellProduceView(),
+      binding: SellProduceBinding(),
     ),
   ];
 }
