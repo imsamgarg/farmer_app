@@ -33,7 +33,7 @@ class CustomAppBar extends AppBar {
                   )
                 ]
               : actions,
-          title: heading.text.make(),
+          title: heading.text.bold.make(),
           bottom: bottom,
         );
 }
