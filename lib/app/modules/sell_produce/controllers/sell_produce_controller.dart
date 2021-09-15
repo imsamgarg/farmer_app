@@ -1,20 +1,8 @@
+import 'package:farmer_app/app/modules/sell_produce/views/requests_view.dart';
 import 'package:get/get.dart';
 
 class SellProduceController extends GetxController {
-  //TODO: Implement SellProduceController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void onSubmit() {
+    Get.to(() => RequestsView());
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }
