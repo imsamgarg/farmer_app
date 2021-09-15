@@ -20,3 +20,5 @@ const String errorText = "Something Went Wrong";
 const errorMsg = "Please Went Wrong Try Again After Sometime";
 //
 const String leftArrow = "assets/Misc/leftArrow.png";
+
+final String degreeSymbol = String.fromCharCode(0x00B0);
