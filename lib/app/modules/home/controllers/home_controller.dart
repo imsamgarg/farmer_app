@@ -8,4 +8,8 @@ class HomeController extends GetxController {
   void onPageChange(int value) {
     pageIndex = value;
   }
+
+  void onBackPress() {
+    pageIndex = 0;
+  }
 }

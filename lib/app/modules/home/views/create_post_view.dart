@@ -1,6 +1,8 @@
+import 'package:farmer_app/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:get/state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
@@ -9,7 +11,7 @@ import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
 
-class CreatePostView extends StatelessWidget {
+class CreatePostView extends GetView<HomeController> {
   styleChip(String text) => text.text
       .color(ColorTheme.primaryColors[2])
       .size(15)
@@ -24,6 +26,9 @@ class CreatePostView extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         "Create Post",
+        automaticallyImplyLeading: false,
+        leadingIcon: Icons.arrow_back_ios_new_rounded,
+        leadingPress: controller.onBackPress,
         actions: [
           CustomButton(
             child: "Post"
