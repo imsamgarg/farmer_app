@@ -10,7 +10,7 @@ import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:farmer_app/app/modules/home/controllers/profile_controller.dart';
 import 'package:farmer_app/app/modules/home/local_widgets/widgets.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,18 +30,23 @@ class ProfileView extends StatelessWidget {
                     children: [
                       _Tile(
                         message: "Weather Report",
+                        onTap: controller.openWeatherReport,
                       ),
                       _Tile(
                         message: "Disease Detection",
+                        onTap: controller.openDiseaseDetection,
                       ),
                       _Tile(
                         message: "Crop Manuals",
+                        onTap: controller.openCropManual,
                       ),
                       _Tile(
                         message: "Buy Input",
+                        onTap: controller.openBuyInput,
                       ),
                       _Tile(
                         message: "Sell Produce",
+                        onTap: controller.openSellProduce,
                       ),
                     ],
                   ),
@@ -55,17 +60,17 @@ class ProfileView extends StatelessWidget {
   }
 }
 
-class _Tile extends GetView<ProfileController> {
+class _Tile extends StatelessWidget {
   final String message;
-
-  const _Tile({Key? key, required this.message}) : super(key: key);
+  final VoidCallback? onTap;
+  const _Tile({Key? key, required this.message, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 74,
       child: InkWell(
-        onTap: () {},
+        onTap: this.onTap,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
