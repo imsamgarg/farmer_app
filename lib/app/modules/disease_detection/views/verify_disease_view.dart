@@ -41,16 +41,16 @@ class VerifyDiseaseView extends GetView<DiseaseDetectionController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CropDisease(
-                            name: "Name Dhyan CH ni",
+                            name: "Bfgi",
                             image: Assets.to.diseasePNG,
                           ).onTap(() => controller.onDiseaseSelect(i, 0)),
                           CropDisease(
-                            name: "Name Dhyan CH ni",
+                            name: "Bfgi",
                             image: Assets.to.diseasePNG,
                             isActive: i == 0,
                           ),
                           CropDisease(
-                            name: "Name Dhyan CH ni",
+                            name: "Bfgi",
                             image: Assets.to.diseasePNG,
                           ),
                         ],
