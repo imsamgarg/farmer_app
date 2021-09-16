@@ -224,11 +224,13 @@ class Crop extends StatelessWidget {
     required this.image,
     required this.name,
     this.isActive = false,
+    this.onTap,
   }) : super(key: key);
 
   final String image;
   final String name;
   final bool isActive;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -264,9 +266,7 @@ class Crop extends StatelessWidget {
               .make(),
         if (!isActive) name.text.sm.make(),
       ],
-    ).onTap(() {
-      Get.to(() => VerifyDiseaseView());
-    });
+    ).onTap(onTap ?? () {});
   }
 }
 
