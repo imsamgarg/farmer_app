@@ -1,20 +1,10 @@
+import 'package:farmer_app/app/modules/crop_manual/views/manual_view.dart';
 import 'package:get/get.dart';
 
 class CropManualController extends GetxController {
-  //TODO: Implement CropManualController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void onDiseaseSelect(int i, int j) {
+    Get.to(() => ManualView());
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+  void nextInfo() {}
 }
