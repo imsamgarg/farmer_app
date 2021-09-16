@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,7 +21,7 @@ class AppTheme {
         selectionColor: ColorTheme.accentColor,
         selectionHandleColor: ColorTheme.accentColor),
     inputDecorationTheme: InputDecorationTheme(
-      labelStyle: GoogleFonts.inter(),
+      labelStyle: GoogleFonts.lato(fontWeight: FontWeight.bold),
       filled: true,
       fillColor: Colors.transparent,
       focusedBorder: UnderlineInputBorder(
