@@ -4,10 +4,12 @@ class Assets {
   static final misc = _AssetsMisc._();
   static final promo = _AssetsPromo._();
   static final to = Assets._();
+
   final cropPNG = 'assets/crop.png';
   final cropManualPNG = 'assets/crop_manual.png';
   final diseasePNG = 'assets/disease.png';
   final diseaseFullPNG = 'assets/disease_full.png';
+  final diseaseLogoPNG = 'assets/disease_logo.png';
   final fadeSunPNG = 'assets/fade_sun.png';
   final feedimageJPG = 'assets/feedimage.jpg';
   final logoPNG = 'assets/logo.png';
