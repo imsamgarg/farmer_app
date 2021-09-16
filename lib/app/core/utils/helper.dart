@@ -1,3 +1,4 @@
+import 'package:custom_utils/spacing_utils.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -19,6 +20,22 @@ messageStyle(String text) =>
 ///Add Hint
 inputDecor({required String hint}) {
   return InputDecoration(hintText: hint);
+}
+
+produceInpuDecoration(String text) {
+  return InputDecoration(
+    // labelText: text,
+    // isDense: true,
+    // label: Column(
+    //   children: [
+    //     text.text.make(),
+    //     // verSpacing10,
+    //   ],
+    // ),
+    contentPadding: EdgeInsets.zero,
+    alignLabelWithHint: false,
+    floatingLabelBehavior: FloatingLabelBehavior.always,
+  );
 }
 
 void goBack() {

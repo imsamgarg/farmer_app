@@ -1,3 +1,4 @@
+import 'package:farmer_app/app/modules/disease_detection/views/disease_detection_startup_view.dart';
 import 'package:get/get.dart';
 
 import 'package:farmer_app/app/modules/buy_input/bindings/buy_input_binding.dart';
@@ -28,7 +29,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.STARTUP;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
@@ -51,7 +52,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DISEASE_DETECTION,
-      page: () => DiseaseDetectionView(),
+      page: () => DiseaseDetectionStartupView(),
       binding: DiseaseDetectionBinding(),
     ),
     GetPage(
