@@ -1,3 +1,4 @@
+import 'package:farmer_app/app/modules/disease_detection/views/verify_disease_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:custom_utils/spacing_utils.dart';
@@ -187,24 +188,32 @@ class Mask extends StatelessWidget {
     this.color,
     this.size,
     this.borderWidth,
+    this.iconSize,
   }) : super(key: key);
 
   final Color? color;
   final double? size;
+  final double? iconSize;
   final double? borderWidth;
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      Icons.check_circle,
-      color: color ?? Theme.of(context).colorScheme.primary,
-      size: size,
+    return Container(
+      height: size,
+      width: size,
+      child: Icon(
+        Icons.check_circle_rounded,
+        color: color ?? Theme.of(context).colorScheme.primary,
+        size: iconSize ?? 30,
+      ),
     )
         .box
+        .color(Vx.black.withOpacity(0.5))
         .border(
           color: color ?? Theme.of(context).colorScheme.primary,
           width: borderWidth ?? 2,
         )
+        .roundedFull
         .make();
   }
 }
@@ -214,25 +223,50 @@ class Crop extends StatelessWidget {
     Key? key,
     required this.image,
     required this.name,
+    this.isActive = false,
   }) : super(key: key);
 
   final String image;
   final String name;
+  final bool isActive;
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Material(
-          type: MaterialType.circle,
-          color: Vx.gray200,
-          child: Center(
-            child: Image.asset(image),
-          ),
+        Stack(
+          children: [
+            Material(
+              type: MaterialType.circle,
+              color: Vx.gray100,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Image.asset(
+                  image,
+                  height: 60,
+                  width: 60,
+                ),
+              ),
+            ),
+            if (isActive)
+              Mask(
+                size: 100,
+              ),
+          ],
         ),
         verSpacing4,
-        name.text.make(),
+        if (isActive)
+          name.text.bold
+              .color(
+                Theme.of(context).colorScheme.primary,
+              )
+              .sm
+              .make(),
+        if (!isActive) name.text.sm.make(),
       ],
-    );
+    ).onTap(() {
+      Get.to(() => VerifyDiseaseView());
+    });
   }
 }
 
@@ -241,18 +275,84 @@ class CropDisease extends StatelessWidget {
     Key? key,
     required this.name,
     required this.image,
+    this.isActive = false,
   }) : super(key: key);
 
   final String name;
   final String image;
+  final bool isActive;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ClipOval(child: Image.asset(name)),
+        Stack(
+          children: [
+            ClipOval(
+              child: SizedBox(
+                height: 102,
+                width: 102,
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            if (isActive)
+              Mask(
+                size: 100,
+              )
+          ],
+        ),
         verSpacing4,
-        name.text.make(),
+        if (isActive)
+          name.text.bold
+              .color(
+                Theme.of(context).colorScheme.primary,
+              )
+              .sm
+              .make(),
+        if (!isActive) name.text.sm.make(),
       ],
+    );
+  }
+}
+
+class RequestStatusCard extends StatelessWidget {
+  const RequestStatusCard({
+    Key? key,
+    required this.heading,
+    required this.message,
+  }) : super(key: key);
+
+  final String heading;
+  final String message;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: SizedBox(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  heading.text.bold.color(Vx.gray600).make(),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 16,
+                    color: Vx.gray600,
+                  ),
+                ],
+              ),
+              verSpacing20,
+              message.text.lineHeight(1.7).make(),
+            ],
+          ),
+        ),
+      ).box.roundedSM.color(Vx.gray100).make(),
     );
   }
 }
