@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ColorTheme {
 // COLORS SECTION
@@ -37,4 +38,10 @@ class ColorTheme {
   ///White Color
   ///
   static const whiteColor = Colors.white;
+
+  static const Color successColor = Vx.green500;
+
+  static const Color errorColor = Vx.red500;
+
+  static var primaryColor;
 }
