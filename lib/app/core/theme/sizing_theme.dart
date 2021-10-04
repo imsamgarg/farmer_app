@@ -13,4 +13,6 @@ class Sizing {
 
   static final cardShape =
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));
+
+  static const radiusS = 8.0;
 }
