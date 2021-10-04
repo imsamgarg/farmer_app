@@ -12,29 +12,43 @@ import 'package:farmer_app/app/modules/register/controllers/register_controller.
 class RegisterView extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
+    final heading = Get.parameters['isNewUser'] ?? "Create An Account";
     return Scaffold(
-      appBar: CustomAppBar("Create An Acount"),
+      appBar: CustomAppBar(heading),
       body: Padding(
         padding: Sizing.sidePadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextFormField(
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
-                prefixIcon: Padding(
-                    padding: EdgeInsets.all(12),
-                    child: "🇮🇳 +91 ".text.size(16).make()),
-                prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
-                hintText: "Enter Mobile Number",
+            Form(
+              key: controller.phoneFormkey,
+              child: TextFormField(
+                keyboardType: TextInputType.number,
+                validator: (v) => controller.phoneNumberValidator(v, 11),
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(
+                  prefixIcon: Padding(
+                      padding: EdgeInsets.all(12),
+                      child: "🇮🇳 +91 ".text.size(16).make()),
+                  prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
+                  hintText: "Enter Mobile Number",
+                ),
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                NextButton(controller.moveToOtpView),
+                GetBuilder(
+                  init: controller,
+                  id: controller.sendOtpButtonId,
+                  builder: (_) {
+                    return NextButton(
+                      controller.sendOtp,
+                      isLoading: controller.sendOtpButtonLoading,
+                    );
+                  },
+                ),
                 verSpacing5,
               ],
             )

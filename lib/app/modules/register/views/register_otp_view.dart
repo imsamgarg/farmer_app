@@ -22,10 +22,15 @@ class RegisterOtpView extends GetView<RegisterController> {
           children: [
             Column(
               children: [
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.done,
-                  style: TextStyle(letterSpacing: 30),
+                Form(
+                  key: controller.otpFormKey,
+                  child: TextFormField(
+                    controller: controller.otpController,
+                    validator: (v) => controller.otpCodeValidator(v, 6),
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    style: TextStyle(letterSpacing: 30),
+                  ),
                 ),
                 verSpacing15,
                 Padding(
@@ -90,7 +95,7 @@ class RegisterOtpView extends GetView<RegisterController> {
               children: [
                 "I didn't get a code".text.center.orange400.underline.make(),
                 verSpacing20,
-                NextButton(controller.validate),
+                NextButton(controller.validateOtp),
                 verSpacing5
               ],
             ),
