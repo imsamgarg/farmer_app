@@ -1,17 +1,20 @@
+import 'package:farmer_app/app/data/services/auth_service.dart';
 import 'package:get/get.dart';
 
 import 'package:farmer_app/app/routes/app_pages.dart';
 
 class StartupController extends GetxController {
   @override
-  void onReady() async {
+  void onReady() {
     super.onReady();
-    if (await getUser()) {}
-    return Get.toNamed(Routes.WELCOME);
+    checkIfUserLogged();
   }
 
-  Future getUser() async {
-    await 1.delay();
-    return false;
+  void checkIfUserLogged() async {
+    final service = Get.find<AuthService>();
+    if (await service.isSigned()) {
+      return Get.toNamed(Routes.HOME);
+    }
+    return Get.toNamed(Routes.WELCOME);
   }
 }
