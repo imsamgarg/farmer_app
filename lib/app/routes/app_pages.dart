@@ -6,7 +6,6 @@ import 'package:farmer_app/app/modules/buy_input/views/buy_input_view.dart';
 import 'package:farmer_app/app/modules/crop_manual/bindings/crop_manual_binding.dart';
 import 'package:farmer_app/app/modules/crop_manual/views/crop_manual_view.dart';
 import 'package:farmer_app/app/modules/disease_detection/bindings/disease_detection_binding.dart';
-import 'package:farmer_app/app/modules/disease_detection/views/disease_detection_view.dart';
 import 'package:farmer_app/app/modules/home/bindings/home_binding.dart';
 import 'package:farmer_app/app/modules/home/views/home_view.dart';
 import 'package:farmer_app/app/modules/launch_screen/bindings/launch_screen_binding.dart';
@@ -29,7 +28,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.STARTUP;
 
   static final routes = [
     GetPage(

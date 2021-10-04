@@ -7,7 +7,7 @@ import 'package:farmer_app/app/routes/app_pages.dart';
 
 class LaunchScreenController extends GetxController {
   void iHaveAnAccount() {
-    Get.toNamed(Routes.LOGIN);
+    Get.toNamed(Routes.REGISTER, parameters: {"isNewUser": "Welcome Back!!"});
   }
 
   void getStartedButton() {
