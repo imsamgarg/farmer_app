@@ -1,14 +1,131 @@
+import 'package:custom_utils/log_utils.dart';
+import 'package:farmer_app/app/core/utils/helper.dart';
+import 'package:farmer_app/app/core/utils/mixins.dart';
+import 'package:farmer_app/app/modules/register/views/enter_name_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:farmer_app/app/modules/register/views/register_otp_view.dart';
 import 'package:farmer_app/app/routes/app_pages.dart';
 
-class RegisterController extends GetxController {
+class RegisterController extends GetxController with Validators {
+  late final phoneFormkey = GlobalKey<FormState>();
+  late final otpFormKey = GlobalKey<FormState>();
+  late final nameFormKey = GlobalKey<FormState>();
+
+  late final phoneController = TextEditingController();
+  late final otpController = TextEditingController();
+  late final nameController = TextEditingController();
+  late final auth = getAuth();
+
+  //Otp Code
+  late var verificationToken;
+
+  bool sendOtpButtonLoading = false;
+  bool enterOtpButtonLoading = false;
+
+  final String sendOtpButtonId = "button";
+  final String enterOtpButtonId = "otp-button";
+  final successMsg = "Verification Successfull!!";
+
+  @override
+  void onClose() {
+    customLog("Disposing Controllers", name: "Login");
+    phoneController.dispose();
+    otpController.dispose();
+    customLog("Controllers Disposed", name: "Login");
+    super.onClose();
+  }
+
+  ///Sending Otp Then Move To Otp Verification Screen
+  void sendOtp() async {
+    if (!phoneFormkey.currentState!.validate()) return;
+    try {
+      toggleOtpButtonLoading(true);
+      final number = "+91${phoneController.text}";
+      await auth.verifyPhoneNumber(
+        phoneNumber: number,
+        verificationCompleted: verificationCompleted,
+        verificationFailed: verificationFailed,
+        codeSent: codeSent,
+        codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
+      );
+    } on Exception catch (e, s) {
+      toggleOtpButtonLoading(false);
+    }
+    toggleOtpButtonLoading(false);
+  }
+
+  ///Manual Otp Verification
+  void validateOtp() async {
+    if (!otpFormKey.currentState!.validate()) return;
+    try {
+      toggleEnterOtpButtonLoading(true);
+      final otp = otpController.text;
+      final cred = PhoneAuthProvider.credential(
+        verificationId: verificationToken,
+        smsCode: otp,
+      );
+      final user = await auth.signInWithCredential(cred);
+      if (user.additionalUserInfo?.isNewUser ?? false) {
+        Get.to(EnterNameView());
+      } else {
+        Get.toNamed(Routes.HOME);
+      }
+    } on Exception catch (e) {
+      toggleEnterOtpButtonLoading(false);
+      errorSnackbar("Failed To Verify Number");
+    }
+  }
+
+  ///Register User Name
+  void registerUserName() async {
+    try {
+      if (!nameFormKey.currentState!.validate()) return;
+      final name = nameController.text;
+      await auth.currentUser?.updateDisplayName(name);
+      Get.toNamed(Routes.HOME);
+    } on Exception catch (e) {
+      errorSnackbar("Failed To Set Name");
+    }
+  }
+
+  ///Phone Auth Methods
+  void verificationCompleted(PhoneAuthCredential phoneAuthCredential) async {
+    otpController.text = phoneAuthCredential.smsCode ?? "";
+    await auth.signInWithCredential(phoneAuthCredential);
+    successSnackbar(successMsg);
+  }
+
+  void verificationFailed(FirebaseAuthException e) {
+    // late var errorMsg;
+    // = "Failed To Verify Number";
+    if (e.code == 'invalid-phone-number') {
+      var errorMsg = 'The provided phone number is not valid.';
+      errorSnackbar(errorMsg);
+    }
+  }
+
+  void codeSent(String id, int? rT) {
+    verificationToken = id;
+    return moveToOtpView();
+  }
+
+  void codeAutoRetrievalTimeout(String verificationId) {}
+
+  ///Utilty Methods
   void moveToOtpView() async {
     Get.to(RegisterOtpView());
   }
 
-  void validate() async {
-    Get.toNamed(Routes.HOME);
+  void toggleOtpButtonLoading(bool value) {
+    sendOtpButtonLoading = value;
+    update([sendOtpButtonId]);
+  }
+
+  void toggleEnterOtpButtonLoading(bool value) {
+    enterOtpButtonLoading = value;
+    update([enterOtpButtonId]);
   }
 }
