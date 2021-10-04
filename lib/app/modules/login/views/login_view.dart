@@ -20,21 +20,27 @@ class LoginView extends GetView<LoginController> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextFormField(
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
-                prefixIcon: Padding(
+            Form(
+              key: controller.formKey,
+              child: TextFormField(
+                controller: controller.phoneController,
+                keyboardType: TextInputType.number,
+                validator: controller.phoneValidator,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(
+                  prefixIcon: Padding(
                     padding: EdgeInsets.all(12),
-                    child: "🇮🇳 +91 ".text.size(16).make()),
-                prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
-                hintText: "Enter Mobile Number",
+                    child: "🇮🇳 +91 ".text.size(16).make(),
+                  ),
+                  prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
+                  hintText: "Enter Mobile Number",
+                ),
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                NextButton(controller.moveToOtp),
+                NextButton(controller.sendOtp),
                 verSpacing5,
               ],
             )

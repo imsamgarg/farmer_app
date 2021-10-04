@@ -22,67 +22,18 @@ class OtpView extends GetView<LoginController> {
           children: [
             Column(
               children: [
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.done,
-                  style: TextStyle(letterSpacing: 30),
+                Form(
+                  key: controller.otpformKey,
+                  child: TextFormField(
+                    controller: controller.otpController,
+                    validator: controller.otpValidator,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    style: TextStyle(letterSpacing: 30),
+                  ),
                 ),
                 verSpacing15,
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                        text: "Tap Continue to accept Yeoman’s ",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          height: 1.5,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: "Terms ;",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          TextSpan(
-                            text: " Data"
-                                " Policy Cookie use",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          TextSpan(
-                              text: ' and the ',
-                              style: TextStyle(color: Colors.grey)),
-                          TextSpan(
-                            text: "Privacy Policy",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          TextSpan(
-                              text: ' and ',
-                              style: TextStyle(color: Colors.grey)),
-                          TextSpan(
-                            text: 'Terms of Service ',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'of Must ',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ]),
-                  ),
-                )
+                PrivacyPolicy()
               ],
             ),
             Column(
@@ -96,6 +47,67 @@ class OtpView extends GetView<LoginController> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class PrivacyPolicy extends StatelessWidget {
+  const PrivacyPolicy({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+            text: "Tap Continue to accept Yeoman’s ",
+            style: TextStyle(
+              color: Colors.grey,
+              height: 1.5,
+            ),
+            children: [
+              TextSpan(
+                text: "Terms ;",
+                style: TextStyle(
+                  color: Colors.grey,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              TextSpan(
+                text: " Data"
+                    " Policy Cookie use",
+                style: TextStyle(
+                  color: Colors.grey,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              TextSpan(text: ' and the ', style: TextStyle(color: Colors.grey)),
+              TextSpan(
+                text: "Privacy Policy",
+                style: TextStyle(
+                  color: Colors.grey,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              TextSpan(text: ' and ', style: TextStyle(color: Colors.grey)),
+              TextSpan(
+                text: 'Terms of Service ',
+                style: TextStyle(
+                  color: Colors.grey,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              TextSpan(
+                text: 'of Must ',
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+            ]),
       ),
     );
   }
