@@ -48,6 +48,7 @@ class EditProfileView extends StatelessWidget {
             ),
             "Name".text.make(),
             TextFormField(
+              decoration: InputDecoration(contentPadding: EdgeInsets.zero),
               controller: TextEditingController(text: "Smile Garg"),
               validator: (v) => emptyValidator(v, "Name"),
             ),
@@ -58,8 +59,9 @@ class EditProfileView extends StatelessWidget {
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
+                // contentPadding: EdgeInsets.zero,
                 prefixIcon: Padding(
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.only(top: 12),
                     child: "🇮🇳 +91 ".text.size(16).make()),
                 prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
                 hintText: "Enter Mobile Number",
@@ -68,6 +70,9 @@ class EditProfileView extends StatelessWidget {
             verSpacing20,
             "Address".text.make(),
             TextFormField(
+              minLines: 1,
+              maxLines: null,
+              decoration: InputDecoration(contentPadding: EdgeInsets.zero),
               controller: TextEditingController(text: "Earth"),
               validator: (v) => emptyValidator(v, "Address"),
             ),
