@@ -21,7 +21,6 @@ class EnterNameView extends GetView<RegisterController> {
             Form(
               key: controller.nameFormKey,
               child: TextFormField(
-                keyboardType: TextInputType.number,
                 controller: controller.nameController,
                 validator: controller.nameValidotor,
                 textInputAction: TextInputAction.done,
@@ -33,9 +32,16 @@ class EnterNameView extends GetView<RegisterController> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                CustomButton(
-                  child: Text("Get Started"),
-                  onPressed: controller.registerUserName,
+                GetBuilder<RegisterController>(
+                  init: controller,
+                  id: controller.enterNameButtonId,
+                  builder: (_) {
+                    return CustomButton(
+                      child: Text("Get Started"),
+                      onPressed: controller.registerUserName,
+                      isLoading: controller.enterNameButtonLoading,
+                    );
+                  },
                 ),
                 verSpacing5,
               ],

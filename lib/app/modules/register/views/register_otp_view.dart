@@ -95,7 +95,16 @@ class RegisterOtpView extends GetView<RegisterController> {
               children: [
                 "I didn't get a code".text.center.orange400.underline.make(),
                 verSpacing20,
-                NextButton(controller.validateOtp),
+                GetBuilder<RegisterController>(
+                  init: controller,
+                  id: controller.enterOtpButtonId,
+                  builder: (_) {
+                    return NextButton(
+                      controller.validateOtp,
+                      isLoading: controller.enterOtpButtonLoading,
+                    );
+                  },
+                ),
                 verSpacing5
               ],
             ),

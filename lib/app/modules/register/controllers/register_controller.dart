@@ -24,9 +24,12 @@ class RegisterController extends GetxController with Validators {
 
   bool sendOtpButtonLoading = false;
   bool enterOtpButtonLoading = false;
+  bool enterNameButtonLoading = false;
 
   final String sendOtpButtonId = "button";
   final String enterOtpButtonId = "otp-button";
+  final String enterNameButtonId = "enter-name-button";
+
   final successMsg = "Verification Successfull!!";
 
   @override
@@ -42,6 +45,7 @@ class RegisterController extends GetxController with Validators {
   void sendOtp() async {
     if (!phoneFormkey.currentState!.validate()) return;
     try {
+      customLog(phoneController.text);
       toggleOtpButtonLoading(true);
       final number = "+91${phoneController.text}";
       await auth.verifyPhoneNumber(
@@ -52,6 +56,7 @@ class RegisterController extends GetxController with Validators {
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
       );
     } on Exception catch (e, s) {
+      customLog("Error", error: e, stackTrace: s);
       toggleOtpButtonLoading(false);
     }
     toggleOtpButtonLoading(false);
@@ -63,16 +68,11 @@ class RegisterController extends GetxController with Validators {
     try {
       toggleEnterOtpButtonLoading(true);
       final otp = otpController.text;
-      final cred = PhoneAuthProvider.credential(
+      final creds = PhoneAuthProvider.credential(
         verificationId: verificationToken,
         smsCode: otp,
       );
-      final user = await auth.signInWithCredential(cred);
-      if (user.additionalUserInfo?.isNewUser ?? false) {
-        Get.to(EnterNameView());
-      } else {
-        Get.toNamed(Routes.HOME);
-      }
+      await _registerUser(creds);
     } on Exception catch (e) {
       toggleEnterOtpButtonLoading(false);
       errorSnackbar("Failed To Verify Number");
@@ -83,18 +83,32 @@ class RegisterController extends GetxController with Validators {
   void registerUserName() async {
     try {
       if (!nameFormKey.currentState!.validate()) return;
+      toggleEnterNameButtonLoading(true);
       final name = nameController.text;
       await auth.currentUser?.updateDisplayName(name);
-      Get.toNamed(Routes.HOME);
-    } on Exception catch (e) {
+      Get.offAllNamed(Routes.HOME);
+    } on Exception catch (e, s) {
+      customLog("__", name: "Name Error", error: e, stackTrace: s);
       errorSnackbar("Failed To Set Name");
+    } finally {
+      toggleEnterNameButtonLoading(false);
     }
   }
 
   ///Phone Auth Methods
   void verificationCompleted(PhoneAuthCredential phoneAuthCredential) async {
     otpController.text = phoneAuthCredential.smsCode ?? "";
-    await auth.signInWithCredential(phoneAuthCredential);
+    await _registerUser(phoneAuthCredential);
+  }
+
+//Register User To Firebase Auth
+  Future<void> _registerUser(PhoneAuthCredential creds) async {
+    final user = await auth.signInWithCredential(creds);
+    if (user.additionalUserInfo?.isNewUser ?? false) {
+      Get.to(() => EnterNameView());
+    } else {
+      Get.offAllNamed(Routes.HOME);
+    }
     successSnackbar(successMsg);
   }
 
@@ -116,7 +130,7 @@ class RegisterController extends GetxController with Validators {
 
   ///Utilty Methods
   void moveToOtpView() async {
-    Get.to(RegisterOtpView());
+    Get.to(() => RegisterOtpView());
   }
 
   void toggleOtpButtonLoading(bool value) {
@@ -127,5 +141,10 @@ class RegisterController extends GetxController with Validators {
   void toggleEnterOtpButtonLoading(bool value) {
     enterOtpButtonLoading = value;
     update([enterOtpButtonId]);
+  }
+
+  void toggleEnterNameButtonLoading(bool value) {
+    enterNameButtonLoading = value;
+    update([enterNameButtonId]);
   }
 }
