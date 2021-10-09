@@ -1,6 +1,7 @@
 import 'package:custom_utils/future.dart';
 import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:farmer_app/app/modules/home/controllers/profile_route_controller.dart';
+import 'package:farmer_app/app/modules/home/local_widgets/control_back_press.dart';
 import 'package:farmer_app/app/modules/home/local_widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,54 +20,56 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomFutureBuilder(
-        future: controller.instance,
-        builder: (snapshot) {
-          return SafeArea(
-            child: Container(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 50,
-                    child: AppHeading(),
-                  ),
-                  Column(
-                    children: [
-                      _Avatar(),
-                      verSpacing15,
-                      Column(
-                        children: [
-                          _Tile(
-                            message: "Weather Report",
-                            onTap: profileRoutes.openWeatherReport,
-                          ),
-                          _Tile(
-                            message: "Disease Detection",
-                            onTap: profileRoutes.openDiseaseDetection,
-                          ),
-                          _Tile(
-                            message: "Crop Manuals",
-                            onTap: profileRoutes.openCropManual,
-                          ),
-                          _Tile(
-                            message: "Buy Input",
-                            onTap: profileRoutes.openBuyInput,
-                          ),
-                          _Tile(
-                            message: "Sell Produce",
-                            onTap: profileRoutes.openSellProduce,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ).scrollVertical(),
-          );
-        },
-        loading: CenterLoading(),
+    return ControlBackPress(
+      child: Scaffold(
+        body: CustomFutureBuilder(
+          future: controller.instance,
+          builder: (snapshot) {
+            return SafeArea(
+              child: Container(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: AppHeading(),
+                    ),
+                    Column(
+                      children: [
+                        _Avatar(),
+                        verSpacing15,
+                        Column(
+                          children: [
+                            _Tile(
+                              message: "Weather Report",
+                              onTap: profileRoutes.openWeatherReport,
+                            ),
+                            _Tile(
+                              message: "Disease Detection",
+                              onTap: profileRoutes.openDiseaseDetection,
+                            ),
+                            _Tile(
+                              message: "Crop Manuals",
+                              onTap: profileRoutes.openCropManual,
+                            ),
+                            _Tile(
+                              message: "Buy Input",
+                              onTap: profileRoutes.openBuyInput,
+                            ),
+                            _Tile(
+                              message: "Sell Produce",
+                              onTap: profileRoutes.openSellProduce,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ).scrollVertical(),
+            );
+          },
+          loading: CenterLoading(),
+        ),
       ),
     );
   }
