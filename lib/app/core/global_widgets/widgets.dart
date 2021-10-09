@@ -1,4 +1,4 @@
-import 'package:farmer_app/app/modules/disease_detection/views/verify_disease_view.dart';
+import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:custom_utils/spacing_utils.dart';
@@ -399,5 +399,32 @@ class ProfilePicture extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class CustomChip extends StatelessWidget {
+  const CustomChip(this.text, {this.isActive = false, this.onTap});
+  final bool isActive;
+  final String text;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final boxColor =
+        isActive ? primaryColor(context) : ColorTheme.primaryColors[3];
+    final textColor = isActive ? Vx.white : ColorTheme.primaryColors[2];
+    final borderColor =
+        isActive ? Colors.transparent : ColorTheme.primaryColors[3];
+
+    return text.text
+        .color(textColor)
+        .size(15)
+        .make()
+        .box
+        .p8
+        .color(boxColor)
+        .border(color: borderColor)
+        .make()
+        .onTap(onTap ?? () {});
   }
 }
