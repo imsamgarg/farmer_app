@@ -140,3 +140,35 @@ class CustomOutlinedButton extends CustomButton {
             // bColor: bC ?? accentColor,
             bW: bW ?? 1.0);
 }
+
+class DialogButton extends StatelessWidget {
+  final VoidCallback onTap;
+  final Color color;
+  final Color textColor;
+  final String heading;
+  final bool isLoading;
+
+  const DialogButton({
+    Key? key,
+    required this.onTap,
+    required this.color,
+    required this.heading,
+    this.isLoading = false,
+    this.textColor = Vx.white,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 80,
+      height: 40,
+      child: CustomButton(
+        child: heading.text.color(textColor).make(),
+        padding: const EdgeInsets.all(0),
+        bgColor: color,
+        isLoading: isLoading,
+        onPressed: onTap,
+      ),
+    );
+  }
+}
