@@ -9,5 +9,13 @@ class AuthService extends GetxService {
     return user != null;
   }
 
+  Future<void> changeName(String name) async {
+    await _firebaseAuth.currentUser?.updateDisplayName(name);
+  }
+
+  Future<void> changeDp(String url) async {
+    await _firebaseAuth.currentUser?.updatePhotoURL(url);
+  }
+
   FirebaseAuth get auth => _firebaseAuth;
 }
