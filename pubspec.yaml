@@ -13,6 +13,10 @@ dependencies:
   firebase_auth: ^1.1.4
   cloud_firestore: ^2.1.0
   get: 4.1.4
+  image_picker: 0.8.4+2
+  firebase_storage: 10.0.5
+  path: 1.8.0
+  cached_network_image: 3.1.0
   flutter: 
     sdk: flutter
   custom_utils: 
