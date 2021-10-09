@@ -12,4 +12,13 @@ class HomeController extends GetxController {
   void onBackPress() {
     pageIndex = 0;
   }
+
+  Future<bool> controlBackPress() async {
+    if (pageIndex == 0) {
+      return true;
+    } else {
+      pageIndex = 0;
+      return false;
+    }
+  }
 }
