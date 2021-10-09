@@ -2,6 +2,7 @@ import 'package:farmer_app/app/modules/disease_detection/views/verify_disease_vi
 import 'package:flutter/material.dart';
 
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/route_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -353,6 +354,50 @@ class RequestStatusCard extends StatelessWidget {
           ),
         ),
       ).box.roundedSM.color(Vx.gray100).make(),
+    );
+  }
+}
+
+class CenterLoading extends StatelessWidget {
+  const CenterLoading({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SpinKitThreeBounce(
+        color: Theme.of(context).colorScheme.primary,
+      ),
+    );
+  }
+}
+
+class ProfilePicture extends StatelessWidget {
+  const ProfilePicture({
+    Key? key,
+    required this.url,
+    required this.name,
+  }) : super(key: key);
+
+  final String url;
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(
+      url,
+      fit: BoxFit.cover,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return CenterLoading();
+      },
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          color: Theme.of(context).primaryColor,
+          child: Center(
+            child: "${name[0]}".text.white.size(48).make(),
+          ),
+        );
+      },
     );
   }
 }
