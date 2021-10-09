@@ -104,8 +104,10 @@ class RegisterController extends GetxController with Validators {
 //Register User To Firebase Auth
   Future<void> _registerUser(PhoneAuthCredential creds) async {
     final user = await auth.signInWithCredential(creds);
-    if (user.additionalUserInfo?.isNewUser ?? false) {
+    final userInfo = user.additionalUserInfo;
+    if (userInfo?.isNewUser ?? false) {
       Get.to(() => EnterNameView());
+      await getDbService().createProfile(user.user?.uid ?? "");
     } else {
       Get.offAllNamed(Routes.HOME);
     }

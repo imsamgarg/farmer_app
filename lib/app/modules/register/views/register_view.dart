@@ -27,6 +27,7 @@ class RegisterView extends GetView<RegisterController> {
                 keyboardType: TextInputType.number,
                 validator: (v) => controller.phoneNumberValidator(v, 11),
                 textInputAction: TextInputAction.done,
+                maxLength: 11,
                 controller: controller.phoneController,
                 decoration: InputDecoration(
                   prefixIcon: Padding(
