@@ -1,30 +1,135 @@
+import 'package:custom_utils/log_utils.dart';
+import 'package:farmer_app/app/core/utils/helper.dart';
+import 'package:farmer_app/app/data/models/profile_model.dart';
+import 'package:farmer_app/app/data/services/db_service.dart';
+import 'package:farmer_app/app/modules/home/views/logout_confirm_dialog_view.dart';
 import 'package:farmer_app/app/routes/app_pages.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-
 import 'package:farmer_app/app/modules/home/views/edit_profile_view.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
-  void editProfile() {
-    Get.to(EditProfileView());
+  late final Profile profile;
+  late final User _user;
+  late final DatabaseService _databaseService;
+
+  late final TextEditingController nameController;
+  late final TextEditingController addressController;
+  XFile? image;
+  XFile? uploadedImage;
+
+  late final instance = _fetchData();
+
+  bool isEditButtonLoading = false;
+  final _editingEnabled = false.obs;
+
+  late final formKey = GlobalKey<FormState>();
+
+  final String imageId = "profile-image";
+  final String loadingButtonId = "loading-button";
+
+  bool get editingEnabled => this._editingEnabled.value;
+  set editingEnabled(value) => this._editingEnabled.value = value;
+
+  String get name => _user.displayName ?? "";
+  String get number => _user.phoneNumber ?? "";
+  String get profileImage => _user.photoURL ?? "";
+
+  late String _oldName;
+  late String _oldAddress;
+
+  Future<bool> _fetchData() async {
+    _databaseService = getDbService();
+    _user = getAuth().currentUser!;
+    profile = await _databaseService.getProfile(_user.uid);
+    _oldName = _user.displayName!;
+    _oldAddress = profile.address!;
+    nameController = TextEditingController(text: _user.displayName);
+    addressController = TextEditingController(text: profile.address);
+    return true;
   }
 
-  void openWeatherReport() {
-    Get.toNamed(Routes.WEATHER_REPORT);
+  void gotoToEditProfile() {
+    Get.to(() => EditProfileView());
   }
 
-  void openDiseaseDetection() {
-    Get.toNamed(Routes.DISEASE_DETECTION);
+  void logout() {
+    Get.dialog(LogoutConfirmDialog());
   }
 
-  void openCropManual() {
-    Get.toNamed(Routes.CROP_MANUAL);
+  void confirmLogout() async {
+    final service = getAuth();
+    await service.signOut();
+    return Get.offAllNamed(Routes.WELCOME);
   }
 
-  void openBuyInput() {
-    Get.toNamed(Routes.BUY_INPUT);
+  void editProfile() async {
+    if (editingEnabled) {
+      try {
+        if (!formKey.currentState!.validate()) return;
+        toggleLoadingButton(true);
+        await _changeName();
+        await _changeAddress();
+        await _changeImage();
+        editingEnabled = false;
+        successSnackbar("Profile Updated");
+        toggleLoadingButton(false);
+      } on Exception catch (e, s) {
+        toggleLoadingButton(false);
+        customLog("Error", name: "Error", stackTrace: s, error: e);
+        errorSnackbar("Failed To Update Profile");
+      }
+    } else {
+      editingEnabled = true;
+    }
   }
 
-  void openSellProduce() {
-    Get.toNamed(Routes.SELL_PRODUCE);
+  void toggleLoadingButton(bool value) {
+    isEditButtonLoading = value;
+    update([loadingButtonId]);
+  }
+
+  Future<void> _changeName() async {
+    if (nameController.text != _oldName) {
+      await getAuthService().changeName(nameController.text);
+      _oldName = nameController.text;
+    }
+  }
+
+  Future<void> _changeImage() async {
+    if (image != null && uploadedImage != image) {
+      try {
+        final url = await getStorageService().saveProfileImage(
+          image!.path,
+          _user.uid,
+        );
+        await getAuthService().changeDp(url);
+        uploadedImage = image;
+      } on Exception catch (e, s) {
+        errorSnackbar("Failed To Upload Image");
+        customLog("Error", name: "Image Error", error: e, stackTrace: s);
+      }
+    }
+  }
+
+  Future<void> _changeAddress() async {
+    if (addressController.text != _oldAddress) {
+      await getDbService().updateProfile(
+        _user.uid,
+        Profile(address: addressController.text),
+      );
+      _oldAddress = addressController.text;
+    }
+  }
+
+  void changePicture() async {
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    this.image = image;
+    if (image != null) {
+      update([imageId]);
+    }
   }
 }

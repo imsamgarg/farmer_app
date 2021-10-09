@@ -1,60 +1,72 @@
+import 'package:custom_utils/future.dart';
+import 'package:farmer_app/app/core/global_widgets/widgets.dart';
+import 'package:farmer_app/app/modules/home/controllers/profile_route_controller.dart';
+import 'package:farmer_app/app/modules/home/local_widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:custom_utils/spacing_utils.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:farmer_app/app/modules/home/controllers/profile_controller.dart';
-import 'package:farmer_app/app/modules/home/local_widgets/widgets.dart';
 
 class ProfileView extends GetView<ProfileController> {
+  final profileRoutes = Get.find<ProfileRoutesController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 50,
-                child: AppHeading(),
-              ),
-              Column(
+      body: CustomFutureBuilder(
+        future: controller.instance,
+        builder: (snapshot) {
+          return SafeArea(
+            child: Container(
+              child: Column(
                 children: [
-                  _Avatar(),
-                  verSpacing15,
+                  SizedBox(
+                    height: 50,
+                    child: AppHeading(),
+                  ),
                   Column(
                     children: [
-                      _Tile(
-                        message: "Weather Report",
-                        onTap: controller.openWeatherReport,
-                      ),
-                      _Tile(
-                        message: "Disease Detection",
-                        onTap: controller.openDiseaseDetection,
-                      ),
-                      _Tile(
-                        message: "Crop Manuals",
-                        onTap: controller.openCropManual,
-                      ),
-                      _Tile(
-                        message: "Buy Input",
-                        onTap: controller.openBuyInput,
-                      ),
-                      _Tile(
-                        message: "Sell Produce",
-                        onTap: controller.openSellProduce,
+                      _Avatar(),
+                      verSpacing15,
+                      Column(
+                        children: [
+                          _Tile(
+                            message: "Weather Report",
+                            onTap: profileRoutes.openWeatherReport,
+                          ),
+                          _Tile(
+                            message: "Disease Detection",
+                            onTap: profileRoutes.openDiseaseDetection,
+                          ),
+                          _Tile(
+                            message: "Crop Manuals",
+                            onTap: profileRoutes.openCropManual,
+                          ),
+                          _Tile(
+                            message: "Buy Input",
+                            onTap: profileRoutes.openBuyInput,
+                          ),
+                          _Tile(
+                            message: "Sell Produce",
+                            onTap: profileRoutes.openSellProduce,
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ).scrollVertical(),
+            ).scrollVertical(),
+          );
+        },
+        loading: CenterLoading(),
       ),
     );
   }
@@ -102,14 +114,10 @@ class _Tile extends StatelessWidget {
 }
 
 class _Avatar extends GetView<ProfileController> {
-  const _Avatar({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: controller.editProfile,
+      onTap: controller.gotoToEditProfile,
       child: Container(
         height: 80,
         child: Row(
@@ -121,14 +129,12 @@ class _Avatar extends GetView<ProfileController> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                "Smile Garg"
-                    .text
+                controller.name.text
                     .size(18)
                     .semiBold
                     .color(ColorTheme.primaryColors[1])
                     .make(),
-                "+91 9876543210"
-                    .text
+                controller.number.text
                     .size(12)
                     .color(ColorTheme.primaryColors[2])
                     .make(),

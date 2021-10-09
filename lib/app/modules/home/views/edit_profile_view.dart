@@ -1,178 +1,259 @@
+import 'dart:io';
+
+import 'package:farmer_app/app/core/global_widgets/widgets.dart';
+import 'package:farmer_app/app/core/utils/mixins.dart';
+import 'package:farmer_app/app/modules/home/controllers/profile_route_controller.dart';
+import 'package:farmer_app/app/modules/home/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:custom_utils/spacing_utils.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:get/get.dart';
 
 import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
 import 'package:farmer_app/app/core/global_widgets/button.dart';
 import 'package:farmer_app/app/core/theme/color_theme.dart';
-import 'package:farmer_app/app/core/values/strings.dart';
 
-class EditProfileView extends StatelessWidget {
+class EditProfileView extends GetView<ProfileController> {
+  final profileRoutes = Get.find<ProfileRoutesController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
         "Edit Profile",
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: "Edit".text.semiBold.black.make(),
-          )
-        ],
+        actions: [EditButton()],
       ),
       body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: CircleAvatar(
-                    radius: 50,
-                    child: Image.asset(
-                      logo,
-                    ),
-                  ),
-                ),
-                verSpacing5,
-                CustomButton(
-                  child: ("Change Profile Picture").text.underline.make(),
-                  onPressed: () {},
-                  bgColor: ColorTheme.whiteColor,
-                  overlayColor: ColorTheme.primaryColors[3],
-                  fgColor: Color(0xffEB4225),
-                )
-              ],
-            ),
-            "Name".text.make(),
-            TextFormField(
-              decoration: InputDecoration(contentPadding: EdgeInsets.zero),
-              controller: TextEditingController(text: "Smile Garg"),
-              validator: (v) => emptyValidator(v, "Name"),
-            ),
-            verSpacing20,
-            "Phone Number".text.make(),
-            TextFormField(
-              controller: TextEditingController(text: "9876543210"),
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
-                // contentPadding: EdgeInsets.zero,
-                prefixIcon: Padding(
-                    padding: EdgeInsets.only(top: 12),
-                    child: "🇮🇳 +91 ".text.size(16).make()),
-                prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
-                hintText: "Enter Mobile Number",
+        child: Form(
+          key: controller.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [ProfileImage(), verSpacing5, ChangeImageButton()],
               ),
-            ),
-            verSpacing20,
-            "Address".text.make(),
-            TextFormField(
-              minLines: 1,
-              maxLines: null,
-              decoration: InputDecoration(contentPadding: EdgeInsets.zero),
-              controller: TextEditingController(text: "Earth"),
-              validator: (v) => emptyValidator(v, "Address"),
-            ),
-            verSpacing15,
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                CustomButton(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ("Land Details")
-                          .text
-                          .bold
-                          .color(ColorTheme.primaryColors[2])
-                          .make(),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: ColorTheme.primaryColors[2],
-                        size: 20,
-                      )
-                    ],
+              "Name".text.make(),
+              NameField(),
+              verSpacing20,
+              "Phone Number".text.make(),
+              NumberField(),
+              verSpacing20,
+              "Address".text.make(),
+              AddressField(),
+              verSpacing15,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  CustomButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ("Land Details")
+                            .text
+                            .bold
+                            .color(ColorTheme.primaryColors[2])
+                            .make(),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: ColorTheme.primaryColors[2],
+                          size: 20,
+                        )
+                      ],
+                    ),
+                    onPressed: profileRoutes.dummyButton,
+                    bgColor: ColorTheme.whiteColor,
+                    overlayColor: ColorTheme.primaryColors[4],
                   ),
-                  onPressed: () {},
-                  bgColor: ColorTheme.whiteColor,
-                  overlayColor: ColorTheme.primaryColors[4],
-                ),
-                CustomButton(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ("Your Crops")
-                          .text
-                          .bold
-                          .color(ColorTheme.primaryColors[2])
-                          .make(),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: ColorTheme.primaryColors[2],
-                        size: 20,
-                      )
-                    ],
+                  CustomButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ("Your Crops")
+                            .text
+                            .bold
+                            .color(ColorTheme.primaryColors[2])
+                            .make(),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: ColorTheme.primaryColors[2],
+                          size: 20,
+                        )
+                      ],
+                    ),
+                    onPressed: profileRoutes.dummyButton,
+                    bgColor: ColorTheme.whiteColor,
+                    overlayColor: ColorTheme.primaryColors[4],
                   ),
-                  onPressed: () {},
-                  bgColor: ColorTheme.whiteColor,
-                  overlayColor: ColorTheme.primaryColors[4],
-                ),
-                CustomButton(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ("About")
-                          .text
-                          .bold
-                          .color(ColorTheme.primaryColors[2])
-                          .make(),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: ColorTheme.primaryColors[2],
-                        size: 20,
-                      )
-                    ],
+                  CustomButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ("About")
+                            .text
+                            .bold
+                            .color(ColorTheme.primaryColors[2])
+                            .make(),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: ColorTheme.primaryColors[2],
+                          size: 20,
+                        )
+                      ],
+                    ),
+                    onPressed: profileRoutes.dummyButton,
+                    bgColor: ColorTheme.whiteColor,
+                    overlayColor: ColorTheme.primaryColors[4],
                   ),
-                  onPressed: () {},
-                  bgColor: ColorTheme.whiteColor,
-                  overlayColor: ColorTheme.primaryColors[4],
-                ),
-                CustomButton(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ("logout")
-                          .text
-                          .bold
-                          .color(ColorTheme.primaryColors[2])
-                          .make(),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: ColorTheme.primaryColors[2],
-                        size: 20,
-                      )
-                    ],
+                  CustomButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ("logout")
+                            .text
+                            .bold
+                            .color(ColorTheme.primaryColors[2])
+                            .make(),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: ColorTheme.primaryColors[2],
+                          size: 20,
+                        )
+                      ],
+                    ),
+                    onPressed: controller.logout,
+                    bgColor: ColorTheme.whiteColor,
+                    overlayColor: ColorTheme.primaryColors[4],
                   ),
-                  onPressed: () {},
-                  bgColor: ColorTheme.whiteColor,
-                  overlayColor: ColorTheme.primaryColors[4],
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ).px20().scrollVertical(),
     );
   }
+}
 
-  emptyValidator(String? v, [String? s]) {
-    if (v == "")
-      return "Please Enter ${s ?? "Value"}";
-    else
-      return;
+class ProfileImage extends GetView<ProfileController> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ClipOval(
+        child: GetBuilder<ProfileController>(
+          init: controller,
+          id: controller.imageId,
+          builder: (_) {
+            return Container(
+              height: 80,
+              width: 80,
+              child: (controller.image == null)
+                  ? ProfilePicture(
+                      url: controller.profileImage,
+                      name: controller.name,
+                    )
+                  : Image.file(
+                      File(
+                        controller.image!.path,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class EditButton extends GetView<ProfileController> {
+  @override
+  Widget build(BuildContext context) {
+    return MixinBuilder(
+      init: controller,
+      id: controller.loadingButtonId,
+      builder: (_) {
+        return CustomButton(
+          bgColor: Colors.transparent,
+          fgColor: Theme.of(context).primaryColor,
+          onPressed: controller.editProfile,
+          isLoading: controller.isEditButtonLoading,
+          child: (controller.editingEnabled ? "Save" : "Edit")
+              .text
+              .semiBold
+              .black
+              .make(),
+        );
+      },
+    );
+  }
+}
+
+class ChangeImageButton extends GetView<ProfileController> {
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () {
+        if (controller.editingEnabled)
+          return CustomButton(
+            child: ("Change Profile Picture").text.underline.make(),
+            onPressed: controller.changePicture,
+            bgColor: ColorTheme.whiteColor,
+            overlayColor: ColorTheme.primaryColors[3],
+            fgColor: Color(0xffEB4225),
+          );
+        else
+          return SizedBox.shrink();
+      },
+    );
+  }
+}
+
+class AddressField extends GetView<ProfileController> with Validators {
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => TextFormField(
+        minLines: 1,
+        maxLines: null,
+        readOnly: !controller.editingEnabled,
+        decoration: InputDecoration(contentPadding: EdgeInsets.zero),
+        controller: controller.addressController,
+      ),
+    );
+  }
+}
+
+class NumberField extends GetView<ProfileController> {
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      keyboardType: TextInputType.number,
+      initialValue: controller.number,
+      readOnly: true,
+      textInputAction: TextInputAction.done,
+      decoration: InputDecoration(
+        prefixIcon: Padding(
+          padding: EdgeInsets.only(top: 12),
+          child: "🇮🇳 +91 ".text.size(16).make(),
+        ),
+        prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
+      ),
+    );
+  }
+}
+
+class NameField extends GetView<ProfileController> with Validators {
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => TextFormField(
+        decoration: InputDecoration(contentPadding: EdgeInsets.zero),
+        controller: controller.nameController,
+        readOnly: !controller.editingEnabled,
+        validator: (v) => nameValidotor(v),
+      ),
+    );
   }
 }
