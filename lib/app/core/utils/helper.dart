@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:farmer_app/app/data/services/auth_service.dart';
 import 'package:farmer_app/app/data/services/db_service.dart';
+import 'package:farmer_app/app/data/services/native_service.dart';
 import 'package:farmer_app/app/data/services/storage_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -64,8 +65,12 @@ DatabaseService getDbService() {
   return Get.find<DatabaseService>();
 }
 
-StorageService getStorageService() {
-  return Get.find<StorageService>();
+NativeService getNativeService() {
+  return Get.find<NativeService>();
+}
+
+CloudStorageService getStorageService() {
+  return Get.find<CloudStorageService>();
 }
 
 void successSnackbar(String message, [int sec = 4]) {
@@ -109,3 +114,7 @@ void customSnackBar(
 //   );
 //   return value;
 // }
+
+Color primaryColor(BuildContext context) {
+  return Theme.of(context).primaryColor;
+}
