@@ -126,8 +126,7 @@ class ProfileController extends GetxController {
   }
 
   void changePicture() async {
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    this.image = image;
+    this.image = await getNativeService().pickImageFromGallery();
     if (image != null) {
       update([imageId]);
     }
