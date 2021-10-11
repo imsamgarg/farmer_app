@@ -32,4 +32,16 @@ mixin Validators {
     }
     return null;
   }
+
+  String? requiredValidator(String? value, [int? minLen, int? maxLen]) {
+    value ??= "";
+    value = value.removeAllWhitespace;
+    if (value.isEmpty) return "Please Enter Value";
+    if (minLen != null && value.length < minLen) {
+      return "Enter Min $minLen Characters";
+    }
+    if (maxLen != null && value.length > maxLen) {
+      return "Max $maxLen Characters Allowed";
+    }
+  }
 }
