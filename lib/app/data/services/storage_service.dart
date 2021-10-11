@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart' as p;
 
-class StorageService extends GetxService {
+class CloudStorageService extends GetxService {
   FirebaseStorage _storage = FirebaseStorage.instance;
 
   Reference get storage => _storage.ref();
@@ -15,5 +15,13 @@ class StorageService extends GetxService {
     final ref = storage.child(profileRef).child("$uid$ext");
     final res = await ref.putFile(File(path));
     return await res.ref.getDownloadURL();
+  }
+
+  Future<String> savePostImage(String path, String uid) async {
+    final ext = p.extension(path);
+    final time = DateTime.now().millisecondsSinceEpoch;
+    final ref = storage.child(postRef).child("$uid$time$ext");
+    final res = await ref.putFile(File(path));
+    return await res.ref.fullPath;
   }
 }
