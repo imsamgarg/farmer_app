@@ -6,7 +6,6 @@ import 'package:farmer_app/app/modules/home/views/logout_confirm_dialog_view.dar
 import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:farmer_app/app/modules/home/views/edit_profile_view.dart';
 import 'package:image_picker/image_picker.dart';

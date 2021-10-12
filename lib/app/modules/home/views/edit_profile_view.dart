@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:farmer_app/app/core/global_widgets/widgets.dart';
+import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/core/utils/mixins.dart';
 import 'package:farmer_app/app/modules/home/controllers/home_controller.dart';
 import 'package:farmer_app/app/modules/home/controllers/profile_route_controller.dart';
@@ -28,7 +29,7 @@ class EditProfileView extends GetView<ProfileController> {
           "Edit Profile",
           automaticallyImplyLeading: false,
           leadingIcon: Icons.arrow_back_ios_new_rounded,
-          leadingPress: homeController.onBackPress,
+          leadingPress: goBack,
           actions: [EditButton()],
         ),
         body: Container(
