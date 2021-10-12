@@ -371,6 +371,21 @@ class CenterLoading extends StatelessWidget {
   }
 }
 
+class RoundedDp extends StatelessWidget {
+  const RoundedDp({
+    Key? key,
+    required this.url,
+    required this.name,
+  }) : super(key: key);
+
+  final String url;
+  final String name;
+  @override
+  Widget build(BuildContext context) {
+    return ClipOval(child: ProfilePicture(url: url, name: name));
+  }
+}
+
 class ProfilePicture extends StatelessWidget {
   const ProfilePicture({
     Key? key,
