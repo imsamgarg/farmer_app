@@ -126,7 +126,10 @@ class _Avatar extends GetView<ProfileController> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image.asset(logo),
+            RoundedDp(
+              url: controller.profileImage,
+              name: controller.name,
+            ),
             horSpacing15,
             Column(
               mainAxisSize: MainAxisSize.min,

@@ -165,7 +165,7 @@ class Dp extends GetView<CreatePostController> {
       height: 50,
       child: Row(
         children: [
-          ProfilePicture(
+          RoundedDp(
             url: controller.picture ?? "",
             name: controller.name,
           ),
