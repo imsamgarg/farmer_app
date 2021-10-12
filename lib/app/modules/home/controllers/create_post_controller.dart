@@ -13,7 +13,11 @@ class CreatePostController extends GetxController {
   bool isButtonLoading = false;
 
   late List<String> categories;
-  late List<RxBool> selectedCategories;
+  // late final selectedCategory = RxnInt(null);
+
+  final RxnInt _selectedCategory = RxnInt(null);
+  get selectedCategory => this._selectedCategory.value;
+  set selectedCategory(value) => this._selectedCategory.value = value;
 
   XFile? image;
 
@@ -25,19 +29,27 @@ class CreatePostController extends GetxController {
 
   String? get picture => user?.photoURL;
   String get name => user?.displayName ?? "Your Name";
-  String get imageName => image?.name ?? "";
+  String get imageName => image?.path ?? "";
 
   void createPost() async {
     if (!formKey.currentState!.validate()) return;
+    if (selectedCategory == null) {
+      errorSnackbar("Please Select Category");
+      return;
+    }
     toggleButtonLoading(true);
     final time = Timestamp.now();
     try {
+      var _image = this.image?.path;
+      if (_image != null) {
+        _image = await getStorageService().savePostImage(_image, user!.uid);
+      }
       final post = Post(
         createdAt: time,
         updatedAt: time,
-        category: "",
+        category: categories[selectedCategory],
         content: postSummaryController.text,
-        image: image?.path,
+        image: _image,
         user: user!.uid,
       );
       await getDbService().createPost(post);
@@ -53,12 +65,12 @@ class CreatePostController extends GetxController {
 
   Future<bool> _getData() async {
     categories = await getDbService().getCategories();
-    selectedCategories = List.filled(categories.length, false.obs);
+    // selectedCategories = List.filled(categories.length, false.obs);
     return true;
   }
 
   void selectCategory(int i) {
-    selectedCategories[i].value = !selectedCategories[i].value;
+    selectedCategory = i;
   }
 
   void toggleButtonLoading(bool value) {
@@ -75,9 +87,8 @@ class CreatePostController extends GetxController {
 
   void _resetPage() {
     image = null;
-    selectedCategories.forEach((element) {
-      element.value = false;
-    });
+    update([imageNameId]);
+    selectedCategory = null;
     postSummaryController.clear();
   }
 }
