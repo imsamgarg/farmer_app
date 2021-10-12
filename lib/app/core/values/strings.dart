@@ -24,4 +24,4 @@ const String leftArrow = "assets/Misc/leftArrow.png";
 final String degreeSymbol = String.fromCharCode(0x00B0);
 
 const String profileRef = "profile_images";
-const String postRef = "profile_images";
+const String postRef = "post_images";
