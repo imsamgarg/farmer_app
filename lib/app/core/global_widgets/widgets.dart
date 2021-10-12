@@ -410,11 +410,10 @@ class CustomChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final boxColor =
-        isActive ? primaryColor(context) : ColorTheme.primaryColors[3];
+    final boxColor = isActive ? primaryColor(context) : Vx.white;
     final textColor = isActive ? Vx.white : ColorTheme.primaryColors[2];
     final borderColor =
-        isActive ? Colors.transparent : ColorTheme.primaryColors[3];
+        isActive ? primaryColor(context) : ColorTheme.primaryColors[3];
 
     return text.text
         .color(textColor)
