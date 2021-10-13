@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farmer_app/app/data/models/comment_model.dart';
 
 class Post {
   String? content;
@@ -7,22 +8,28 @@ class Post {
   String? image;
   String? profileImage;
   String? user;
+  int? likesCount;
+  int? commentsCount;
+  late List<Comment>? comments;
   String? category;
 
-  Post(
-      {this.content,
-      this.createdAt,
-      this.updatedAt,
-      this.image,
-      this.profileImage,
-      this.user,
-      this.category});
+  Post({
+    this.content,
+    this.createdAt,
+    this.updatedAt,
+    this.image,
+    this.profileImage,
+    this.user,
+    this.category,
+  });
 
   Post.fromJson(Map<String, dynamic> json) {
     content = json['content'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     image = json['image'];
+    likesCount = json['likes_count'];
+    commentsCount = json['comments_count'];
     profileImage = json['profile_image'];
     user = json['user'];
     category = json['category'];
@@ -36,6 +43,8 @@ class Post {
     data['image'] = image;
     data['profile_image'] = profileImage;
     data['user'] = user;
+    data['comments_count'] = commentsCount;
+    data['likes_count'] = likesCount;
     data['category'] = category;
     return data;
   }
