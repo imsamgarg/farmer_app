@@ -22,6 +22,6 @@ class CloudStorageService extends GetxService {
     final time = DateTime.now().millisecondsSinceEpoch;
     final ref = storage.child(postRef).child("$uid$time$ext");
     final res = await ref.putFile(File(path));
-    return await res.ref.fullPath;
+    return await res.ref.getDownloadURL();
   }
 }
