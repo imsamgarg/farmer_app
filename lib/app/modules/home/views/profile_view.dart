@@ -135,11 +135,13 @@ class _Avatar extends GetView<ProfileController> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                controller.name.text
-                    .size(18)
-                    .semiBold
-                    .color(ColorTheme.primaryColors[1])
-                    .make(),
+                // controller.name.text
+                //     .size(18)
+                //     .semiBold
+                //     .color(ColorTheme.primaryColors[1])
+                //     .make(),
+
+                DisplayName(),
                 controller.number.text
                     .size(12)
                     .color(ColorTheme.primaryColors[2])

@@ -23,125 +23,123 @@ class EditProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return ControlBackPress(
-      child: Scaffold(
-        appBar: CustomAppBar(
-          "Edit Profile",
-          automaticallyImplyLeading: false,
-          leadingIcon: Icons.arrow_back_ios_new_rounded,
-          leadingPress: goBack,
-          actions: [EditButton()],
-        ),
-        body: Container(
-          child: Form(
-            key: controller.formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [ProfileImage(), verSpacing5, ChangeImageButton()],
-                ),
-                "Name".text.make(),
-                NameField(),
-                verSpacing20,
-                "Phone Number".text.make(),
-                NumberField(),
-                verSpacing20,
-                "Address".text.make(),
-                AddressField(),
-                verSpacing15,
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    CustomButton(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ("Land Details")
-                              .text
-                              .bold
-                              .color(ColorTheme.primaryColors[2])
-                              .make(),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: ColorTheme.primaryColors[2],
-                            size: 20,
-                          )
-                        ],
-                      ),
-                      onPressed: profileRoutes.dummyButton,
-                      bgColor: ColorTheme.whiteColor,
-                      overlayColor: ColorTheme.primaryColors[4],
-                    ),
-                    CustomButton(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ("Your Crops")
-                              .text
-                              .bold
-                              .color(ColorTheme.primaryColors[2])
-                              .make(),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: ColorTheme.primaryColors[2],
-                            size: 20,
-                          )
-                        ],
-                      ),
-                      onPressed: profileRoutes.dummyButton,
-                      bgColor: ColorTheme.whiteColor,
-                      overlayColor: ColorTheme.primaryColors[4],
-                    ),
-                    CustomButton(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ("About")
-                              .text
-                              .bold
-                              .color(ColorTheme.primaryColors[2])
-                              .make(),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: ColorTheme.primaryColors[2],
-                            size: 20,
-                          )
-                        ],
-                      ),
-                      onPressed: profileRoutes.dummyButton,
-                      bgColor: ColorTheme.whiteColor,
-                      overlayColor: ColorTheme.primaryColors[4],
-                    ),
-                    CustomButton(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ("logout")
-                              .text
-                              .bold
-                              .color(ColorTheme.primaryColors[2])
-                              .make(),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: ColorTheme.primaryColors[2],
-                            size: 20,
-                          )
-                        ],
-                      ),
-                      onPressed: controller.logout,
-                      bgColor: ColorTheme.whiteColor,
-                      overlayColor: ColorTheme.primaryColors[4],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ).px20().scrollVertical(),
+    return Scaffold(
+      appBar: CustomAppBar(
+        "Edit Profile",
+        automaticallyImplyLeading: false,
+        leadingIcon: Icons.arrow_back_ios_new_rounded,
+        leadingPress: goBack,
+        actions: [EditButton()],
       ),
+      body: Container(
+        child: Form(
+          key: controller.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [ProfileImage(), verSpacing5, ChangeImageButton()],
+              ),
+              "Name".text.make(),
+              NameField(),
+              verSpacing20,
+              "Phone Number".text.make(),
+              NumberField(),
+              verSpacing20,
+              "Address".text.make(),
+              AddressField(),
+              verSpacing15,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  CustomButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ("Land Details")
+                            .text
+                            .bold
+                            .color(ColorTheme.primaryColors[2])
+                            .make(),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: ColorTheme.primaryColors[2],
+                          size: 20,
+                        )
+                      ],
+                    ),
+                    onPressed: profileRoutes.dummyButton,
+                    bgColor: ColorTheme.whiteColor,
+                    overlayColor: ColorTheme.primaryColors[4],
+                  ),
+                  CustomButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ("Your Crops")
+                            .text
+                            .bold
+                            .color(ColorTheme.primaryColors[2])
+                            .make(),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: ColorTheme.primaryColors[2],
+                          size: 20,
+                        )
+                      ],
+                    ),
+                    onPressed: profileRoutes.dummyButton,
+                    bgColor: ColorTheme.whiteColor,
+                    overlayColor: ColorTheme.primaryColors[4],
+                  ),
+                  CustomButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ("About")
+                            .text
+                            .bold
+                            .color(ColorTheme.primaryColors[2])
+                            .make(),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: ColorTheme.primaryColors[2],
+                          size: 20,
+                        )
+                      ],
+                    ),
+                    onPressed: profileRoutes.dummyButton,
+                    bgColor: ColorTheme.whiteColor,
+                    overlayColor: ColorTheme.primaryColors[4],
+                  ),
+                  CustomButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ("logout")
+                            .text
+                            .bold
+                            .color(ColorTheme.primaryColors[2])
+                            .make(),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: ColorTheme.primaryColors[2],
+                          size: 20,
+                        )
+                      ],
+                    ),
+                    onPressed: controller.logout,
+                    bgColor: ColorTheme.whiteColor,
+                    overlayColor: ColorTheme.primaryColors[4],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ).px20().scrollVertical(),
     );
   }
 }

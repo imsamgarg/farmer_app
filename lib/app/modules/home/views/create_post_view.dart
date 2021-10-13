@@ -165,15 +165,19 @@ class Dp extends GetView<CreatePostController> {
       height: 50,
       child: Row(
         children: [
-          RoundedDp(
-            url: controller.picture ?? "",
-            name: controller.name,
+          SizedBox(
+            width: 35,
+            child: RoundedDp(
+              url: controller.picture ?? "",
+              name: controller.name,
+            ),
           ),
           horSpacing10,
-          controller.name.text.semiBold
-              .size(16)
-              .color(ColorTheme.primaryColors[1])
-              .make(),
+          // controller.name.text.semiBold
+          //     .size(16)
+          //     .color(ColorTheme.primaryColors[1])
+          //     .make(),
+          DisplayName(size: 16),
         ],
       ).p8(),
     );

@@ -2,6 +2,7 @@ import 'package:custom_utils/log_utils.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/data/models/profile_model.dart';
 import 'package:farmer_app/app/data/services/db_service.dart';
+import 'package:farmer_app/app/modules/home/controllers/user_controller.dart';
 import 'package:farmer_app/app/modules/home/views/logout_confirm_dialog_view.dart';
 import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,6 +27,7 @@ class ProfileController extends GetxController {
   final _editingEnabled = false.obs;
 
   late final formKey = GlobalKey<FormState>();
+  late final userController = Get.find<UserController>();
 
   final String imageId = "profile-image";
   final String loadingButtonId = "loading-button";
@@ -95,6 +97,7 @@ class ProfileController extends GetxController {
     if (nameController.text != _oldName) {
       await getAuthService().changeName(nameController.text);
       _oldName = nameController.text;
+      userController.changeName(nameController.text);
     }
   }
 
@@ -106,6 +109,7 @@ class ProfileController extends GetxController {
           _user.uid,
         );
         await getAuthService().changeDp(url);
+        userController.changeDp(url);
         uploadedImage = image;
       } on Exception catch (e, s) {
         errorSnackbar("Failed To Upload Image");
