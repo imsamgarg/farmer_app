@@ -39,4 +39,13 @@ class DatabaseService extends GetxService {
     await instance.collection(Db.postCol).doc().set(post.toJson());
     return;
   }
+
+  Future<String> getWeatherKey() async {
+    final doc = await instance.collection(Db.keysCol).doc(Db.weatherDoc).get();
+    final data = doc.data();
+    if (!doc.exists) throw Exception("Key Not Found");
+    if (data == null) throw Exception("Key Not Found");
+    if ((data[Db.keyField] as String).isEmpty) throw Exception("Key Not Found");
+    return data[Db.keyField];
+  }
 }
