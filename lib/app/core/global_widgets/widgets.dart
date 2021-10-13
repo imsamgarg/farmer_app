@@ -1,9 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:custom_utils/future.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
+import 'package:farmer_app/app/modules/home/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:custom_utils/spacing_utils.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:farmer_app/app/core/theme/color_theme.dart';
@@ -359,13 +363,19 @@ class RequestStatusCard extends StatelessWidget {
 }
 
 class CenterLoading extends StatelessWidget {
-  const CenterLoading({Key? key}) : super(key: key);
+  const CenterLoading({
+    Key? key,
+    this.size = 50.0,
+  }) : super(key: key);
+
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SpinKitThreeBounce(
         color: Theme.of(context).colorScheme.primary,
+        size: size,
       ),
     );
   }
@@ -374,43 +384,49 @@ class CenterLoading extends StatelessWidget {
 class RoundedDp extends StatelessWidget {
   const RoundedDp({
     Key? key,
-    required this.url,
-    required this.name,
+    this.url,
+    this.name,
   }) : super(key: key);
 
-  final String url;
-  final String name;
+  final String? url;
+  final String? name;
   @override
   Widget build(BuildContext context) {
-    return ClipOval(child: ProfilePicture(url: url, name: name));
+    return ClipOval(child: ProfilePicture());
   }
 }
 
-class ProfilePicture extends StatelessWidget {
-  const ProfilePicture({
+class ProfilePicture extends GetView<UserController> {
+  ProfilePicture({
     Key? key,
-    required this.url,
-    required this.name,
+    this.url,
+    this.name,
   }) : super(key: key);
 
-  final String url;
-  final String name;
+  final String? url;
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      url,
-      fit: BoxFit.cover,
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) return child;
-        return CenterLoading();
-      },
-      errorBuilder: (context, error, stackTrace) {
-        return Container(
-          color: Theme.of(context).primaryColor,
-          child: Center(
-            child: "${name[0]}".text.white.size(48).make(),
-          ),
+    return Obx(
+      () {
+        String url = controller.profilePicture ?? "";
+        String name = controller.userName;
+        return CachedNetworkImage(
+          imageUrl: url,
+          fit: BoxFit.cover,
+          placeholder: (context, url) {
+            // if (loadingProgress == null) return child;
+            return CenterLoading(size: 25);
+          },
+          errorWidget: (context, error, stackTrace) {
+            return Container(
+              color: Theme.of(context).primaryColor,
+              child: Center(
+                child: "${name[0]}".text.white.size(48).make(),
+              ),
+            );
+          },
         );
       },
     );
@@ -440,5 +456,21 @@ class CustomChip extends StatelessWidget {
         .border(color: borderColor)
         .make()
         .onTap(onTap ?? () {});
+  }
+}
+
+class DisplayName extends GetView<UserController> {
+  const DisplayName({Key? key, this.size = 18}) : super(key: key);
+
+  final double? size;
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => controller.userName.text
+          .size(size)
+          .semiBold
+          .color(ColorTheme.primaryColors[1])
+          .make(),
+    );
   }
 }
