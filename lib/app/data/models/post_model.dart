@@ -5,6 +5,7 @@ class Post {
   Timestamp? createdAt;
   Timestamp? updatedAt;
   String? image;
+  String? profileImage;
   String? user;
   String? category;
 
@@ -13,6 +14,7 @@ class Post {
       this.createdAt,
       this.updatedAt,
       this.image,
+      this.profileImage,
       this.user,
       this.category});
 
@@ -21,6 +23,7 @@ class Post {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     image = json['image'];
+    profileImage = json['profile_image'];
     user = json['user'];
     category = json['category'];
   }
@@ -31,6 +34,7 @@ class Post {
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     data['image'] = image;
+    data['profile_image'] = profileImage;
     data['user'] = user;
     data['category'] = category;
     return data;

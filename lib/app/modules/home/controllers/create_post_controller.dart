@@ -50,6 +50,7 @@ class CreatePostController extends GetxController {
         category: categories[selectedCategory],
         content: postSummaryController.text,
         image: _image,
+        profileImage: user!.photoURL,
         user: user!.uid,
       );
       await getDbService().createPost(post);
