@@ -12,6 +12,7 @@ class Post {
   int? commentsCount;
   late List<Comment>? comments;
   String? category;
+  String? username;
 
   Post({
     this.content,
@@ -25,6 +26,7 @@ class Post {
 
   Post.fromJson(Map<String, dynamic> json) {
     content = json['content'];
+    username = json['username'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     image = json['image'];
@@ -41,10 +43,11 @@ class Post {
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     data['image'] = image;
+    data['username'] = username;
     data['profile_image'] = profileImage;
     data['user'] = user;
-    data['comments_count'] = commentsCount;
-    data['likes_count'] = likesCount;
+    data['comments_count'] = commentsCount ?? 0;
+    data['likes_count'] = likesCount ?? 0;
     data['category'] = category;
     return data;
   }
