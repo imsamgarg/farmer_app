@@ -17,6 +17,8 @@ dependencies:
   firebase_storage: 10.0.5
   path: 1.8.0
   cached_network_image: 3.1.0
+  location: 4.3.0
+  weather: 2.0.1
   flutter: 
     sdk: flutter
   custom_utils: 
