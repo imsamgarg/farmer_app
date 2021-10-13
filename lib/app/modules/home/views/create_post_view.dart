@@ -167,6 +167,7 @@ class Dp extends GetView<CreatePostController> {
         children: [
           SizedBox(
             width: 35,
+            height: 35,
             child: RoundedDp(
               url: controller.picture ?? "",
               name: controller.name,
