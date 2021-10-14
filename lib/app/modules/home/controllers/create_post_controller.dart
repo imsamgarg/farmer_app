@@ -2,17 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_utils/log_utils.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/data/models/post_model.dart';
+import 'package:farmer_app/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreatePostController extends GetxController {
-  late final instance = _getData();
+  // late final instance = _getData();
   late final user = getAuth().currentUser;
 
   bool isButtonLoading = false;
 
-  late List<String> categories;
+  late List<String> categories = Get.find<HomeController>().categories;
   // late final selectedCategory = RxnInt(null);
 
   final RxnInt _selectedCategory = RxnInt(null);
@@ -64,11 +65,11 @@ class CreatePostController extends GetxController {
     }
   }
 
-  Future<bool> _getData() async {
-    categories = await getDbService().getCategories();
-    // selectedCategories = List.filled(categories.length, false.obs);
-    return true;
-  }
+  // Future<bool> _getData() async {
+  //   categories = await getDbService().getCategories();
+  //   // selectedCategories = List.filled(categories.length, false.obs);
+  //   return true;
+  // }
 
   void selectCategory(int i) {
     selectedCategory = i;

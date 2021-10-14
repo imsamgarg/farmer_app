@@ -1,4 +1,3 @@
-import 'package:custom_utils/future.dart';
 import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/core/utils/mixins.dart';
@@ -23,57 +22,51 @@ class CreatePostView extends GetView<CreatePostController> {
   @override
   Widget build(BuildContext context) {
     return ControlBackPress(
-      child: CustomFutureBuilder(
-        loading: CenterLoading(),
-        future: controller.instance,
-        builder: (snapshot) {
-          return Scaffold(
-            appBar: CustomAppBar(
-              "Create Post",
-              automaticallyImplyLeading: false,
-              leadingIcon: Icons.arrow_back_ios_new_rounded,
-              leadingPress: homeController.onBackPress,
-              actions: [PostButton()],
-            ),
-            body: Container(
-              child: Column(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          "Create Post",
+          automaticallyImplyLeading: false,
+          leadingIcon: Icons.arrow_back_ios_new_rounded,
+          leadingPress: homeController.onBackPress,
+          actions: [PostButton()],
+        ),
+        body: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Dp(),
+              verSpacing10,
+              PostSummary(),
+              verSpacing20,
+              Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Dp(),
+                  "Add Image"
+                      .text
+                      .semiBold
+                      .color(ColorTheme.primaryColors[2])
+                      .make(),
                   verSpacing10,
-                  PostSummary(),
-                  verSpacing20,
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      "Add Image"
-                          .text
-                          .semiBold
-                          .color(ColorTheme.primaryColors[2])
-                          .make(),
-                      verSpacing10,
-                      UploadImageButton()
-                    ],
-                  ),
-                  verSpacing20,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      "Select Categories"
-                          .text
-                          .semiBold
-                          .color(ColorTheme.primaryColors[2])
-                          .make(),
-                      verSpacing10,
-                      Categories(),
-                    ],
-                  ),
+                  UploadImageButton()
                 ],
-              ).px16(),
-            ).scrollVertical(),
-          );
-        },
+              ),
+              verSpacing20,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  "Select Categories"
+                      .text
+                      .semiBold
+                      .color(ColorTheme.primaryColors[2])
+                      .make(),
+                  verSpacing10,
+                  Categories(),
+                ],
+              ),
+            ],
+          ).px16(),
+        ).scrollVertical(),
       ),
     );
   }
