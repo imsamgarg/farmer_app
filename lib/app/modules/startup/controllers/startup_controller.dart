@@ -13,8 +13,8 @@ class StartupController extends GetxController {
   void checkIfUserLogged() async {
     final service = Get.find<AuthService>();
     if (await service.isSigned()) {
-      return Get.toNamed(Routes.HOME);
+      return Get.offAllNamed(Routes.HOME);
     }
-    return Get.toNamed(Routes.WELCOME);
+    return Get.offAllNamed(Routes.WELCOME);
   }
 }
