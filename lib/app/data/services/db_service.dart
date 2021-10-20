@@ -36,7 +36,7 @@ class DatabaseService extends GetxService {
   }
 
   Future<void> createPost(Post post) async {
-    await instance.collection(Db.postCol).doc().set(post.toJson());
+    await instance.collection(Db.postCol).add(post.toJson());
     return;
   }
 
@@ -47,5 +47,19 @@ class DatabaseService extends GetxService {
     if (data == null) throw Exception("Key Not Found");
     if ((data[Db.keyField] as String).isEmpty) throw Exception("Key Not Found");
     return data[Db.keyField];
+  }
+
+  Future<QuerySnapshot> getPosts({
+    int? count,
+    DocumentSnapshot? startAfter,
+    String? uid,
+    String? category,
+  }) async {
+    final query = instance.collection(Db.postCol).orderBy(Db.postTimeField);
+    if (uid != null) query.where(Db.postUserField, isEqualTo: uid);
+    if (category != null) query.where(Db.postCatField, isEqualTo: category);
+    if (startAfter != null) query.startAfterDocument(startAfter);
+    if (count != null) query.limit(count);
+    return await query.get();
   }
 }

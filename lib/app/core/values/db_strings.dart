@@ -8,4 +8,8 @@ abstract class Db {
 
   static const String catField = "fields";
   static const String keyField = "key";
+  static const String postUserField = "user";
+  static const String postTimeField = "created_at";
+
+  static const String postCatField = "category";
 }
