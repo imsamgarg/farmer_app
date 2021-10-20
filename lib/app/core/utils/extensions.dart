@@ -20,3 +20,9 @@ extension StringExtensions on String {
     return "${image.substring(0, 10)}$ext";
   }
 }
+
+extension DateExtensions on DateTime {
+  String weatherTime(context) {
+    return TimeOfDay.fromDateTime(this).format(context);
+  }
+}

@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:farmer_app/app/data/models/post_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:custom_utils/spacing_utils.dart';
@@ -37,13 +39,9 @@ class AppHeading extends StatelessWidget {
         Row(
           children: [
             InkWell(
-              onTap: () {
-                Get.to(NotificationsView());
-              },
+              onTap: () => Get.to(NotificationsView()),
               child: Stack(
-                children: [
-                  Icon(Icons.notifications_none_rounded),
-                ],
+                children: [Icon(Icons.notifications_none_rounded)],
               ),
             ),
             horSpacing10,
@@ -76,11 +74,18 @@ class FeedAll extends StatelessWidget {
 }
 
 class _FeedPost extends StatelessWidget {
-  _text(String text, Color color) =>
-      text.text.xs.semiBold.size(14).color(color).make().box.py3.make();
+  const _FeedPost({
+    Key? key,
+    this.post,
+    this.isLiked = false,
+  }) : super(key: key);
 
+  final Post? post;
+  final bool isLiked;
   @override
   Widget build(BuildContext context) {
+    var likes = post?.likesCount;
+    var comments = post?.commentsCount;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,13 +98,13 @@ class _FeedPost extends StatelessWidget {
               children: <Widget>[
                 Row(
                   children: [
-                    Image.asset(logo),
+                    CachedNetworkImage(imageUrl: post?.profileImage ?? ""),
                     horSpacing15,
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        "Yoemen Team"
+                        (post?.username ?? "Noob Coders")
                             .text
                             .size(16)
                             .semiBold
@@ -117,7 +122,7 @@ class _FeedPost extends StatelessWidget {
               ],
             ).px20().py16(),
           ),
-          "Followers"
+          (post?.category ?? "Follower")
               .text
               .color(ColorTheme.primaryColors[2])
               .make()
@@ -128,24 +133,25 @@ class _FeedPost extends StatelessWidget {
               .make()
               .px(20),
           verSpacing5,
-          "Although, transformational leadership is among the most thoroughly examined leadership theories, knowledge regarding its association with followers' career outcomes is still limited. Furthermore, the underlyin....see more"
-              .text
-              .make()
-              .px20(),
+          (post?.content ?? "Hello World").text.make().px20(),
           verSpacing10,
-          Image.asset(
-            "assets/feedimage.jpg",
-            height: 210,
-            width: context.screenWidth,
-            fit: BoxFit.fitWidth,
-          ),
+          if (post?.image != null)
+            CachedNetworkImage(
+              imageUrl: post?.image ?? "",
+              height: 210,
+              width: context.screenWidth,
+              fit: BoxFit.fitWidth,
+            ),
           verSpacing10,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              "50 Likes".text.sm.color(ColorTheme.primaryColors[2]).make(),
-              "2 comments".text.sm.color(ColorTheme.primaryColors[2]).make(),
-              // "8 comments".text.make(),
+              "$likes Likes".text.sm.color(ColorTheme.primaryColors[2]).make(),
+              "$comments comments"
+                  .text
+                  .sm
+                  .color(ColorTheme.primaryColors[2])
+                  .make(),
             ],
           ).px(20),
           verSpacing5,
@@ -158,56 +164,55 @@ class _FeedPost extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.thumb_up,
-                        color: ColorTheme.accentColor,
-                      ),
-                      _text(
-                        "Likes",
-                        ColorTheme.accentColor,
-                      ),
-                    ],
-                  ),
+                PostAction(
+                  icon: Icons.thumb_up_alt_rounded,
+                  title: "Like",
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.mode_comment_outlined,
-                        color: ColorTheme.primaryColors[2],
-                      ),
-                      _text(
-                        "Comments",
-                        ColorTheme.primaryColors[2],
-                      ),
-                    ],
-                  ),
+                PostAction(
+                  icon: Icons.mode_comment_outlined,
+                  title: "Comments",
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.share_rounded,
-                        color: ColorTheme.primaryColors[2],
-                      ),
-                      _text(
-                        "Share",
-                        ColorTheme.primaryColors[2],
-                      ),
-                    ],
-                  ),
+                PostAction(
+                  icon: Icons.share_rounded,
+                  title: "Share",
                 ),
               ],
             ),
           ).px(20),
+        ],
+      ),
+    );
+  }
+}
+
+class PostAction extends StatelessWidget {
+  const PostAction({
+    Key? key,
+    required this.icon,
+    required this.title,
+    this.onTap,
+    this.color,
+  }) : super(key: key);
+
+  final IconData icon;
+  final Color? color;
+  final String title;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    var _color = color ?? ColorTheme.primaryColors[2];
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        // crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(
+            icon,
+            color: _color,
+          ),
+          title.text.xs.semiBold.size(14).color(_color).make().box.py3.make(),
         ],
       ),
     );
