@@ -24,7 +24,7 @@ class Post {
     this.category,
   });
 
-  Post.fromJson(Map<String, dynamic> json) {
+  Post.fromJson(dynamic json) {
     content = json['content'];
     username = json['username'];
     createdAt = json['created_at'];

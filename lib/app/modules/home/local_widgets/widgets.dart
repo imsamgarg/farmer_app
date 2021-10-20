@@ -61,20 +61,20 @@ class FeedAll extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        _FeedPost(),
+        FeedPost(),
         Divider(),
-        _FeedPost(),
+        FeedPost(),
         Divider(),
-        _FeedPost(),
+        FeedPost(),
         Divider(),
-        _FeedPost(),
+        FeedPost(),
       ],
     );
   }
 }
 
-class _FeedPost extends StatelessWidget {
-  const _FeedPost({
+class FeedPost extends StatelessWidget {
+  const FeedPost({
     Key? key,
     this.post,
     this.isLiked = false,
