@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:farmer_app/app/modules/home/local_widgets/navigation_bar.dart';
 import 'package:farmer_app/app/modules/home/views/create_post_view.dart';
 import 'package:farmer_app/app/modules/home/views/feed_view.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'profile_view.dart';
 
@@ -15,7 +16,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return CustomFutureBuilder(
-      loading: CenterLoading(),
+      loading: Container(color: Vx.white, child: CenterLoading()),
       future: controller.instance,
       builder: (_) {
         return Scaffold(
