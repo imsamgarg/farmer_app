@@ -5,6 +5,7 @@ class Post {
   String? content;
   Timestamp? createdAt;
   Timestamp? updatedAt;
+  Duration? timeAgo;
   String? image;
   String? profileImage;
   String? user;
@@ -35,6 +36,7 @@ class Post {
     profileImage = json['profile_image'];
     user = json['user'];
     category = json['category'];
+    timeAgo = createdAt?.toDate().difference(DateTime.now());
   }
 
   Map<String, dynamic> toJson() {

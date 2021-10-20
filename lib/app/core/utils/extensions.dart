@@ -26,3 +26,11 @@ extension DateExtensions on DateTime {
     return TimeOfDay.fromDateTime(this).format(context);
   }
 }
+
+extension DurationExtensions on Duration {
+  String timeDifference() {
+    if (this.inMinutes <= 60) return "${this.inMinutes.abs()}m";
+    if (this.inHours <= 24) return "${this.inHours.abs()}h";
+    return "${this.inDays.abs()}d";
+  }
+}
