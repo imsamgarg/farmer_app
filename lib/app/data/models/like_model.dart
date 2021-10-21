@@ -1,17 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Like {
-  int? addedAt;
+  Timestamp? createdAt;
   String? user;
 
-  Like({this.addedAt, this.user});
+  Like({this.createdAt, this.user});
 
   Like.fromJson(Map<String, dynamic> json) {
-    addedAt = json['added_at'];
+    createdAt = json['created_at'];
     user = json['user'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['added_at'] = addedAt;
+    data['added_at'] = createdAt;
     data['user'] = user;
     return data;
   }

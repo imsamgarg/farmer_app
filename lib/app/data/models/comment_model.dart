@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Comment {
-  int? createdAt;
+  Timestamp? createdAt;
   String? text;
   String? user;
 
