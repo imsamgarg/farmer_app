@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:farmer_app/app/data/models/post_model.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,7 @@ import 'package:custom_utils/spacing_utils.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:farmer_app/app/core/utils/extensions.dart';
 import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:farmer_app/app/modules/home/views/notifications_view.dart';
@@ -52,135 +54,167 @@ class AppHeading extends StatelessWidget {
   }
 }
 
-class FeedAll extends StatelessWidget {
-  const FeedAll({
-    Key? key,
-  }) : super(key: key);
+// class FeedAll extends StatelessWidget {
+//   const FeedAll({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        FeedPost(),
-        Divider(),
-        FeedPost(),
-        Divider(),
-        FeedPost(),
-        Divider(),
-        FeedPost(),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView(
+//       children: [
+//         FeedPost(),
+//         Divider(),
+//         FeedPost(),
+//         Divider(),
+//         FeedPost(),
+//         Divider(),
+//         FeedPost(),
+//       ],
+//     );
+//   }
+// }
 
 class FeedPost extends StatelessWidget {
   const FeedPost({
     Key? key,
     this.post,
     this.isLiked = false,
+    this.onCommentsTap,
+    this.onShareTap,
+    this.onLikeTap,
   }) : super(key: key);
 
+  final VoidCallback? onCommentsTap;
+  final VoidCallback? onShareTap;
+  final VoidCallback? onLikeTap;
   final Post? post;
   final bool isLiked;
+
   @override
   Widget build(BuildContext context) {
     var likes = post?.likesCount;
     var comments = post?.commentsCount;
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 80,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  children: [
-                    CachedNetworkImage(imageUrl: post?.profileImage ?? ""),
-                    horSpacing15,
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 67,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
                       children: [
-                        (post?.username ?? "Noob Coders")
-                            .text
-                            .size(16)
-                            .semiBold
-                            .color(ColorTheme.primaryColors[1])
-                            .make(),
-                        "1h".text.sm.color(ColorTheme.primaryColors[2]).make(),
+                        SizedBox(
+                          height: 35,
+                          width: 35,
+                          child: RoundedDp(
+                            name: post?.username,
+                            url: post?.profileImage ?? "",
+                          ),
+                        ),
+                        horSpacing15,
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            (post?.username ?? "Noob Coders")
+                                .text
+                                .size(16)
+                                .semiBold
+                                .color(ColorTheme.primaryColors[1])
+                                .make(),
+                            (post?.timeAgo?.timeDifference() ?? "null")
+                                .text
+                                .sm
+                                .color(ColorTheme.primaryColors[2])
+                                .make(),
+                          ],
+                        ),
                       ],
+                    ),
+                    Icon(
+                      Icons.more_horiz_rounded,
+                      color: ColorTheme.primaryColors[2],
+                    )
+                  ],
+                ).px20().py16(),
+              ),
+              (post?.category ?? "Follower")
+                  .text
+                  .color(ColorTheme.primaryColors[2])
+                  .semiBold
+                  .make()
+                  .box
+                  .p8
+                  .color(ColorTheme.primaryColors[4])
+                  .withRounded(value: 2)
+                  .make()
+                  .px(20),
+              verSpacing15,
+              (post?.content ?? "Hello World").text.make().px20(),
+              verSpacing10,
+              if (post?.image != null)
+                CachedNetworkImage(
+                  imageUrl: post?.image ?? "",
+                  height: 210,
+                  width: context.screenWidth,
+                  fit: BoxFit.fitWidth,
+                ),
+              verSpacing10,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  "$likes Likes"
+                      .text
+                      .sm
+                      .color(ColorTheme.primaryColors[2])
+                      .make(),
+                  "$comments comments"
+                      .text
+                      .sm
+                      .color(ColorTheme.primaryColors[2])
+                      .make(),
+                ],
+              ).px(20),
+              verSpacing5,
+              Divider(
+                height: 5,
+              ).px(20),
+              Container(
+                height: 60,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    PostAction(
+                      icon: Icons.thumb_up_alt_rounded,
+                      title: "Like",
+                      onTap: onLikeTap,
+                    ),
+                    PostAction(
+                      icon: Icons.mode_comment_outlined,
+                      title: "Comments",
+                      onTap: onCommentsTap,
+                    ),
+                    PostAction(
+                      icon: Icons.share_rounded,
+                      title: "Share",
+                      onTap: onShareTap,
                     ),
                   ],
                 ),
-                Icon(
-                  Icons.more_horiz_rounded,
-                  color: ColorTheme.primaryColors[2],
-                )
-              ],
-            ).px20().py16(),
-          ),
-          (post?.category ?? "Follower")
-              .text
-              .color(ColorTheme.primaryColors[2])
-              .make()
-              .box
-              .p8
-              .color(ColorTheme.primaryColors[4])
-              .withRounded(value: 2)
-              .make()
-              .px(20),
-          verSpacing5,
-          (post?.content ?? "Hello World").text.make().px20(),
-          verSpacing10,
-          if (post?.image != null)
-            CachedNetworkImage(
-              imageUrl: post?.image ?? "",
-              height: 210,
-              width: context.screenWidth,
-              fit: BoxFit.fitWidth,
-            ),
-          verSpacing10,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              "$likes Likes".text.sm.color(ColorTheme.primaryColors[2]).make(),
-              "$comments comments"
-                  .text
-                  .sm
-                  .color(ColorTheme.primaryColors[2])
-                  .make(),
+              ).px(20),
             ],
-          ).px(20),
-          verSpacing5,
-          Divider(
-            height: 5,
-          ).px(20),
-          Container(
-            height: 60,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                PostAction(
-                  icon: Icons.thumb_up_alt_rounded,
-                  title: "Like",
-                ),
-                PostAction(
-                  icon: Icons.mode_comment_outlined,
-                  title: "Comments",
-                ),
-                PostAction(
-                  icon: Icons.share_rounded,
-                  title: "Share",
-                ),
-              ],
-            ),
-          ).px(20),
-        ],
-      ),
+          ),
+        ),
+        verSpacing15,
+      ],
     );
   }
 }
