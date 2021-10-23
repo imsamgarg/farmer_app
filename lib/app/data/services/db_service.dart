@@ -65,6 +65,23 @@ class DatabaseService extends GetxService {
     return await query.get();
   }
 
+  Future<QuerySnapshot> getComments({
+    int? count,
+    DocumentSnapshot? startAfter,
+    required String postId,
+  }) async {
+    final query = instance
+        .collection(Db.postCol)
+        .doc(postId)
+        .collection(Db.commentsCol)
+        .orderBy(Db.createdAtField);
+    // if (uid != null) query.where(Db.postUserField, isEqualTo: uid);
+    // if (category != null) query.where(Db.postCatField, isEqualTo: category);
+    if (startAfter != null) query.startAfterDocument(startAfter);
+    if (count != null) query.limit(count);
+    return await query.get();
+  }
+
   Future<void> postComment({
     required String uid,
     required String content,
@@ -109,13 +126,26 @@ class DatabaseService extends GetxService {
         .update({Db.likesCountField: FieldValue.increment(1)});
   }
 
-  Future<List<Comment>> getComments(String postId) async {
-    final data = await instance
-        .collection(Db.postCol)
-        .doc(postId)
-        .collection(Db.commentsCol)
-        .orderBy(Db.createdAtField)
-        .get();
-    return data.docs.map((e) => Comment.fromJson(e.data())).toList();
-  }
+  // TODO: implement dislike post
+  // Future<void> dislikePost({
+  //   required String uid,
+  //   required String postId,
+  // }) async {
+  //   await instance.collection(Db.postCol).doc(postId).collection(Db.likesCol).;
+
+  //   await instance
+  //       .collection(Db.postCol)
+  //       .doc(postId)
+  //       .update({Db.likesCountField: FieldValue.increment(-1)});
+  // }
+
+  // Future<List<Comment>> getComments(String postId) async {
+  //   final data = await instance
+  //       .collection(Db.postCol)
+  //       .doc(postId)
+  //       .collection(Db.commentsCol)
+  //       .orderBy(Db.createdAtField)
+  //       .get();
+  //   return data.docs.map((e) => Comment.fromJson(e.data())).toList();
+  // }
 }
