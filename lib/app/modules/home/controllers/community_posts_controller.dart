@@ -7,13 +7,16 @@ class CommunityPostsController extends GetxController with PostInterface {
   late final feedController = Get.find<FeedController>()
     ..categoryStream.listen(
       (p0) {
+        posts.forEach((element) {
+          element.close();
+        });
+        posts.clear();
         pagingController.refresh();
       },
     );
 
   static const int fetchCount = 20;
   late final categories = feedController.categories;
-  late final selectedIndex = feedController.selectedIndex;
 
   @override
   void onClose() {
@@ -22,6 +25,7 @@ class CommunityPostsController extends GetxController with PostInterface {
   }
 
   Future<void> fetchPosts(int pageKey) async {
+    final selectedIndex = feedController.selectedIndex;
     final category = selectedIndex != null ? categories[selectedIndex] : null;
     final snapshots = await db.getPosts(
       count: fetchCount,
@@ -34,7 +38,11 @@ class CommunityPostsController extends GetxController with PostInterface {
       postsSnapshots.addAll(snapshots.docs);
     }
     final posts = snapshots.docs.map((e) => Post.fromJson(e.data()!)).toList();
-    this.posts = posts.map((e) => e.obs).toList();
+    if (pageKey == 0) {
+      this.posts = posts.map((e) => e.obs).toList();
+    } else {
+      this.posts.addAll(posts.map((e) => e.obs).toList());
+    }
     final isLast = snapshots.docs.length < fetchCount;
     if (isLast) {
       pagingController.appendLastPage(posts);

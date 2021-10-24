@@ -7,8 +7,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 abstract class PostInterface {
   List<Rx<Post>> get allPosts => posts;
   late final db = getDbService();
-  late final List<DocumentSnapshot> postsSnapshots;
-  late final List<Rx<Post>> posts;
+  late List<DocumentSnapshot> postsSnapshots;
+  late List<Rx<Post>> posts;
 
   late final user = getAuth().currentUser;
   void onLikeTap(int index) {

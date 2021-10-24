@@ -24,7 +24,11 @@ class MyPostsController extends GetxController with PostInterface {
       postsSnapshots.addAll(snapshots.docs);
     }
     final posts = snapshots.docs.map((e) => Post.fromJson(e.data()!)).toList();
-    this.posts = posts.map((e) => e.obs).toList();
+    if (pageKey == 0) {
+      this.posts = posts.map((e) => e.obs).toList();
+    } else {
+      this.posts.addAll(posts.map((e) => e.obs).toList());
+    }
     final isLast = snapshots.docs.length < fetchCount;
     if (isLast) {
       pagingController.appendLastPage(posts);
