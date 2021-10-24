@@ -4,7 +4,7 @@ import 'package:farmer_app/app/data/models/post_model.dart';
 import 'package:get/get.dart';
 
 class YeomenPostsController extends GetxController with PostInterface {
-  static const int fetchCount = 20;
+  static const int fetchCount = 10;
 
   @override
   void onClose() {

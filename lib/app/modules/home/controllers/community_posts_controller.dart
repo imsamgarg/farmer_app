@@ -15,7 +15,7 @@ class CommunityPostsController extends GetxController with PostInterface {
       },
     );
 
-  static const int fetchCount = 20;
+  static const int fetchCount = 10;
   late final categories = feedController.categories;
 
   @override
