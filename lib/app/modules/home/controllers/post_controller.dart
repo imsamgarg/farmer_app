@@ -15,7 +15,7 @@ class PostController extends GetxController {
 
   late final pagingController = PagingController<int, Comment>(firstPageKey: 0)
     ..addPageRequestListener((pageKey) {
-      _fetchPosts(pageKey);
+      _fetchComments(pageKey);
     });
 
   late final GlobalKey<FormFieldState> commentKey = GlobalKey();
@@ -33,9 +33,9 @@ class PostController extends GetxController {
 
   late final db = getDbService();
   late final user = getAuth().currentUser;
-  late final List<DocumentSnapshot> commentSnapshots;
+  late List<DocumentSnapshot> commentSnapshots;
 
-  Future<void> _fetchPosts(int pageKey) async {
+  Future<void> _fetchComments(int pageKey) async {
     final snapshots = await db.getComments(
       postId: currentSnapshot.id,
       count: fetchCount,
@@ -60,7 +60,10 @@ class PostController extends GetxController {
   }
 
   void postComment() async {
-    if (commentKey.currentState!.validate()) return;
+    if (commentController.text.isEmpty) {
+      errorSnackbar("Please Enter Some Text");
+      return;
+    }
     try {
       toggleLoading(true);
       final uid = user!.uid;
@@ -75,8 +78,10 @@ class PostController extends GetxController {
         userName: userName,
         profileImage: profileImage,
       );
+      feedController.incrementCommentsCount();
       successSnackbar("Comment Posted");
       commentController.clear();
+      pagingController.refresh();
     } on Exception catch (e) {
       errorSnackbar("Failed To Post Comment");
     } finally {
