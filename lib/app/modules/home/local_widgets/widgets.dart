@@ -249,10 +249,6 @@ class PostHeader extends StatelessWidget {
               ),
             ],
           ),
-          Icon(
-            Icons.more_horiz_rounded,
-            color: ColorTheme.primaryColors[2],
-          )
         ],
       ).px20().py16(),
     );
