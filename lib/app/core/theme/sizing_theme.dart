@@ -4,6 +4,7 @@ import 'package:farmer_app/app/core/values/values.dart';
 
 class Sizing {
   static const borderRadius = BorderRadius.all(Radius.circular(5));
+  static const borderRadiusXl = BorderRadius.all(Radius.circular(25));
 
   ///Ver:-8 Hor:-20
   static const sidePadding = EdgeInsets.symmetric(vertical: 8, horizontal: 20);
