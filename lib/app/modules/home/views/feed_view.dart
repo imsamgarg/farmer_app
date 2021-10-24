@@ -68,7 +68,13 @@ class Filters extends GetView<FeedController> {
                   horSpacing5,
                   for (var i = 0; i < categories.length; i++) ...[
                     horSpacing5,
-                    CustomChip(categories[i]),
+                    Obx(
+                      () => CustomChip(
+                        categories[i],
+                        isActive: controller.selectedIndex == i,
+                        onTap: () => controller.changeCategory(i),
+                      ),
+                    ),
                   ]
                 ],
               ).scrollHorizontal(),
