@@ -29,8 +29,8 @@ extension DateExtensions on DateTime {
 
 extension DurationExtensions on Duration {
   String timeDifference() {
-    if (this.inMinutes <= 60) return "${this.inMinutes.abs()}m";
-    if (this.inHours <= 24) return "${this.inHours.abs()}h";
+    if (this.inMinutes.abs() <= 60) return "${this.inMinutes.abs()}m";
+    if (this.inHours.abs() <= 24) return "${this.inHours.abs()}h";
     return "${this.inDays.abs()}d";
   }
 }
