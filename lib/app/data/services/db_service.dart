@@ -57,7 +57,9 @@ class DatabaseService extends GetxService {
     String? uid,
     String? category,
   }) async {
-    var query = instance.collection(Db.postCol).orderBy(Db.createdAtField);
+    var query = instance
+        .collection(Db.postCol)
+        .orderBy(Db.createdAtField, descending: true);
     if (uid != null) {
       query = query.where(Db.postUserField, isEqualTo: uid);
     }
@@ -82,7 +84,7 @@ class DatabaseService extends GetxService {
         .collection(Db.postCol)
         .doc(postId)
         .collection(Db.commentsCol)
-        .orderBy(Db.createdAtField);
+        .orderBy(Db.createdAtField, descending: true);
     // if (uid != null) query.where(Db.postUserField, isEqualTo: uid);
     // if (category != null) query.where(Db.postCatField, isEqualTo: category);
     if (startAfter != null) {
