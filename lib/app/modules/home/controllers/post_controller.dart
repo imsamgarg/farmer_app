@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:custom_utils/log_utils.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/data/models/comment_model.dart';
 import 'package:farmer_app/app/modules/home/controllers/feed_controller.dart';
@@ -17,8 +18,6 @@ class PostController extends GetxController {
     ..addPageRequestListener((pageKey) {
       _fetchComments(pageKey);
     });
-
-  late final GlobalKey<FormFieldState> commentKey = GlobalKey();
 
   @override
   void onClose() {
@@ -41,6 +40,7 @@ class PostController extends GetxController {
       count: fetchCount,
       startAfter: pageKey == 0 ? null : commentSnapshots.last,
     );
+    customLog(pageKey);
     if (pageKey == 0) {
       commentSnapshots = snapshots.docs;
     } else {
@@ -79,7 +79,7 @@ class PostController extends GetxController {
         profileImage: profileImage,
       );
       feedController.incrementCommentsCount();
-      successSnackbar("Comment Posted");
+      successSnackbar("Comment Posted", 4, SnackPosition.TOP);
       commentController.clear();
       pagingController.refresh();
     } on Exception catch (e) {

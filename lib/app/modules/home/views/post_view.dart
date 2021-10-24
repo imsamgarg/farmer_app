@@ -75,6 +75,8 @@ class PostView extends StatelessWidget with Validators {
                       ),
                     ),
                     controller: controller.commentController,
+                    textInputAction: TextInputAction.send,
+                    onFieldSubmitted: (v) => controller.postComment(),
                   ),
                 ),
                 horSpacing4,
