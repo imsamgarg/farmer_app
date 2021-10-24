@@ -25,3 +25,5 @@ final String degreeSymbol = String.fromCharCode(0x00B0);
 
 const String profileRef = "profile_images";
 const String postRef = "post_images";
+
+const String yeomenTeamCategory = "Yeomen Team";
