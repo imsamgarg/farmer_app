@@ -15,7 +15,7 @@ class MyPostsController extends GetxController {
   // late final instance = _getInitialData();
   // late final List<Post> posts;
   late final db = getDbService();
-  late final QuerySnapshot<Object?> postsSnapshots;
+  late final List<DocumentSnapshot> postsSnapshots;
   // int get postsCount => posts.length;
   late final user = getAuth().currentUser;
   final String listViewId = "list-view";
@@ -31,8 +31,13 @@ class MyPostsController extends GetxController {
     final snapshots = await db.getPosts(
       uid: user!.uid,
       count: fetchCount,
-      startAfter: pageKey == 0 ? null : postsSnapshots.docs.last,
+      startAfter: pageKey == 0 ? null : postsSnapshots.last,
     );
+    if (pageKey == 0) {
+      postsSnapshots = snapshots.docs;
+    } else {
+      postsSnapshots.addAll(snapshots.docs);
+    }
     final posts = snapshots.docs.map((e) => Post.fromJson(e.data()!)).toList();
     final isLast = snapshots.docs.length < fetchCount;
     if (isLast) {
