@@ -7,9 +7,6 @@ extension ColorExtension on BuildContext {
 }
 
 extension StringExtensions on String {
-  // String limitText([int len=10]){
-  //   return this.
-  // }
   String get shortImageName {
     final ext = p.extension(this);
     final image = p.basenameWithoutExtension(this);
@@ -29,6 +26,7 @@ extension DateExtensions on DateTime {
 
 extension DurationExtensions on Duration {
   String timeDifference() {
+    if (this.inMinutes == 0) return "Now";
     if (this.inMinutes.abs() <= 60) return "${this.inMinutes.abs()}m";
     if (this.inHours.abs() <= 24) return "${this.inHours.abs()}h";
     return "${this.inDays.abs()}d";
