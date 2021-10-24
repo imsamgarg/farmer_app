@@ -3,6 +3,7 @@ import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/data/models/comment_model.dart';
 import 'package:farmer_app/app/modules/home/controllers/feed_controller.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -17,6 +18,8 @@ class PostController extends GetxController {
       _fetchPosts(pageKey);
     });
 
+  late final GlobalKey<FormFieldState> commentKey = GlobalKey();
+
   @override
   void onClose() {
     pagingController.dispose();
@@ -25,8 +28,11 @@ class PostController extends GetxController {
   }
 
   static const int fetchCount = 15;
+  final String loadingId = 'loading';
+  bool isLoading = false;
 
   late final db = getDbService();
+  late final user = getAuth().currentUser;
   late final List<DocumentSnapshot> commentSnapshots;
 
   Future<void> _fetchPosts(int pageKey) async {
@@ -51,5 +57,35 @@ class PostController extends GetxController {
     } else {
       pagingController.appendPage(comments, pageKey + comments.length);
     }
+  }
+
+  void postComment() async {
+    if (commentKey.currentState!.validate()) return;
+    try {
+      toggleLoading(true);
+      final uid = user!.uid;
+      final userName = user!.displayName!;
+      final profileImage = user!.photoURL!;
+      final content = commentController.text;
+      final postId = currentSnapshot.id;
+      await getDbService().postComment(
+        uid: uid,
+        content: content,
+        postId: postId,
+        userName: userName,
+        profileImage: profileImage,
+      );
+      successSnackbar("Comment Posted");
+      commentController.clear();
+    } on Exception catch (e) {
+      errorSnackbar("Failed To Post Comment");
+    } finally {
+      toggleLoading(false);
+    }
+  }
+
+  void toggleLoading(bool value) {
+    isLoading = value;
+    update([loadingId]);
   }
 }
