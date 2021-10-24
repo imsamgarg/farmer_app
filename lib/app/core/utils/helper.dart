@@ -73,31 +73,43 @@ CloudStorageService getStorageService() {
   return Get.find<CloudStorageService>();
 }
 
-void successSnackbar(String message, [int sec = 4]) {
+void successSnackbar(
+  String message, [
+  int sec = 4,
+  SnackPosition snackPosition = SnackPosition.BOTTOM,
+]) {
   return customSnackBar(
     message,
     Icon(Icons.check, color: Vx.white),
     ColorTheme.successColor,
+    snackPosition: snackPosition,
   );
 }
 
-void errorSnackbar(String message, [int sec = 4]) {
+void errorSnackbar(
+  String message, [
+  int sec = 4,
+  SnackPosition snackPosition = SnackPosition.BOTTOM,
+]) {
   return customSnackBar(
     message,
     Icon(Icons.cancel_rounded, color: Vx.white),
     ColorTheme.errorColor,
+    snackPosition: snackPosition,
   );
 }
 
 void customSnackBar(
   String message,
   Icon icon,
-  Color bgColor, [
+  Color bgColor, {
   int sec = 4,
   Color fgColor = Vx.white,
-]) {
+  SnackPosition snackPosition = SnackPosition.BOTTOM,
+}) {
   Get.rawSnackbar(
     message: message,
+    snackPosition: snackPosition,
     shouldIconPulse: false,
     icon: icon,
     duration: Duration(seconds: sec),
