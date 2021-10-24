@@ -14,6 +14,7 @@ class FeedController extends GetxController {
 
   final _selectedIndex = RxnInt(null);
 
+  late Rx<Post> _currentPost;
   late Post currentPost;
   late DocumentSnapshot currentSnapshot;
   get selectedIndex => this._selectedIndex.value;
@@ -55,8 +56,9 @@ class FeedController extends GetxController {
     );
   }
 
-  void onCommentsTap(Post item, DocumentSnapshot doc) {
-    currentPost = item;
+  void onCommentsTap(Rx<Post> item, DocumentSnapshot doc) {
+    _currentPost = item;
+    currentPost = _currentPost.value;
     currentSnapshot = doc;
     Get.to(() => PostView());
   }
@@ -67,5 +69,11 @@ class FeedController extends GetxController {
 
   void resetCategory() {
     selectedIndex = null;
+  }
+
+  void incrementCommentsCount() {
+    _currentPost.update((val) {
+      val!.commentsCount = val.commentsCount! + 1;
+    });
   }
 }
