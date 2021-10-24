@@ -86,11 +86,15 @@ class DatabaseService extends GetxService {
     required String uid,
     required String content,
     required String postId,
+    required String userName,
+    required String profileImage,
   }) async {
     final comment = Comment(
       createdAt: Timestamp.now(),
       text: content,
-      user: uid,
+      profileImage: profileImage,
+      userName: userName,
+      userId: uid,
     );
 
     await instance

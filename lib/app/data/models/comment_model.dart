@@ -3,21 +3,33 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Comment {
   Timestamp? createdAt;
   String? text;
-  String? user;
+  String? userId;
+  String? profileImage;
+  String? userName;
 
-  Comment({this.createdAt, this.text, this.user});
+  Comment({
+    this.createdAt,
+    this.text,
+    this.userId,
+    this.userName,
+    this.profileImage,
+  });
 
-  Comment.fromJson(Map<String, dynamic> json) {
+  Comment.fromJson(dynamic json) {
     createdAt = json['created_at'];
     text = json['text'];
-    user = json['user'];
+    userId = json['user'];
+    profileImage = json['profile_image'];
+    userName = json['user_name'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['created_at'] = createdAt;
     data['text'] = text;
-    data['user'] = user;
+    data['profile_image'] = profileImage;
+    data['user_name'] = userName;
+    data['user'] = userId;
     return data;
   }
 }
