@@ -14,17 +14,26 @@ class SingleDayReportView extends GetView<WeatherReportController> {
 
   @override
   Widget build(BuildContext context) {
-    final temp = controller.currentTemp;
-    final feelsTemp = controller.currentFeelTemp;
-    final minTemp = controller.currentMinTemp;
-    final maxTemp = controller.currentMaxTemp;
+    final temp = day == 1 ? controller.nextDayTemp : controller.currentTemp;
+    final feelsTemp =
+        day == 1 ? controller.nextDayFeelTemp : controller.currentFeelTemp;
+    final minTemp =
+        day == 1 ? controller.nextDayMinTemp : controller.currentMinTemp;
+    final maxTemp =
+        day == 1 ? controller.nextDayMaxTemp : controller.currentMaxTemp;
 
-    final humidity = controller.currentHumidity;
-    final windSpeed = controller.currentWindSpeed;
-    final windDirection = controller.currentWindDirection;
+    final humidity =
+        day == 1 ? controller.nextDayHumidity : controller.currentHumidity;
+    final windSpeed =
+        day == 1 ? controller.nextDayWindSpeed : controller.currentWindSpeed;
+    final windDirection = day == 1
+        ? controller.nextDayWindDirection
+        : controller.currentWindDirection;
 
-    final sunrise = controller.currentSunrise;
-    final sunset = controller.currentSunset;
+    final sunrise =
+        day == 1 ? controller.nextDaySunrise : controller.currentSunrise;
+    final sunset =
+        day == 1 ? controller.nextDaySunset : controller.currentSunset;
     return Column(
       children: [
         verSpacing20,
@@ -73,23 +82,23 @@ class SingleDayReportView extends GetView<WeatherReportController> {
           leading: "Chance Of Rain",
           trailing: "10%",
         ),
-        Container(
-          color: Vx.gray100,
-          height: 150,
-          padding: const EdgeInsets.all(10),
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 10,
-            itemBuilder: (c, i) {
-              return WeatherInfoBox(
-                time: "4:00 PM",
-                temp: 16,
-                isActive: i == 0,
-                type: "Sunny Day",
-              );
-            },
-          ),
-        ),
+        // Container(
+        //   color: Vx.gray100,
+        //   height: 150,
+        //   padding: const EdgeInsets.all(10),
+        //   child: ListView.builder(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: 10,
+        //     itemBuilder: (c, i) {
+        //       return WeatherInfoBox(
+        //         time: "4:00 PM",
+        //         temp: 16,
+        //         isActive: i == 0,
+        //         type: "Sunny Day",
+        //       );
+        //     },
+        //   ),
+        // ),
       ],
     ).scrollVertical();
   }

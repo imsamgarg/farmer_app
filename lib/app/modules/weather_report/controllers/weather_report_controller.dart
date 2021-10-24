@@ -10,16 +10,27 @@ class WeatherReportController extends GetxController {
   late List<Weather> fiveDaysWeather;
 
   get nextDayWeather => fiveDaysWeather[1];
+  get currentWeather => currentDayWeather;
 
   get currentTemp => currentDayWeather.temperature?.celsius?.toInt() ?? 0;
   get currentFeelTemp => currentDayWeather.tempFeelsLike?.celsius?.toInt() ?? 0;
   get currentMinTemp => currentDayWeather.tempMin?.celsius?.toInt() ?? 0;
   get currentMaxTemp => currentDayWeather.tempMax?.celsius?.toInt() ?? 0;
   get currentHumidity => currentDayWeather.humidity;
-  get currentWindSpeed => (currentDayWeather.windSpeed ?? 60000) / 60000;
+  get currentWindSpeed => (currentDayWeather.windSpeed ?? 60000) ~/ 1;
   get currentWindDirection => currentDayWeather.windDegree;
   get currentSunrise => currentDayWeather.sunrise!.weatherTime(Get.context);
   get currentSunset => currentDayWeather.sunset!.weatherTime(Get.context);
+
+  get nextDayTemp => nextDayWeather.temperature?.celsius?.toInt() ?? 0;
+  get nextDayFeelTemp => nextDayWeather.tempFeelsLike?.celsius?.toInt() ?? 0;
+  get nextDayMinTemp => nextDayWeather.tempMin?.celsius?.toInt() ?? 0;
+  get nextDayMaxTemp => nextDayWeather.tempMax?.celsius?.toInt() ?? 0;
+  get nextDayHumidity => nextDayWeather.humidity;
+  get nextDayWindSpeed => (nextDayWeather.windSpeed ?? 60000) ~/ 1;
+  get nextDayWindDirection => nextDayWeather.windDegree;
+  get nextDaySunrise => nextDayWeather.sunrise?.weatherTime(Get.context);
+  get nextDaySunset => nextDayWeather.sunset?.weatherTime(Get.context);
 
   Future<bool> _getData() async {
     final key = await getDbService().getWeatherKey();

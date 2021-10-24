@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../controllers/weather_report_controller.dart';
 
@@ -14,13 +15,20 @@ class WeatherReportView extends GetView<WeatherReportController> {
   final title = "Weather Report";
   final tab_1 = "Today";
   final tab_2 = "Tommorrow";
-  final tab_3 = "10 Days";
+  final tab_3 = "5 Days";
 
   @override
   Widget build(BuildContext context) {
     return CustomFutureBuilder(
       future: controller.instance,
-      loading: CenterLoading(),
+      loading: Container(color: Vx.white, child: CenterLoading()),
+      errorBuilder: (e) {
+        return Scaffold(
+          body: Center(
+            child: Text("Error$e"),
+          ),
+        );
+      },
       builder: (_) {
         return DefaultTabController(
           length: 3,
