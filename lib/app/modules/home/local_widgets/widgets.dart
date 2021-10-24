@@ -86,7 +86,7 @@ class FeedPost extends StatelessWidget {
     this.onCommentsTap,
   }) : super(key: key);
 
-  final PostActionsController controller;
+  final PostInterface controller;
   final VoidCallback? onCommentsTap;
   final bool showActions;
   final int index;
@@ -164,7 +164,7 @@ class PostActions extends StatelessWidget {
     required this.index,
   }) : super(key: key);
 
-  final PostActionsController controller;
+  final PostInterface controller;
   final VoidCallback? onCommentsTap;
   final int index;
 

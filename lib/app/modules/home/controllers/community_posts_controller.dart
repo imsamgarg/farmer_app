@@ -1,20 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/core/utils/interfaces.dart';
 import 'package:farmer_app/app/data/models/post_model.dart';
 import 'package:farmer_app/app/modules/home/controllers/feed_controller.dart';
 import 'package:get/get.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class CommunityPostsController extends GetxController
-    with PostActionsController {
-  late final pagingController = PagingController<int, Post>(firstPageKey: 0)
-    ..addPageRequestListener(
-      (pageKey) {
-        _fetchPosts(pageKey);
-      },
-    );
-
+class CommunityPostsController extends GetxController with PostInterface {
   late final feedController = Get.find<FeedController>()
     ..categoryStream.listen(
       (p0) {
@@ -23,12 +12,8 @@ class CommunityPostsController extends GetxController
     );
 
   static const int fetchCount = 20;
-  late final db = getDbService();
   late final categories = feedController.categories;
   late final selectedIndex = feedController.selectedIndex;
-  late final List<Rx<Post>> posts;
-  late final List<DocumentSnapshot> postsSnapshots;
-  late final user = getAuth().currentUser;
 
   @override
   void onClose() {
@@ -36,7 +21,7 @@ class CommunityPostsController extends GetxController
     super.onClose();
   }
 
-  Future<void> _fetchPosts(int pageKey) async {
+  Future<void> fetchPosts(int pageKey) async {
     final category = selectedIndex != null ? categories[selectedIndex] : null;
     final snapshots = await db.getPosts(
       count: fetchCount,
@@ -57,7 +42,4 @@ class CommunityPostsController extends GetxController
       pagingController.appendPage(posts, pageKey + posts.length);
     }
   }
-
-  @override
-  List<Rx<Post>> get allPosts => posts;
 }
