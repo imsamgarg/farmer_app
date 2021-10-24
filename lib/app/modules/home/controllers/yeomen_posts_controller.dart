@@ -15,7 +15,6 @@ class YeomenPostsController extends GetxController with PostInterface {
   @override
   Future<void> fetchPosts(int pageKey) async {
     final snapshots = await db.getPosts(
-      uid: user!.uid,
       count: fetchCount,
       category: yeomenTeamCategory,
       startAfter: pageKey == 0 ? null : postsSnapshots.last,
