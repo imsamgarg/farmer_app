@@ -14,6 +14,7 @@ class Post {
   late List<Comment>? comments;
   String? category;
   String? username;
+  bool? isLiked;
 
   Post({
     this.content,
@@ -23,6 +24,7 @@ class Post {
     this.profileImage,
     this.user,
     this.category,
+    this.isLiked,
   });
 
   Post.fromJson(dynamic json) {
@@ -35,6 +37,7 @@ class Post {
     commentsCount = json['comments_count'];
     profileImage = json['profile_image'];
     user = json['user'];
+    isLiked = json['is_liked'] ?? false;
     category = json['category'];
     timeAgo = createdAt?.toDate().difference(DateTime.now());
   }
@@ -48,6 +51,7 @@ class Post {
     data['username'] = username;
     data['profile_image'] = profileImage;
     data['user'] = user;
+    data['is_liked'] = isLiked;
     data['comments_count'] = commentsCount ?? 0;
     data['likes_count'] = likesCount ?? 0;
     data['category'] = category;
