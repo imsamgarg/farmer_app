@@ -25,6 +25,11 @@ class Post {
     this.user,
     this.category,
     this.isLiked,
+    this.username,
+    this.comments,
+    this.commentsCount,
+    this.likesCount,
+    this.timeAgo,
   });
 
   Post.fromJson(dynamic json) {
