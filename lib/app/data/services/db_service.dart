@@ -57,11 +57,19 @@ class DatabaseService extends GetxService {
     String? uid,
     String? category,
   }) async {
-    final query = instance.collection(Db.postCol).orderBy(Db.createdAtField);
-    if (uid != null) query.where(Db.postUserField, isEqualTo: uid);
-    if (category != null) query.where(Db.postCatField, isEqualTo: category);
-    if (startAfter != null) query.startAfterDocument(startAfter);
-    if (count != null) query.limit(count);
+    var query = instance.collection(Db.postCol).orderBy(Db.createdAtField);
+    if (uid != null) {
+      query = query.where(Db.postUserField, isEqualTo: uid);
+    }
+    if (category != null) {
+      query = query.where(Db.postCatField, isEqualTo: category);
+    }
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+    if (count != null) {
+      query = query.limit(count);
+    }
     return await query.get();
   }
 
@@ -70,15 +78,19 @@ class DatabaseService extends GetxService {
     DocumentSnapshot? startAfter,
     required String postId,
   }) async {
-    final query = instance
+    var query = instance
         .collection(Db.postCol)
         .doc(postId)
         .collection(Db.commentsCol)
         .orderBy(Db.createdAtField);
     // if (uid != null) query.where(Db.postUserField, isEqualTo: uid);
     // if (category != null) query.where(Db.postCatField, isEqualTo: category);
-    if (startAfter != null) query.startAfterDocument(startAfter);
-    if (count != null) query.limit(count);
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+    if (count != null) {
+      query = query.limit(count);
+    }
     return await query.get();
   }
 
