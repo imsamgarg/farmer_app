@@ -59,7 +59,7 @@ class RegisterController extends GetxController with Validators {
       customLog("Error", error: e, stackTrace: s);
       toggleOtpButtonLoading(false);
     }
-    toggleOtpButtonLoading(false);
+    // toggleOtpButtonLoading(false);
   }
 
   ///Manual Otp Verification
@@ -124,6 +124,7 @@ class RegisterController extends GetxController with Validators {
   }
 
   void codeSent(String id, int? rT) {
+    toggleOtpButtonLoading(false);
     verificationToken = id;
     return moveToOtpView();
   }
