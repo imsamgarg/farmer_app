@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farmer_app/app/core/global_widgets/button.dart';
 import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:farmer_app/app/data/models/post_model.dart';
 import 'package:farmer_app/app/modules/home/views/post_view.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'home_controller.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class FeedController extends GetxController {
   late final categories = Get.find<HomeController>().categories;
@@ -23,18 +25,29 @@ class FeedController extends GetxController {
     Get.bottomSheet(
       BottomSheet(
         onClosing: () {},
+        backgroundColor: Vx.white,
         builder: (c) {
-          return Wrap(
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              for (var i = 0; i < categories.length; i++) ...[
-                Obx(
-                  () => CustomChip(
-                    categories[i],
-                    isActive: selectedIndex == i,
-                    onTap: () => changeCategory(i),
-                  ),
-                ),
-              ]
+              Wrap(
+                children: [
+                  for (var i = 0; i < categories.length; i++) ...[
+                    Obx(
+                      () => CustomChip(
+                        categories[i],
+                        isActive: selectedIndex == i,
+                        onTap: () => changeCategory(i),
+                      ).px8().py4(),
+                    ),
+                  ]
+                ],
+              ).p16(),
+              CustomButton(
+                child: Text('Reset'),
+                onPressed: resetCategory,
+              ).px16().py8(),
             ],
           );
         },
@@ -50,5 +63,9 @@ class FeedController extends GetxController {
 
   void changeCategory(int i) {
     selectedIndex = i;
+  }
+
+  void resetCategory() {
+    selectedIndex = null;
   }
 }
