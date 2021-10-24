@@ -18,7 +18,7 @@ class CommunityPostsView extends GetView<CommunityPostsController> {
           return FeedPost(
             controller: controller,
             onCommentsTap: () => feedController.onCommentsTap(
-              item,
+              controller.allPosts[i],
               controller.postsSnapshots[i],
             ),
             index: i,

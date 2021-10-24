@@ -18,7 +18,7 @@ class MyPostsView extends GetView<MyPostsController> {
             controller: controller,
             index: i,
             onCommentsTap: () => feedController.onCommentsTap(
-              item,
+              controller.allPosts[i],
               controller.postsSnapshots[i],
             ),
           );
