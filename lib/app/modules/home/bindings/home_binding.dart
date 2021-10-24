@@ -16,9 +16,6 @@ import '../controllers/home_controller.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<PostController>(
-      () => PostController(),
-    );
     Get.lazyPut<YeomenPostsController>(
       () => YeomenPostsController(),
     );
