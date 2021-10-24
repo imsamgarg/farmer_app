@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:farmer_app/app/core/global_widgets/widgets.dart';
+import 'package:farmer_app/app/core/utils/helper.dart';
+import 'package:farmer_app/app/core/utils/interfaces.dart';
 import 'package:farmer_app/app/data/models/post_model.dart';
 import 'package:flutter/material.dart';
 
@@ -78,143 +80,181 @@ class AppHeading extends StatelessWidget {
 class FeedPost extends StatelessWidget {
   const FeedPost({
     Key? key,
-    this.post,
-    this.isLiked = false,
+    this.showActions = true,
+    required this.controller,
+    required this.index,
     this.onCommentsTap,
-    this.onShareTap,
-    this.onLikeTap,
   }) : super(key: key);
 
+  final PostActionsController controller;
   final VoidCallback? onCommentsTap;
-  final VoidCallback? onShareTap;
-  final VoidCallback? onLikeTap;
-  final Post? post;
-  final bool isLiked;
+  final bool showActions;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    var likes = post?.likesCount;
-    var comments = post?.commentsCount;
+    var post = controller.allPosts[index].value;
+    var comments = post.commentsCount;
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        PostHeader(post: post),
+        (post.category ?? "Follower")
+            .text
+            .color(ColorTheme.primaryColors[2])
+            .semiBold
+            .make()
+            .box
+            .p8
+            .color(ColorTheme.primaryColors[4])
+            .withRounded(value: 2)
+            .make()
+            .px(20),
+        verSpacing15,
+        (post.content ?? "Hello World").text.make().px20(),
+        verSpacing10,
+        if (post.image != null)
+          CachedNetworkImage(
+            imageUrl: post.image ?? "",
+            height: 210,
+            width: context.screenWidth,
+            fit: BoxFit.fitWidth,
+          ),
+        verSpacing10,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Obx(
+              () {
+                var likes = controller.allPosts[index].value.likesCount;
+                return "$likes Likes"
+                    .text
+                    .sm
+                    .color(ColorTheme.primaryColors[2])
+                    .make();
+              },
+            ),
+            "$comments comments"
+                .text
+                .sm
+                .color(ColorTheme.primaryColors[2])
+                .make(),
+          ],
+        ).px(20),
+        verSpacing5,
+        Divider(
+          height: 5,
+        ).px(20),
+        if (showActions)
+          PostActions(
+            onCommentsTap: onCommentsTap,
+            index: index,
+            controller: controller,
+          ),
+      ],
+    );
+  }
+}
+
+class PostActions extends StatelessWidget {
+  const PostActions({
+    Key? key,
+    required this.onCommentsTap,
+    required this.controller,
+    required this.index,
+  }) : super(key: key);
+
+  final PostActionsController controller;
+  final VoidCallback? onCommentsTap;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Obx(
+            () {
+              final isLiked = controller.allPosts[index].value.isLiked!;
+              return PostAction(
+                icon: Icons.thumb_up_alt_rounded,
+                title: "Like",
+                color: isLiked ? primaryColor(context) : null,
+                onTap: () => controller.onLikeTap(index),
+              );
+            },
+          ),
+          PostAction(
+            icon: Icons.mode_comment_outlined,
+            title: "Comments",
+            onTap: onCommentsTap,
+          ),
+          PostAction(
+            icon: Icons.share_rounded,
+            title: "Share",
+            onTap: () => controller.onShareTap(index),
+          ),
+        ],
+      ),
+    ).px(20);
+  }
+}
+
+class PostHeader extends StatelessWidget {
+  const PostHeader({
+    Key? key,
+    required this.post,
+  }) : super(key: key);
+
+  final Post post;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 67,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
             children: [
-              Container(
-                height: 67,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 35,
-                          width: 35,
-                          child: RoundedDp(
-                            name: post?.username,
-                            url: post?.profileImage ?? "",
-                          ),
-                        ),
-                        horSpacing15,
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            (post?.username ?? "Noob Coders")
-                                .text
-                                .size(16)
-                                .semiBold
-                                .color(ColorTheme.primaryColors[1])
-                                .make(),
-                            (post?.timeAgo?.timeDifference() ?? "null")
-                                .text
-                                .sm
-                                .color(ColorTheme.primaryColors[2])
-                                .make(),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Icon(
-                      Icons.more_horiz_rounded,
-                      color: ColorTheme.primaryColors[2],
-                    )
-                  ],
-                ).px20().py16(),
-              ),
-              (post?.category ?? "Follower")
-                  .text
-                  .color(ColorTheme.primaryColors[2])
-                  .semiBold
-                  .make()
-                  .box
-                  .p8
-                  .color(ColorTheme.primaryColors[4])
-                  .withRounded(value: 2)
-                  .make()
-                  .px(20),
-              verSpacing15,
-              (post?.content ?? "Hello World").text.make().px20(),
-              verSpacing10,
-              if (post?.image != null)
-                CachedNetworkImage(
-                  imageUrl: post?.image ?? "",
-                  height: 210,
-                  width: context.screenWidth,
-                  fit: BoxFit.fitWidth,
+              SizedBox(
+                height: 35,
+                width: 35,
+                child: RoundedDp(
+                  name: post.username,
+                  url: post.profileImage ?? "",
                 ),
-              verSpacing10,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+              horSpacing15,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  "$likes Likes"
+                  (post.username ?? "Noob Coders")
                       .text
-                      .sm
-                      .color(ColorTheme.primaryColors[2])
+                      .size(16)
+                      .semiBold
+                      .color(ColorTheme.primaryColors[1])
                       .make(),
-                  "$comments comments"
+                  (post.timeAgo?.timeDifference() ?? "null")
                       .text
                       .sm
                       .color(ColorTheme.primaryColors[2])
                       .make(),
                 ],
-              ).px(20),
-              verSpacing5,
-              Divider(
-                height: 5,
-              ).px(20),
-              Container(
-                height: 60,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    PostAction(
-                      icon: Icons.thumb_up_alt_rounded,
-                      title: "Like",
-                      onTap: onLikeTap,
-                    ),
-                    PostAction(
-                      icon: Icons.mode_comment_outlined,
-                      title: "Comments",
-                      onTap: onCommentsTap,
-                    ),
-                    PostAction(
-                      icon: Icons.share_rounded,
-                      title: "Share",
-                      onTap: onShareTap,
-                    ),
-                  ],
-                ),
-              ).px(20),
+              ),
             ],
           ),
-        ),
-        verSpacing15,
-      ],
+          Icon(
+            Icons.more_horiz_rounded,
+            color: ColorTheme.primaryColors[2],
+          )
+        ],
+      ).px20().py16(),
     );
   }
 }

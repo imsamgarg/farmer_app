@@ -16,11 +16,12 @@ class CommunityPostsView extends GetView<CommunityPostsController> {
       builderDelegate: PagedChildBuilderDelegate<Post>(
         itemBuilder: (c, item, i) {
           return FeedPost(
-            post: item,
+            controller: controller,
             onCommentsTap: () => feedController.onCommentsTap(
               item,
               controller.postsSnapshots[i],
             ),
+            index: i,
           );
         },
       ),

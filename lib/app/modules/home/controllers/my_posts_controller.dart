@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
+import 'package:farmer_app/app/core/utils/interfaces.dart';
 import 'package:farmer_app/app/data/models/post_model.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class MyPostsController extends GetxController {
+class MyPostsController extends GetxController with PostActionsController {
   late final pagingController = PagingController<int, Post>(firstPageKey: 0)
     ..addPageRequestListener((pageKey) {
       _fetchPosts(pageKey);
@@ -12,20 +13,10 @@ class MyPostsController extends GetxController {
 
   static const int fetchCount = 20;
 
-  // late final instance = _getInitialData();
-  // late final List<Post> posts;
+  late final List<Rx<Post>> posts;
   late final db = getDbService();
   late final List<DocumentSnapshot> postsSnapshots;
-  // int get postsCount => posts.length;
   late final user = getAuth().currentUser;
-  final String listViewId = "list-view";
-
-  // Future<bool> _getInitialData() async {
-  //   final snapshots = await db.getPosts(uid: user!.uid, count: fetchCount);
-  //   postsSnapshots = snapshots;
-  //   // posts = snapshots.docs.map((e) => Post.fromJson(e.data()!)).toList();
-  //   return true;
-  // }
 
   Future<void> _fetchPosts(int pageKey) async {
     final snapshots = await db.getPosts(
@@ -39,6 +30,7 @@ class MyPostsController extends GetxController {
       postsSnapshots.addAll(snapshots.docs);
     }
     final posts = snapshots.docs.map((e) => Post.fromJson(e.data()!)).toList();
+    this.posts = posts.map((e) => e.obs).toList();
     final isLast = snapshots.docs.length < fetchCount;
     if (isLast) {
       pagingController.appendLastPage(posts);
@@ -46,4 +38,7 @@ class MyPostsController extends GetxController {
       pagingController.appendPage(posts, pageKey + posts.length);
     }
   }
+
+  @override
+  List<Rx<Post>> get allPosts => posts;
 }
