@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class WeatherInfoTile extends StatelessWidget {
+  final String weather;
+
   const WeatherInfoTile({
     Key? key,
     required this.day,
     required this.humidity,
     required this.minTemp,
     required this.maxTemp,
+    required this.weather,
   }) : super(key: key);
   final String day;
   final int humidity;
@@ -30,7 +33,10 @@ class WeatherInfoTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 day.text.size(15).semiBold.make(),
-                _WeatherInfo(humidity: humidity),
+                _WeatherInfo(
+                  humidity: humidity,
+                  weather: weather,
+                ),
                 temp.text.make(),
               ],
             ),
@@ -91,7 +97,10 @@ class ListDivider extends StatelessWidget {
 }
 
 class _WeatherInfo extends StatelessWidget {
-  const _WeatherInfo({Key? key, required this.humidity}) : super(key: key);
+  final String weather;
+
+  const _WeatherInfo({Key? key, required this.humidity, required this.weather})
+      : super(key: key);
   final int humidity;
 
   @override
@@ -106,7 +115,7 @@ class _WeatherInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             "$humidity%".text.bold.size(16).make(),
-            "Sunny".text.sm.make(),
+            "$weather".text.sm.make(),
           ],
         ),
       ],
