@@ -117,6 +117,7 @@ class RegisterController extends GetxController with Validators {
   void verificationFailed(FirebaseAuthException e) {
     // late var errorMsg;
     // = "Failed To Verify Number";
+    toggleOtpButtonLoading(false);
     if (e.code == 'invalid-phone-number') {
       var errorMsg = 'The provided phone number is not valid.';
       errorSnackbar(errorMsg);
