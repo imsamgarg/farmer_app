@@ -134,11 +134,16 @@ class FeedPost extends StatelessWidget {
                     .make();
               },
             ),
-            "$comments comments"
-                .text
-                .sm
-                .color(ColorTheme.primaryColors[2])
-                .make(),
+            Obx(
+              () {
+                var comments = controller.allPosts[index].value.commentsCount;
+                return "$comments comments"
+                    .text
+                    .sm
+                    .color(ColorTheme.primaryColors[2])
+                    .make();
+              },
+            ),
           ],
         ).px(20),
         verSpacing5,
