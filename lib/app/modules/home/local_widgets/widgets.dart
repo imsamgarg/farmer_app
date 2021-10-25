@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:custom_utils/log_utils.dart';
 import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/core/utils/interfaces.dart';
@@ -94,7 +95,6 @@ class FeedPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var post = controller.allPosts[index].value;
-    var comments = post.commentsCount;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -208,6 +208,32 @@ class PostActions extends StatelessWidget {
   }
 }
 
+class PostDp extends StatelessWidget {
+  const PostDp({Key? key, this.url, this.name}) : super(key: key);
+  final String? url;
+  final String? name;
+  @override
+  Widget build(BuildContext context) {
+    final _url = url ?? "";
+    final _name = name ?? "y";
+    return ClipOval(
+      child: CachedNetworkImage(
+        imageUrl: _url,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => CenterLoading(size: 20),
+        errorWidget: (context, error, stackTrace) {
+          return Container(
+            color: Theme.of(context).primaryColor,
+            child: Center(
+              child: "${_name[0]}".text.white.size(48).make(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
 class PostHeader extends StatelessWidget {
   const PostHeader({
     Key? key,
@@ -218,6 +244,7 @@ class PostHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    customLog(post.profileImage);
     return Container(
       height: 67,
       child: Row(
@@ -229,9 +256,9 @@ class PostHeader extends StatelessWidget {
               SizedBox(
                 height: 35,
                 width: 35,
-                child: RoundedDp(
+                child: PostDp(
                   name: post.username,
-                  url: post.profileImage ?? "",
+                  url: post.profileImage,
                 ),
               ),
               horSpacing15,

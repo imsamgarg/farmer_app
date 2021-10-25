@@ -122,6 +122,7 @@ class RegisterController extends GetxController with Validators {
       var errorMsg = 'The provided phone number is not valid.';
       errorSnackbar(errorMsg);
     }
+    errorSnackbar(e.code);
   }
 
   void codeSent(String id, int? rT) {
