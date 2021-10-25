@@ -35,4 +35,9 @@ abstract class PostInterface {
   }
 
   Future<void> fetchPosts(int pageKey);
+
+  Future<void> refreshPage() async {
+    pagingController.refresh();
+    return;
+  }
 }

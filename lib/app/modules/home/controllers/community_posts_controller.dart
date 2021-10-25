@@ -50,4 +50,13 @@ class CommunityPostsController extends GetxController with PostInterface {
       pagingController.appendPage(posts, pageKey + posts.length);
     }
   }
+
+  @override
+  void refresh() {
+    posts.forEach((element) {
+      element.close();
+    });
+    posts.clear();
+    super.refresh();
+  }
 }

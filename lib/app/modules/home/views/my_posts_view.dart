@@ -10,19 +10,22 @@ class MyPostsView extends GetView<MyPostsController> {
   final feedController = Get.find<FeedController>();
   @override
   Widget build(BuildContext context) {
-    return PagedListView(
-      pagingController: controller.pagingController,
-      builderDelegate: PagedChildBuilderDelegate<Post>(
-        itemBuilder: (c, item, i) {
-          return FeedPost(
-            controller: controller,
-            index: i,
-            onCommentsTap: () => feedController.onCommentsTap(
-              controller.allPosts[i],
-              controller.postsSnapshots[i],
-            ),
-          );
-        },
+    return RefreshIndicator(
+      onRefresh: controller.refreshPage,
+      child: PagedListView(
+        pagingController: controller.pagingController,
+        builderDelegate: PagedChildBuilderDelegate<Post>(
+          itemBuilder: (c, item, i) {
+            return FeedPost(
+              controller: controller,
+              index: i,
+              onCommentsTap: () => feedController.onCommentsTap(
+                controller.allPosts[i],
+                controller.postsSnapshots[i],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
