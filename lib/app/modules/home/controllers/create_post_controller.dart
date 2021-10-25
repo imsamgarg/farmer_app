@@ -51,6 +51,7 @@ class CreatePostController extends GetxController {
         category: categories[selectedCategory],
         content: postSummaryController.text,
         image: _image,
+        username: user!.displayName,
         profileImage: user!.photoURL,
         user: user!.uid,
       );
