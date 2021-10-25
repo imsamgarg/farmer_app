@@ -67,8 +67,8 @@ class PostController extends GetxController {
     try {
       toggleLoading(true);
       final uid = user!.uid;
-      final userName = user!.displayName!;
-      final profileImage = user!.photoURL!;
+      final userName = user!.displayName ?? "";
+      final profileImage = user!.photoURL ?? "";
       final content = commentController.text;
       final postId = currentSnapshot.id;
       await getDbService().postComment(
