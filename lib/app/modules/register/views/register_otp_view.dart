@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:custom_utils/spacing_utils.dart';
 import 'package:get/state_manager.dart';
+import 'package:pinput/pin_put/pin_put.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
@@ -10,6 +11,8 @@ import 'package:farmer_app/app/core/theme/sizing_theme.dart';
 import 'package:farmer_app/app/modules/register/controllers/register_controller.dart';
 
 class RegisterOtpView extends GetView<RegisterController> {
+  var _otplength = 6;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,14 +25,24 @@ class RegisterOtpView extends GetView<RegisterController> {
           children: [
             Column(
               children: [
+                // Form(
+                //   key: controller.otpFormKey,
+                //   child: TextFormField(
+                //     controller: controller.otpController,
+                //     validator: (v) => controller.otpCodeValidator(v, 6),
+                //     keyboardType: TextInputType.number,
+                //     textInputAction: TextInputAction.done,
+                //     style: TextStyle(letterSpacing: 30),
+                //   ),
+                // ),
                 Form(
                   key: controller.otpFormKey,
-                  child: TextFormField(
+                  child: PinPut(
+                    fieldsCount: _otplength,
                     controller: controller.otpController,
                     validator: (v) => controller.otpCodeValidator(v, 6),
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.done,
-                    style: TextStyle(letterSpacing: 30),
                   ),
                 ),
                 verSpacing15,

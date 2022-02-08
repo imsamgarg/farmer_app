@@ -34,10 +34,8 @@ class RegisterController extends GetxController with Validators {
 
   @override
   void onClose() {
-    customLog("Disposing Controllers", name: "Login");
     phoneController.dispose();
     otpController.dispose();
-    customLog("Controllers Disposed", name: "Login");
     super.onClose();
   }
 
@@ -45,7 +43,6 @@ class RegisterController extends GetxController with Validators {
   void sendOtp() async {
     if (!phoneFormkey.currentState!.validate()) return;
     try {
-      customLog(phoneController.text);
       toggleOtpButtonLoading(true);
       final number = "+91${phoneController.text}";
       await auth.verifyPhoneNumber(
@@ -56,7 +53,6 @@ class RegisterController extends GetxController with Validators {
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
       );
     } on Exception catch (e, s) {
-      customLog("Error", error: e, stackTrace: s);
       toggleOtpButtonLoading(false);
     }
     // toggleOtpButtonLoading(false);
@@ -88,7 +84,6 @@ class RegisterController extends GetxController with Validators {
       await auth.currentUser?.updateDisplayName(name);
       Get.offAllNamed(Routes.HOME);
     } on Exception catch (e, s) {
-      customLog("__", name: "Name Error", error: e, stackTrace: s);
       errorSnackbar("Failed To Set Name");
     } finally {
       toggleEnterNameButtonLoading(false);

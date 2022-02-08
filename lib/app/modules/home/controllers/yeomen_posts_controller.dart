@@ -16,7 +16,7 @@ class YeomenPostsController extends GetxController with PostInterface {
   Future<void> fetchPosts(int pageKey) async {
     final snapshots = await db.getPosts(
       count: fetchCount,
-      category: yeomenTeamCategory,
+      category: 'Buy Crop',
       startAfter: pageKey == 0 ? null : postsSnapshots.last,
     );
     if (pageKey == 0) {

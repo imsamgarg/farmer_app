@@ -40,7 +40,6 @@ class PostController extends GetxController {
       count: fetchCount,
       startAfter: pageKey == 0 ? null : commentSnapshots.last,
     );
-    customLog(pageKey);
     if (pageKey == 0) {
       commentSnapshots = snapshots.docs;
     } else {

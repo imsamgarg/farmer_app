@@ -121,31 +121,32 @@ class FeedPost extends StatelessWidget {
             fit: BoxFit.fitWidth,
           ),
         verSpacing10,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Obx(
-              () {
-                var likes = controller.allPosts[index].value.likesCount;
-                return "$likes Likes"
-                    .text
-                    .sm
-                    .color(ColorTheme.primaryColors[2])
-                    .make();
-              },
-            ),
-            Obx(
-              () {
-                var comments = controller.allPosts[index].value.commentsCount;
-                return "$comments comments"
-                    .text
-                    .sm
-                    .color(ColorTheme.primaryColors[2])
-                    .make();
-              },
-            ),
-          ],
-        ).px(20),
+        if (showActions)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Obx(
+                () {
+                  var likes = controller.allPosts[index].value.likesCount;
+                  return "$likes Likes"
+                      .text
+                      .sm
+                      .color(ColorTheme.primaryColors[2])
+                      .make();
+                },
+              ),
+              Obx(
+                () {
+                  var comments = controller.allPosts[index].value.commentsCount;
+                  return "$comments comments"
+                      .text
+                      .sm
+                      .color(ColorTheme.primaryColors[2])
+                      .make();
+                },
+              ),
+            ],
+          ).px(20),
         verSpacing5,
         Divider(
           height: 5,
@@ -244,7 +245,6 @@ class PostHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    customLog(post.profileImage);
     return Container(
       height: 67,
       child: Row(

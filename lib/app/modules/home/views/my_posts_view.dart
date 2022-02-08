@@ -16,9 +16,11 @@ class MyPostsView extends GetView<MyPostsController> {
         pagingController: controller.pagingController,
         builderDelegate: PagedChildBuilderDelegate<Post>(
           itemBuilder: (c, item, i) {
+            final showActions = item.category != 'Buy Crop';
             return FeedPost(
               controller: controller,
               index: i,
+              showActions: showActions,
               onCommentsTap: () => feedController.onCommentsTap(
                 controller.allPosts[i],
                 controller.postsSnapshots[i],

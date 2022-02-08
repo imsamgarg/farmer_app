@@ -33,6 +33,9 @@ class HomeView extends GetView<HomeController> {
           ),
         );
       },
+      errorBuilder: (_) {
+        return Text('Error');
+      },
     );
   }
 }

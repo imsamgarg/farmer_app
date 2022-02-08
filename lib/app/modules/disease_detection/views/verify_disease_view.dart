@@ -43,7 +43,8 @@ class VerifyDiseaseView extends GetView<DiseaseDetectionController> {
                           CropDisease(
                             name: "Bfgi",
                             image: Assets.to.diseasePNG,
-                          ).onTap(() => controller.onDiseaseSelect(i, 0)),
+                          ),
+                          // onTap(() => controller.onDiseaseSelect(i, 0)),
                           CropDisease(
                             name: "Bfgi",
                             image: Assets.to.diseasePNG,

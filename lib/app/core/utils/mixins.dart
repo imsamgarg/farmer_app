@@ -26,7 +26,6 @@ mixin Validators {
     value ??= "";
     value = value.removeAllWhitespace;
     if (value.isEmpty) return "Please Enter Name";
-    customLog(value);
     if (!value.isAlphabetOnly && !numbersAllowed) {
       return "Only Alphabets Are Allowed";
     }

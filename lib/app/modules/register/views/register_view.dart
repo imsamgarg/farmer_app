@@ -25,9 +25,9 @@ class RegisterView extends GetView<RegisterController> {
               key: controller.phoneFormkey,
               child: TextFormField(
                 keyboardType: TextInputType.number,
-                validator: (v) => controller.phoneNumberValidator(v, 11),
+                validator: (v) => controller.phoneNumberValidator(v, 10),
                 textInputAction: TextInputAction.done,
-                maxLength: 11,
+                maxLength: 10,
                 controller: controller.phoneController,
                 decoration: InputDecoration(
                   prefixIcon: Padding(
@@ -35,6 +35,7 @@ class RegisterView extends GetView<RegisterController> {
                       child: "🇮🇳 +91 ".text.size(16).make()),
                   prefixStyle: TextStyle(color: Colors.black, fontSize: 16),
                   hintText: "Enter Mobile Number",
+                  hintMaxLines: null,
                 ),
               ),
             ),

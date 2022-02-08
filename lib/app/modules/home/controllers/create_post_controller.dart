@@ -59,7 +59,6 @@ class CreatePostController extends GetxController {
       _resetPage();
       successSnackbar("Post Created Successfully!!");
     } on Exception catch (e, s) {
-      customLog("Error", name: "Post", error: e, stackTrace: s);
       errorSnackbar("Error Creating Post");
     } finally {
       toggleButtonLoading(false);

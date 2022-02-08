@@ -18,6 +18,7 @@ class YeomenPostsView extends GetView<YeomenPostsController> {
         builderDelegate: PagedChildBuilderDelegate<Post>(
           itemBuilder: (c, item, i) {
             return FeedPost(
+              showActions: false,
               controller: controller,
               index: i,
               onCommentsTap: () => feedController.onCommentsTap(

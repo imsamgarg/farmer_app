@@ -31,10 +31,8 @@ class LoginController extends GetxController with Validators {
 
   @override
   void onClose() {
-    customLog("Disposing Controllers", name: "Login");
     phoneController.dispose();
     otpController.dispose();
-    customLog("Controllers Disposed", name: "Login");
     super.onClose();
   }
 

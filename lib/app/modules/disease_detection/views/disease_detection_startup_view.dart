@@ -1,4 +1,3 @@
-import 'package:custom_utils/column_utils.dart';
 import 'package:custom_utils/spacing_utils.dart';
 import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
 import 'package:farmer_app/app/core/global_widgets/button.dart';

@@ -9,7 +9,6 @@ import '../../../core/utils/extensions.dart';
 class MultiDayReportView extends GetView<WeatherReportController> {
   @override
   Widget build(BuildContext context) {
-    customLog(controller.fiveDaysWeather);
     return ListView.builder(
       itemCount: controller.fiveDaysWeather.length,
       itemBuilder: (c, i) {

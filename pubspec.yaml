@@ -20,10 +20,12 @@ dependencies:
   location: 4.3.0
   weather: 2.0.1
   infinite_scroll_pagination: 3.1.0
+  camera: 0.9.4+3
+  pinput: 1.2.2
   flutter: 
     sdk: flutter
   custom_utils: 
-    git: https://github.com/imsmilegarg/custom_utils.git
+    path: ../custom_utils
 
 dev_dependencies: 
   flutter_native_splash: ^1.1.8+4

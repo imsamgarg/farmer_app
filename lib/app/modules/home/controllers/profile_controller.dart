@@ -80,7 +80,6 @@ class ProfileController extends GetxController {
         toggleLoadingButton(false);
       } on Exception catch (e, s) {
         toggleLoadingButton(false);
-        customLog("Error", name: "Error", stackTrace: s, error: e);
         errorSnackbar("Failed To Update Profile");
       }
     } else {
@@ -113,7 +112,6 @@ class ProfileController extends GetxController {
         uploadedImage = image;
       } on Exception catch (e, s) {
         errorSnackbar("Failed To Upload Image");
-        customLog("Error", name: "Image Error", error: e, stackTrace: s);
       }
     }
   }

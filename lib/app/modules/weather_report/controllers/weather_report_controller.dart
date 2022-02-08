@@ -44,8 +44,8 @@ class WeatherReportController extends GetxController {
     }
     final lo = locData.longitude!;
     final la = locData.latitude!;
-    currentDayWeather = await wf.currentWeatherByLocation(lo, la);
-    fiveDaysWeather = await wf.fiveDayForecastByLocation(lo, la);
+    currentDayWeather = await wf.currentWeatherByLocation(la, lo);
+    fiveDaysWeather = await wf.fiveDayForecastByLocation(la, lo);
     return true;
   }
 }
