@@ -78,7 +78,7 @@ class ProfileController extends GetxController {
         editingEnabled = false;
         successSnackbar("Profile Updated");
         toggleLoadingButton(false);
-      } on Exception catch (e, s) {
+      } on Exception catch (e) {
         toggleLoadingButton(false);
         errorSnackbar("Failed To Update Profile");
       }
@@ -110,7 +110,7 @@ class ProfileController extends GetxController {
         await getAuthService().changeDp(url);
         userController.changeDp(url);
         uploadedImage = image;
-      } on Exception catch (e, s) {
+      } on Exception catch (e) {
         errorSnackbar("Failed To Upload Image");
       }
     }

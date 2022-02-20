@@ -58,7 +58,7 @@ class CreatePostController extends GetxController {
       await getDbService().createPost(post);
       _resetPage();
       successSnackbar("Post Created Successfully!!");
-    } on Exception catch (e, s) {
+    } on Exception catch (e) {
       errorSnackbar("Error Creating Post");
     } finally {
       toggleButtonLoading(false);

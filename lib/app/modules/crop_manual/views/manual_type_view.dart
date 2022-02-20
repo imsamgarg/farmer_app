@@ -33,24 +33,24 @@ class ManualTypeView extends GetView<CropManualController> {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CropDisease(
-                            name: "Bfgi",
-                            image: Assets.to.diseasePNG,
-                          ).onTap(() => controller.onDiseaseSelect(i, 0)),
-                          CropDisease(
-                            name: "Bfgi",
-                            image: Assets.to.diseasePNG,
-                            isActive: i == 0,
-                          ).onTap(() => controller.onDiseaseSelect(i, 0)),
-                          CropDisease(
-                            name: "Bfgi",
-                            image: Assets.to.diseasePNG,
-                          ).onTap(() => controller.onDiseaseSelect(i, 0)),
-                        ],
-                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     CropDisease(
+                      //       name: "Bfgi",
+                      //       image: Assets.to.diseasePNG,
+                      //     ).onTap(() => controller.onDiseaseSelect(i, 0)),
+                      //     CropDisease(
+                      //       name: "Bfgi",
+                      //       image: Assets.to.diseasePNG,
+                      //       isActive: i == 0,
+                      //     ).onTap(() => controller.onDiseaseSelect(i, 0)),
+                      //     CropDisease(
+                      //       name: "Bfgi",
+                      //       image: Assets.to.diseasePNG,
+                      //     ).onTap(() => controller.onDiseaseSelect(i, 0)),
+                      //   ],
+                      // ),
                       verSpacing32,
                     ],
                   );

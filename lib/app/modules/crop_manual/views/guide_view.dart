@@ -46,10 +46,10 @@ class GuideView extends GetView<CropManualController> {
             ),
           ),
           verSpacing10,
-          CustomButton(
-            child: "Next Information-Onion: Crop Growth".text.bold.make(),
-            onPressed: controller.nextInfo,
-          ),
+          // CustomButton(
+          //   child: "Next Information-Onion: Crop Growth".text.bold.make(),
+          //   onPressed: controller.nextInfo,
+          // ),
           verSpacing10,
         ],
       ),

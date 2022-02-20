@@ -47,17 +47,17 @@ class ProfileView extends GetView<ProfileController> {
                               message: "Disease Detection",
                               onTap: profileRoutes.openDiseaseDetection,
                             ),
-                            // _Tile(
-                            //   message: "Crop Manuals",
-                            //   onTap: profileRoutes.openCropManual,
-                            // ),
-                            // _Tile(
-                            //   message: "Buy Input",
-                            //   onTap: profileRoutes.openBuyInput,
-                            // ),
                             _Tile(
                               message: "Sell Produce",
                               onTap: profileRoutes.openSellProduce,
+                            ),
+                            _Tile(
+                              message: "Crop Manuals",
+                              onTap: profileRoutes.openCropManual,
+                            ),
+                            _Tile(
+                              message: "Buy Input",
+                              onTap: profileRoutes.openBuyInput,
                             ),
                           ],
                         ),

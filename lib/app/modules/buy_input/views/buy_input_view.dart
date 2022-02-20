@@ -1,8 +1,5 @@
 import 'package:custom_utils/spacing_utils.dart';
 import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
-import 'package:farmer_app/app/core/global_widgets/widgets.dart';
-import 'package:farmer_app/app/modules/buy_input/views/input_detail_view.dart';
-import 'package:farmer_app/assets.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -14,60 +11,68 @@ class BuyInputView extends GetView<BuyInputController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(heading),
+      appBar: CustomAppBar("Crop Manuals"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           children: [
-            verSpacing10,
-            SizedBox(
-              height: 50,
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: "Search",
-                ),
+            verSliverSpacing12,
+            for (var i = 0; i < controller.links.length; i++) ...[
+              TextButton(
+                onPressed: () => controller.openLink(i),
+                child: Text(controller.links[i]),
               ),
-            ),
-            verSpacing10,
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (c, i) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Crop(
-                            image: Assets.to.medicPNG,
-                            name: "Admire",
-                            onTap: () {
-                              Get.to(() => InputDetailView());
-                            },
-                          ),
-                          Crop(
-                            image: Assets.to.medicPNG,
-                            name: "Admire",
-                            onTap: () {
-                              Get.to(() => InputDetailView());
-                            },
-                          ),
-                          Crop(
-                            image: Assets.to.medicPNG,
-                            name: "Admire",
-                            onTap: () {
-                              Get.to(() => InputDetailView());
-                            },
-                          ),
-                        ],
-                      ),
-                      verSpacing32,
-                    ],
-                  );
-                },
-              ),
-            ),
+              verSpacing10,
+            ]
+            // verSpacing10,
+            // SizedBox(
+            //   height: 50,
+            //   child: TextField(
+            //     decoration: InputDecoration(
+            //       prefixIcon: Icon(Icons.search),
+            //       hintText: "Search",
+            //     ),
+            //   ),
+            // ),
+
+            // Expanded(
+            //   child: ListView.builder(
+            //     itemBuilder: (c, i) {
+            //       return Column(
+            //         mainAxisSize: MainAxisSize.min,
+            //         children: [
+            //           Row(
+            //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //             children: [
+            //               Crop(
+            //                 image: Assets.to.cropPNG,
+            //                 name: "Apple",
+            //                 onTap: () {
+            //                   Get.to(() => ManualTypeView());
+            //                 },
+            //               ),
+            //               Crop(
+            //                 image: Assets.to.cropPNG,
+            //                 name: "Apple",
+            //                 onTap: () {
+            //                   Get.to(() => ManualTypeView());
+            //                 },
+            //               ),
+            //               Crop(
+            //                 image: Assets.to.cropPNG,
+            //                 name: "Apple",
+            //                 onTap: () {
+            //                   Get.to(() => ManualTypeView());
+            //                 },
+            //               ),
+            //             ],
+            //           ),
+            //           verSpacing32,
+            //         ],
+            //       );
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),

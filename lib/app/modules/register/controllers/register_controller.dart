@@ -52,7 +52,7 @@ class RegisterController extends GetxController with Validators {
         codeSent: codeSent,
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
       );
-    } on Exception catch (e, s) {
+    } on Exception catch (e) {
       toggleOtpButtonLoading(false);
     }
     // toggleOtpButtonLoading(false);
@@ -69,7 +69,7 @@ class RegisterController extends GetxController with Validators {
         smsCode: otp,
       );
       await _registerUser(creds);
-    } on Exception catch (e) {
+    } on Exception {
       toggleEnterOtpButtonLoading(false);
       errorSnackbar("Failed To Verify Number");
     }
@@ -83,7 +83,7 @@ class RegisterController extends GetxController with Validators {
       final name = nameController.text;
       await auth.currentUser?.updateDisplayName(name);
       Get.offAllNamed(Routes.HOME);
-    } on Exception catch (e, s) {
+    } on Exception catch (e) {
       errorSnackbar("Failed To Set Name");
     } finally {
       toggleEnterNameButtonLoading(false);

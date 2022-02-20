@@ -4,7 +4,6 @@ import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/data/models/post_model.dart';
 import 'package:farmer_app/app/modules/disease_detection/controllers/camera_controller.dart';
 import 'package:farmer_app/app/modules/disease_detection/views/camera_view.dart';
-import 'package:farmer_app/app/modules/disease_detection/views/disease_detection_view.dart';
 import 'package:farmer_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,7 +56,7 @@ class DiseaseDetectionController extends GetxController {
       await getDbService().createPost(post);
       Get.until((route) => Get.currentRoute == Routes.HOME);
       successSnackbar("Post Created Successfully!!");
-    } on Exception catch (e, s) {
+    } on Exception catch (e) {
       errorSnackbar("Error Creating Post");
     } finally {
       toggleButtonLoading(false);

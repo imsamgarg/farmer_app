@@ -81,7 +81,7 @@ class PostController extends GetxController {
       successSnackbar("Comment Posted", 4, SnackPosition.TOP);
       commentController.clear();
       pagingController.refresh();
-    } on Exception catch (e) {
+    } on Exception {
       errorSnackbar("Failed To Post Comment");
     } finally {
       toggleLoading(false);

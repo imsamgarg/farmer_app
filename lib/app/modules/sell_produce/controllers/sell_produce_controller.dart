@@ -63,7 +63,7 @@ class SellProduceController extends GetxController {
       // _resetPage();
       Get.until((_) => Get.currentRoute == Routes.HOME);
       successSnackbar("Post Created Successfully!!");
-    } on Exception catch (e, s) {
+    } on Exception catch (e) {
       errorSnackbar("Error Creating Post");
     } finally {
       toggleButtonLoading(false);

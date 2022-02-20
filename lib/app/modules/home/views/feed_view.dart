@@ -10,7 +10,6 @@ import 'package:get/state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:farmer_app/app/core/theme/color_theme.dart';
-import 'package:farmer_app/app/core/values/strings.dart';
 import 'package:farmer_app/app/modules/home/local_widgets/widgets.dart';
 
 class FeedView extends GetView<FeedController> {
@@ -85,10 +84,10 @@ class Filters extends GetView<FeedController> {
               text: "Community",
             ),
             Tab(
-              text: appName,
+              text: "Marketplace",
             ),
             Tab(
-              text: "My",
+              text: "My Posts",
             )
           ]),
         ],
