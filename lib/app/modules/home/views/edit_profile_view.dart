@@ -54,66 +54,66 @@ class EditProfileView extends GetView<ProfileController> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  CustomButton(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ("Land Details")
-                            .text
-                            .bold
-                            .color(ColorTheme.primaryColors[2])
-                            .make(),
-                        Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: ColorTheme.primaryColors[2],
-                          size: 20,
-                        )
-                      ],
-                    ),
-                    onPressed: profileRoutes.dummyButton,
-                    bgColor: ColorTheme.whiteColor,
-                    overlayColor: ColorTheme.primaryColors[4],
-                  ),
-                  CustomButton(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ("Your Crops")
-                            .text
-                            .bold
-                            .color(ColorTheme.primaryColors[2])
-                            .make(),
-                        Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: ColorTheme.primaryColors[2],
-                          size: 20,
-                        )
-                      ],
-                    ),
-                    onPressed: profileRoutes.dummyButton,
-                    bgColor: ColorTheme.whiteColor,
-                    overlayColor: ColorTheme.primaryColors[4],
-                  ),
-                  CustomButton(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ("About")
-                            .text
-                            .bold
-                            .color(ColorTheme.primaryColors[2])
-                            .make(),
-                        Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: ColorTheme.primaryColors[2],
-                          size: 20,
-                        )
-                      ],
-                    ),
-                    onPressed: profileRoutes.dummyButton,
-                    bgColor: ColorTheme.whiteColor,
-                    overlayColor: ColorTheme.primaryColors[4],
-                  ),
+                  // CustomButton(
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       ("Land Details")
+                  //           .text
+                  //           .bold
+                  //           .color(ColorTheme.primaryColors[2])
+                  //           .make(),
+                  //       Icon(
+                  //         Icons.arrow_forward_ios_rounded,
+                  //         color: ColorTheme.primaryColors[2],
+                  //         size: 20,
+                  //       )
+                  //     ],
+                  //   ),
+                  //   onPressed: profileRoutes.dummyButton,
+                  //   bgColor: ColorTheme.whiteColor,
+                  //   overlayColor: ColorTheme.primaryColors[4],
+                  // ),
+                  // CustomButton(
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       ("Your Crops")
+                  //           .text
+                  //           .bold
+                  //           .color(ColorTheme.primaryColors[2])
+                  //           .make(),
+                  //       Icon(
+                  //         Icons.arrow_forward_ios_rounded,
+                  //         color: ColorTheme.primaryColors[2],
+                  //         size: 20,
+                  //       )
+                  //     ],
+                  //   ),
+                  //   onPressed: profileRoutes.dummyButton,
+                  //   bgColor: ColorTheme.whiteColor,
+                  //   overlayColor: ColorTheme.primaryColors[4],
+                  // ),
+                  // CustomButton(
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       ("About")
+                  //           .text
+                  //           .bold
+                  //           .color(ColorTheme.primaryColors[2])
+                  //           .make(),
+                  //       Icon(
+                  //         Icons.arrow_forward_ios_rounded,
+                  //         color: ColorTheme.primaryColors[2],
+                  //         size: 20,
+                  //       )
+                  //     ],
+                  //   ),
+                  //   onPressed: profileRoutes.dummyButton,
+                  //   bgColor: ColorTheme.whiteColor,
+                  //   overlayColor: ColorTheme.primaryColors[4],
+                  // ),
                   CustomButton(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

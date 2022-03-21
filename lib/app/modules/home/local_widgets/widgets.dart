@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:custom_utils/log_utils.dart';
 import 'package:farmer_app/app/core/global_widgets/widgets.dart';
 import 'package:farmer_app/app/core/utils/helper.dart';
 import 'package:farmer_app/app/core/utils/interfaces.dart';

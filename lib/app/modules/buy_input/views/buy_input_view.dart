@@ -1,8 +1,11 @@
 import 'package:custom_utils/spacing_utils.dart';
 import 'package:farmer_app/app/core/global_widgets/app_bar.dart';
+import 'package:farmer_app/app/core/global_widgets/button.dart';
+import 'package:farmer_app/app/core/theme/color_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../controllers/buy_input_controller.dart';
 
@@ -16,11 +19,21 @@ class BuyInputView extends GetView<BuyInputController> {
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           children: [
-            verSliverSpacing12,
+            verSpacing12,
             for (var i = 0; i < controller.links.length; i++) ...[
-              TextButton(
+              // TextButton(
+              //   onPressed: () => controller.openLink(i),
+              //   child: Text(controller.links[i]),
+              // ),
+              CustomButton(
+                child: (controller.links[i])
+                    .text
+                    .bold
+                    .color(ColorTheme.primaryColors[2])
+                    .make(),
                 onPressed: () => controller.openLink(i),
-                child: Text(controller.links[i]),
+                bgColor: ColorTheme.whiteColor,
+                overlayColor: ColorTheme.primaryColors[4],
               ),
               verSpacing10,
             ]

@@ -7,6 +7,7 @@ class BuyInputController extends GetxController {
     "https://www.ugaoo.com/plant-care/plant-growth/fertilizers.html",
     "https://www.bigbasket.com/pc/kitchen-garden-pets/gardening/fertilizers-pesticides/",
     "https://agribegri.com/fertilizers/buy-cheap-chemical-fertilizers-online-in-india.php",
+    "https://www.iffcobazar.in/en/fertilisers",
   ];
 
   Future<void> openLink(int index) async {
